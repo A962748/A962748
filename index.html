@@ -1,0 +1,1353 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>أشرف بشير</title>
+<meta name="description" content="صفحتي على الويب" />
+<link rel="icon" href="icon.png" type="image/png" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link
+href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap"
+rel="stylesheet"
+/>
+
+<link
+href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/css/lightbox.min.css"
+rel="stylesheet"
+/>
+<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+<link
+rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+/>
+
+<style>
+/* التنسيقات العامة - العودة للأصلية مع تحسينات النسر والأسد والمودال */
+body {
+overflow-y: scroll; /* يظهر الشريط دائمًا */
+
+  margin: 0;
+  padding: 0;
+  font-family: 'Cairo', Arial, sans-serif; /* العودة للخط الأصلي */
+  direction: rtl;
+  background-image: url('background.jpg'); /* خلفيتك الأصلية */
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  text-align: center;
+  animation: fadeIn 2s ease-in-out;
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  overflow-x: hidden;
+}
+.navbar {
+  background-color: rgba(30, 144, 255, 0.8); /* لون شريط التنقل الأصلي مع عتامة */
+  padding: 10px 0;
+  font-weight: bold;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* ظل خفيف */
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  width: 100%;
+}
+.menu {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+.menu > li {
+  position: relative;
+}
+.menu a {
+  color: white;
+  text-decoration: none;
+  padding: 8px 15px;
+  display: inline-block;
+  border-radius: 5px;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  user-select: none;
+}
+.menu a:hover {
+  background-color: rgba(0, 0, 0, 0.2);
+  transform: translateY(-2px);
+}
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: rgba(30, 144, 255, 0.9); /* لون متناسق مع شريط التنقل */
+  min-width: 200px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+  border-radius: 5px;
+  top: 100%;
+  right: 0;
+  z-index: 10;
+  text-align: right;
+  opacity: 0;
+  transform: translateY(10px);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+.dropdown:hover > .dropdown-content {
+  display: block;
+  opacity: 1;
+  transform: translateY(0);
+}
+.dropdown-content li {
+  position: relative;
+}
+.dropdown-content li a {
+  color: white;
+  padding: 10px 15px;
+  display: block;
+  text-align: right;
+  white-space: nowrap;
+}
+.dropdown-content li a:hover {
+  background-color: rgba(0, 0, 0, 0.15);
+  transform: none;
+}
+.dropdown-left .dropdown-content {
+  right: auto;
+  left: 0;
+}
+
+/* تنسيقات القوائم الفرعية للوسائط */
+.video-popup,
+.audio-popup,
+.image-gallery-popup {
+  display: none; /* مخفية افتراضياً */
+  position: absolute;
+  top: 0; /* بجانب العنصر الأب */
+  left: 100%; /* تظهر على يسار العنصر الأب في حالة RTL */
+  background-color: rgba(30, 144, 255, 0.95); /* لون متناسق */
+  border-radius: 5px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  min-width: 220px; /* عرض مناسب */
+  padding: 10px;
+  z-index: 20; /* فوق العناصر الأخرى */
+  text-align: right;
+  opacity: 0;
+  transform: translateX(10px);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+/* ظهور القوائم الفرعية للوسائط عند التحويم على العنصر الأب (li) */
+.dropdown-content li.video-trigger:hover > .video-popup,
+.dropdown-content li.audio-trigger:hover > .audio-popup,
+.dropdown-content li.image-gallery-trigger:hover > .image-gallery-popup {
+  display: block;
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* في حالة dropdown-left، تظهر القوائم الفرعية للوسائط على يمين العنصر الأب */
+.dropdown-left .video-popup,
+.dropdown-left .audio-popup,
+.dropdown-left .image-gallery-popup {
+  left: auto;
+  right: 100%;
+  transform: translateX(-10px);
+}
+.dropdown-left li.video-trigger:hover > .video-popup,
+.dropdown-left li.audio-trigger:hover > .audio-popup,
+.dropdown-left li.image-gallery-trigger:hover > .image-gallery-popup {
+  transform: translateX(0);
+}
+
+.video-popup a,
+.audio-popup a,
+.image-gallery-popup a {
+  display: block;
+  padding: 8px 12px;
+  color: white;
+  border-radius: 3px;
+  margin-bottom: 5px;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transition: background-color 0.3s ease;
+}
+.video-popup a:hover,
+.audio-popup a:hover,
+.image-gallery-popup a:hover {
+  background-color: rgba(0, 0, 0, 0.1);
+}
+.audio-popup a img,
+.image-gallery-popup a img {
+  width: 40px;
+  height: 40px;
+  border-radius: 5px;
+  object-fit: cover;
+}
+
+.welcome-message {
+  color: white;
+  font-size: 50px;
+  font-weight: bolder;
+  text-shadow: 2px 2px 5px black;
+  margin-top: 100px;
+  animation: fadeIn 1.5s ease-out;
+}
+.content-area {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  max-width: 1200px;
+  min-height: 400px;
+  margin: 50px auto 20px auto;
+  flex-wrap: wrap;
+}
+
+/* تحسينات النسر والأسد */
+.eagle-wrapper,
+.lion-wrapper {
+  position: absolute;
+  transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
+}
+
+.eagle-wrapper {
+  right: calc(50% + 200px);
+  top: 50px;
+  transform: translateX(0);
+  animation: eagleMove 10s infinite alternate ease-in-out;
+}
+.lion-wrapper {
+  left: calc(50% + 200px);
+  top: 50px;
+  transform: translateX(0);
+  animation: lionMove 10s infinite alternate ease-in-out;
+}
+
+.lion-image,
+.eagle-image {
+  width: 350px;
+  height: auto;
+  opacity: 0.95;
+  transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out,
+    box-shadow 0.3s ease;
+  cursor: pointer;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+.lion-image:hover,
+.eagle-image:hover {
+  transform: scale(1.05);
+  opacity: 1;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+}
+
+/* تنسيقات الكلام (الكابشن) - تم التعديل */
+.image-caption {
+  margin-top: 10px;
+  color: #fff;
+  font-size: 16px;
+  font-weight: bold;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.9); /* **تم التعديل: زيادة قوة الظل** */
+  background-color: rgba(0, 0, 0, 0.7); /* **تم التعديل: زيادة العتامة** */
+  padding: 5px 10px;
+  border-radius: 5px;
+  white-space: nowrap;
+  opacity: 1;
+  transition: transform 0.3s ease;
+  transform: translateY(0);
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  box-sizing: border-box;
+  text-align: center;
+  z-index: 4;
+}
+
+/* تنسيقات الأيقونات داخل صور النسر والأسد - تم التأكيد */
+.image-wrapper {
+  position: relative;
+  overflow: hidden;
+}
+
+.sound-controls {
+  position: absolute;
+  bottom: 10px;
+  width: calc(100% - 20px);
+  left: 10px;
+  right: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 15px;
+  background-color: rgba(0, 0, 0, 0.6);
+  padding: 8px 15px;
+  border-radius: 20px;
+  opacity: 1; /* الأيقونات ستظهر دائمًا */
+  transition: opacity 0.3s ease-in-out;
+  z-index: 5;
+  box-sizing: border-box;
+}
+
+.play-sound-icon,
+.stop-sound-icon {
+  color: #fff;
+  font-size: 24px;
+  cursor: pointer;
+  transition: color 0.2s ease, transform 0.2s ease;
+}
+
+.play-sound-icon:hover,
+.stop-sound-icon:hover {
+  color: #1e90ff;
+  transform: scale(1.1);
+}
+
+/* في حالة وجود صوت مشغل حاليا - **تم التأكيد** */
+.play-sound-icon.playing {
+    color: #28a745; /* لون أخضر للأيقونة الدالة على التشغيل */
+}
+
+#strength-message {
+  z-index: 6;
+  color: white;
+  font-size: 40px;
+  font-weight: bolder;
+  text-shadow: 2px 2px 8px black;
+  white-space: nowrap;
+  padding: 10px 20px;
+  background-color: rgba(0, 0, 0, 0.5);
+  border-radius: 10px;
+  animation: fadeIn 1.5s ease-out;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+@keyframes eagleMove {
+  0% {
+    transform: translateY(0px) translateX(0px) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-20px) translateX(10px) rotate(-2deg);
+  }
+  100% {
+    transform: translateY(0px) translateX(0px) rotate(0deg);
+  }
+}
+
+@keyframes lionMove {
+  0% {
+    transform: translateY(0px) translateX(0px) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-15px) translateX(-10px) rotate(2deg);
+  }
+  100% {
+    transform: translateY(0px) translateX(0px) rotate(0deg);
+  }
+}
+footer {
+  margin-top: auto;
+  padding: 20px 0;
+  font-size: 16px;
+  color: white;
+  font-weight: bolder;
+  width: 100%;
+  box-sizing: border-box;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+  background-color: rgba(30, 144, 255, 0.7);
+}
+
+/* Modal (Popup) Styles */
+.modal-overlay {
+  display: none;
+  position: fixed;
+  z-index: 1000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.7);
+  justify-content: center;
+  align-items: center;
+  animation: fadeInOverlay 0.3s ease-out;
+}
+.modal-content {
+  background-color: #fefefe;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 90%;
+  max-width: 450px;
+  max-height: 85vh;
+  overflow-y: auto;
+  border-radius: 8px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+  position: relative;
+  text-align: center;
+  animation: zoomIn 0.3s ease-out;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.modal-content h2.modal-title {
+  display: block;
+  margin-bottom: 15px;
+  color: #333;
+  font-size: 1.5em;
+  word-wrap: break-word;
+}
+.modal-content audio {
+  display: none !important;
+}
+.close-button {
+  color: #aaa;
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  font-size: 28px;
+  font-weight: bold;
+  cursor: pointer;
+  z-index: 1001;
+  background-color: rgba(255, 255, 255, 0.7);
+  border-radius: 50%;
+  width: 35px;
+  height: 35px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+.close-button:hover,
+.close-button:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+.modal-close-btn {
+  display: inline-block;
+  margin-top: 20px;
+  padding: 10px 20px;
+  background-color: #f44336;
+  color: white;
+  text-decoration: none;
+  border-radius: 5px;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
+  cursor: pointer;
+  border: none;
+  white-space: nowrap;
+}
+.modal-close-btn:hover {
+  background-color: #da190b;
+}
+.media-navigation-buttons {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  max-width: 300px;
+  margin-top: 15px;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+.media-nav-btn {
+  background-color: #007bff;
+  color: white;
+  padding: 8px 12px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background-color 0.3s ease;
+  flex-grow: 1;
+}
+.media-nav-btn:hover {
+  background-color: #0056b3;
+}
+.media-nav-btn:disabled {
+  background-color: #cccccc;
+  cursor: not-allowed;
+}
+@keyframes fadeInOverlay {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@keyframes zoomIn {
+  from {
+    transform: scale(0.8);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+/* حجم الفيديو والصورة داخل المودال */
+.modal-content video,
+.modal-content img {
+  width: 100%;
+  max-width: 400px;
+  height: auto;
+  max-height: 60vh;
+  margin-top: 10px;
+  border-radius: 5px;
+  display: none;
+}
+
+/* تنسيقات نموذج الاتصال داخل المودال */
+#contactFormContent {
+  display: none;
+  width: 100%;
+  max-width: 400px;
+  margin: 0 auto;
+  text-align: right;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  box-sizing: border-box;
+}
+#contactFormContent h2 {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #333;
+}
+#contactFormContent form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  padding: 0;
+  border: none;
+  background-color: transparent;
+  box-shadow: none;
+}
+#contactFormContent label {
+  font-weight: bold;
+  color: #555;
+  margin-bottom: 5px;
+  display: block;
+}
+#contactFormContent input[type='text'],
+#contactFormContent input[type='email'],
+#contactFormContent textarea {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  width: 100%;
+  box-sizing: border-box;
+  font-size: 1em;
+}
+#contactFormContent textarea {
+  resize: vertical;
+  min-height: 100px;
+}
+#contactFormContent button[type='submit'] {
+  background-color: #28a745;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  width: fit-content;
+  align-self: center;
+}
+#contactFormContent button[type='submit']:hover {
+  background-color: #218838;
+}
+
+/* تنسيقات مشغل الصوت المخصص */
+.custom-audio-player {
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  max-width: 400px;
+  margin: 15px auto;
+  background-color: #f0f0f0;
+  padding: 15px;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+.audio-player-controls {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  justify-content: center;
+}
+.play-pause-btn {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  font-size: 20px;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: background-color 0.3s ease;
+}
+.play-pause-btn:hover {
+  background-color: #0056b3;
+}
+.progress-container {
+  flex-grow: 1;
+  height: 8px;
+  background-color: #e0e0e0;
+  border-radius: 4px;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+}
+.progress-bar {
+  height: 100%;
+  width: 0%;
+  background-color: #28a745;
+  border-radius: 4px;
+}
+.time-display {
+  font-size: 13px;
+  color: #777;
+  white-space: nowrap;
+}
+.audio-title {
+  font-size: 1.2em;
+  color: #333;
+  margin-bottom: 10px;
+  font-weight: bold;
+}
+
+@media (max-width: 768px) {
+  .navbar {
+    padding: 8px 0;
+  }
+  .menu {
+    flex-direction: column;
+    gap: 5px;
+    align-items: stretch;
+  }
+  .menu > li {
+    width: 100%;
+  }
+  .menu a {
+    text-align: center;
+    padding: 10px;
+    font-size: 15px;
+  }
+  .dropdown-content {
+    position: static;
+    box-shadow: none;
+    background-color: transparent;
+    border-radius: 0;
+    min-width: auto;
+    opacity: 1;
+    transform: none;
+  }
+  .dropdown-content li a {
+    padding-right: 30px;
+  }
+  /* إخفاء القوائم الفرعية للوسائط في وضع الموبايل حتى يتم الضغط على العنصر الأب */
+  .dropdown-content li.video-trigger .video-popup,
+  .dropdown-content li.audio-trigger .audio-popup,
+  .dropdown-content li.image-gallery-trigger .image-gallery-popup {
+      display: none !important;
+  }
+  /* عند الضغط على العنصر الأب في الموبايل، تظهر القائمة الفرعية */
+  .dropdown-content li.video-trigger.active .video-popup,
+  .dropdown-content li.audio-trigger.active .audio-popup,
+  .dropdown-content li.image-gallery-trigger.active .image-gallery-popup {
+      display: block !important;
+  }
+
+  /* تنسيقات الموبايل لأيقونات الصوت في صور النسر والأسد */
+  .sound-controls {
+    opacity: 1; /* إظهار الأيقونات بشكل دائم في الموبايل */
+    bottom: 5px; /* تقليل المسافة من الأسفل في الموبايل */
+    padding: 5px 10px; /* تقليل البادينج */
+    width: calc(100% - 10px); /* تقليل عرض الأيقونات في الموبايل */
+    left: 5px;
+    right: 5px;
+  }
+  .play-sound-icon,
+  .stop-sound-icon {
+    font-size: 20px; /* تقليل حجم الأيقونات في الموبايل */
+  }
+
+  .image-caption {
+    font-size: 14px; /* تصغير حجم الكابشن في الموبايل */
+    padding: 3px 8px;
+    bottom: 0;
+  }
+
+  .welcome-message {
+    font-size: 35px;
+    margin-top: 50px;
+  }
+  .content-area {
+    flex-direction: column;
+    padding: 10px;
+    min-height: auto;
+    position: static;
+  }
+  .image-wrapper {
+    position: static;
+    margin: 20px 0;
+    animation: none;
+  }
+  .lion-image,
+  .eagle-image {
+    width: 250px;
+  }
+  #strength-message {
+    position: static;
+    transform: none;
+    margin: 20px 0;
+    font-size: 28px;
+  }
+  .modal-content {
+    width: 95%;
+    padding: 10px;
+    max-width: 95vw;
+    max-height: 90vh;
+  }
+  .modal-content video,
+  .modal-content img {
+    max-width: 90%;
+    max-height: 75vh;
+  }
+  .media-navigation-buttons {
+    max-width: 100%;
+    justify-content: center;
+  }
+  .media-nav-btn {
+    font-size: 13px;
+    padding: 8px 10px;
+  }
+  #contactFormContent {
+    max-width: 90%;
+  }
+  .custom-audio-player {
+    max-width: 90%;
+  }
+}
+
+</style>
+
+</head>
+<body>
+<nav class="navbar">
+<ul class="menu">
+  <li><a href="#">الرئيسية</a></li>
+  <li class="dropdown dropdown-left">
+    <a href="#" class="dropbtn">الوسائط ▼</a>
+    <ul class="dropdown-content">
+      <li class="video-trigger">
+        <a href="#">📹 فيديوهات ترفيهية</a>
+        <div class="video-popup">
+          <a href="#" onclick="openVideoModal(0, 'entertainment')"
+            >🎬مرجان احمد مرجان في الجامعه
+          </a>
+          <a href="#" onclick="openVideoModal(1, 'entertainment')"
+            >🎬 عوكل عند خطيبته</a
+          >
+          <a href="#" onclick="openVideoModal(2, 'entertainment')"
+            >🎬 علي ابو ليله انا الحرامي</a
+          >
+          <a href="#" onclick="openVideoModal(3, 'entertainment')"
+            >🎬 هاني رمزي و طلعت زكريا</a
+          >
+          <a href="#" onclick="openVideoModal(4, 'entertainment')"
+            >🎬 عبد الباسط حموده</a
+          >
+          <a href="#" onclick="openVideoModal(5, 'entertainment')"
+            >🎬 الليمبي 8 جيجا</a
+          >
+          <a href="#" onclick="openVideoModal(6, 'entertainment')"
+            >🎬 توفيق الدقن و هريدي</a
+          >
+        </div>
+      </li>
+      <li class="image-gallery-trigger">
+        <a href="#">🖼️ معرض الصور (Popup)</a>
+        <div class="image-gallery-popup">
+          <a href="#" onclick="openImageModal(0)">
+            <img src="صورة رقم 1.jpg" alt="صورة رقم 1" />
+            <span></span>
+          </a>
+          <a href="#" onclick="openImageModal(1)">
+            <img src="صورة رقم 2.jpg" alt="صورة رقم 2" />
+            <span></span>
+          </a>
+          <a href="#" onclick="openImageModal(2)">
+            <img src="صورة رقم 3.jpg" alt="صورة رقم 3" />
+            <span></span>
+          </a>
+          <a href="#" onclick="openImageModal(3)">
+            <img src="صورة رقم 4.jpg" alt="صورة رقم 4" />
+            <span></span>
+            </a>
+            <a href="#" onclick="openImageModal(4)">
+        <img src="صورة رقم 5.jpg" alt="صورة رقم 5" />
+            <span></span>
+          </a>
+        </div>
+      </li>
+      <li class="audio-trigger">
+        <a href="#">🔊 ملفات صوتية</a>
+        <div class="audio-popup">
+          <a href="#" onclick="openAudioModal(0)">
+            <img src="image1_thumbnail.jpg" alt=" 1" /> الي رحاب النبي
+          </a>
+          <a href="#" onclick="openAudioModal(1)">
+            <img src="image2_thumbnail.jpg" alt=" 2" /> يا نبي سلام عليك
+          </a>
+          <a href="#" onclick="openAudioModal(2)">
+                        <img src="image3_thumbnail.jpg" alt=" 3" /> مولاي اني بدارك
+
+             <a href="#" onclick="openAudioModal(3)">
+ <img src="image4_thumbnail.jpg" alt=" 4" /> الله ما طلعت شمس
+            
+          </a>
+        </div>
+      </li>
+    </ul>
+  </li>
+  <li class="dropdown dropdown-left">
+    <a href="#" class="dropbtn">النجاح والتطوير ▼</a>
+    <ul class="dropdown-content">
+      <li class="video-trigger">
+        <a href="#">📹 فيديوهات تحفيزية</a>
+        <div class="video-popup">
+          <a href="#" onclick="openVideoModal(0, 'motivational')"
+            >🎬 الفيديو الأول</a
+          >
+          <a href="#" onclick="openVideoModal(1, 'motivational')"
+            >🎬 الفيديو الثاني</a
+          >
+          <a href="#" onclick="openVideoModal(2, 'motivational')"
+            >🎬 الفيديو الثالث</a
+          >
+          <a href="#" onclick="openVideoModal(3, 'motivational')"
+            >🎬 الفيديو الرابع</a
+          >
+          <a href="#" onclick="openVideoModal(4, 'motivational')"
+            >🎬 الفيديو الخامس</a
+          >
+          <a href="#" onclick="openVideoModal(5, 'motivational')"
+            >🎬 الفيديو السادس</a
+          >
+        </div>
+      </li>
+      <li><a href="#">🌟 قصص نجاح</a></li>
+      <li><a href="#">📚 كتب مقترحة</a></li>
+      <li><a href="#">💡 نصائح عملية</a></li>
+      <li><a href="#">🧠 تطوير المهارات</a></li>
+    </ul>
+  </li>
+  <li class="dropdown">
+    <a href="#" class="dropbtn">المقالات ▼</a>
+    <ul class="dropdown-content">
+      <li><a href="#">🖋️ مقالات تقنية</a></li>
+      <li><a href="#">🌸 مقالات عن الحياة</a></li>
+      <li><a href="#">📖 تجارب شخصية</a></li>
+      <li><a href="#">📚 مراجعات كتب</a></li>
+    </ul>
+  </li>
+  <li class="dropdown">
+    <a href="#" class="dropbtn">البرمجة ▼</a>
+    <ul class="dropdown-content">
+      <li><a href="#">🌐 HTML</a></li>
+      <li><a href="#">🎨 CSS</a></li>
+      <li><a href="#">📜 JavaScript</a></li>
+      <li><a href="#">🚀 مشاريع</a></li>
+      <li><a href="#">🎓 دروس تعليمية</a></li>
+      <li><a href="#">📚 مكتبات وأُطر عمل</a></li>
+    </ul>
+  </li>
+  <li class="dropdown">
+    <a href="#" class="dropbtn">الدعم والمساعدة ▼</a>
+    <ul class="dropdown-content">
+      <li><a href="#">❓ الأسئلة الشائعة</a></li>
+      <li><a href="#">🛠️ دعم فني</a></li>
+      <li><a href="#">💬 منتدى النقاش</a></li>
+    </ul>
+  </li>
+  <li class="dropdown">
+    <a href="#" class="dropbtn">اتصل بنا ▼</a>
+    <ul class="dropdown-content">
+      <li>📞 رقم الهاتف: 01289440108</li>
+      <li>
+        📧 البريد الإلكتروني: ashraf.1000000@hotmail.com
+      </li>
+      <li><a href="#" onclick="openContactFormModal()">📝 نموذج الاتصال</a></li>
+    </ul>
+  </li>
+</ul>
+</nav>
+
+<div class="welcome-message">مرحباً بكم في صفحتي الشخصية</div>
+
+<div class="content-area">
+<div class="image-wrapper eagle-wrapper" data-aos="fade-right" data-aos-delay="400">
+  <img id="eagleImage" src="صوره نسر.jpeg" alt="صورة نسر" class="eagle-image" />
+  <p class="image-caption">النسر: رؤية، شموخ، وحرية</p>
+  <div class="sound-controls">
+    <i class="fas fa-volume-up play-sound-icon" onclick="playSpecificSound(eagleSound)"></i>
+    <i class="fas fa-volume-mute stop-sound-icon" onclick="stopSpecificSound(eagleSound)"></i>
+  </div>
+</div>
+<h2 id="strength-message" data-aos="zoom-in" data-aos-delay="600">
+
+<div class="image-wrapper" data-aos="zoom-in" data-aos-delay="300" style="margin-bottom: 20px;">
+  <img src="اسبق الزمن.png" alt="حصان - اسبق الزمن" style="width: 300px; border-radius: 15px; box-shadow: 0 4px 15px rgba(0,0,0,0.5);" />
+  
+</div>
+
+  كن قوياً دائماً
+</h2>
+<div class="image-wrapper lion-wrapper" data-aos="fade-left" data-aos-delay="400">
+  <img id="lionImage" src="صوره اسد.jpeg" alt="صورة أسد" class="lion-image" />
+  <p class="image-caption">الأسد: قوة، شجاعة، وقيادة</p>
+  <div class="sound-controls">
+    <i class="fas fa-volume-up play-sound-icon" onclick="playSpecificSound(lionSound)"></i>
+    <i class="fas fa-volume-mute stop-sound-icon" onclick="stopSpecificSound(lionSound)"></i>
+  </div>
+</div>
+</div>
+
+<audio id="lionSound" src="صوت_اسد.mp3" preload="auto"></audio>
+<audio id="eagleSound" src="صوت_نسر.mp3" preload="auto"></audio>
+
+<div id="mediaModal" class="modal-overlay">
+<div class="modal-content">
+  <span class="close-button" onclick="closeMediaModal()">&times;</span>
+  <h2 id="mediaModalTitle" class="modal-title"></h2>
+
+  <video id="modalVideoPlayer" controls autoplay></video>
+  <img id="modalImage" src="" alt="محتوى الوسائط" />
+
+  <div id="customAudioPlayer" class="custom-audio-player">
+    <h3 class="audio-title" id="customAudioTitle"></h3>
+    <div class="audio-player-controls">
+      <button class="play-pause-btn" id="playPauseBtn">
+        <i class="fas fa-play"></i>
+      </button>
+      <div class="time-display" id="currentTimeDisplay">0:00</div>
+      <div class="progress-container" id="progressBarContainer">
+        <div class="progress-bar" id="progressBar"></div>
+      </div>
+      <div class="time-display" id="durationDisplay">0:00</div>
+    </div>
+  </div>
+  <audio id="modalAudioPlayer" src="" preload="metadata"></audio>
+
+  <div id="contactFormContent">
+    <h2>تواصل معي مباشرةً</h2>
+    <form action="https://formspree.io/f/your_unique_form_id" method="POST">
+      <label for="contact-name">الاسم الكامل:</label>
+      <input type="text" id="contact-name" name="الاسم" required placeholder="ادخل اسمك هنا" />
+
+      <label for="contact-email">البريد الإلكتروني:</label>
+      <input
+        type="email"
+        id="contact-email"
+        name="_replyto"
+        required
+        placeholder="example@domain.com"
+      />
+
+      <label for="contact-message">رسالتك:</label>
+      <textarea
+        id="contact-message"
+        name="الرسالة"
+        rows="6"
+        required
+        placeholder="اكتب رسالتك هنا..."
+      ></textarea>
+
+      <button type="submit">إرسال الرسالة</button>
+    </form>
+  </div>
+
+  <div id="mediaNavButtons" class="media-navigation-buttons">
+    <button class="media-nav-btn" onclick="prevMedia()" id="prevMediaBtn">
+      السابق
+    </button>
+    <button class="media-nav-btn" onclick="nextMedia()" id="nextMediaBtn">
+      التالي
+    </button>
+  </div>
+
+  <button class="modal-close-btn" onclick="closeMediaModal()">
+    إغلاق / العودة للصفحة الرئيسية
+  </button>
+</div>
+</div>
+
+<footer><p>جميع الحقوق محفوظة © 2025 أشرف بشير</p></footer>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/js/lightbox.min.js"></script>
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script>
+// تهيئة AOS بعد تحميل الصفحة
+AOS.init({
+  duration: 1000,
+  once: true,
+});
+
+// إعدادات Lightbox (اختياري)
+lightbox.option({
+  resizeDuration: 200,
+  wrapAround: true,
+});
+
+const mediaModal = document.getElementById('mediaModal');
+const mediaModalTitle = document.getElementById('mediaModalTitle');
+const modalImage = document.getElementById('modalImage');
+const modalVideoPlayer = document.getElementById('modalVideoPlayer');
+const contactFormContent = document.getElementById('contactFormContent');
+const mediaNavButtons = document.getElementById('mediaNavButtons');
+const prevMediaBtn = document.getElementById('prevMediaBtn');
+const nextMediaBtn = document.getElementById('nextMediaBtn');
+
+const lionImage = document.getElementById('lionImage');
+const eagleImage = document.getElementById('eagleImage');
+const lionSound = document.getElementById('lionSound');
+const eagleSound = document.getElementById('eagleSound');
+
+// عناصر مشغل الصوت المخصص الجديد
+const customAudioPlayer = document.getElementById('customAudioPlayer');
+const customAudioTitle = document.getElementById('customAudioTitle');
+const playPauseBtn = document.getElementById('playPauseBtn');
+const progressBarContainer = document.getElementById('progressBarContainer');
+const progressBar = document.getElementById('progressBar');
+const currentTimeDisplay = document.getElementById('currentTimeDisplay');
+const durationDisplay = document.getElementById('durationDisplay');
+const audioTag = document.getElementById('modalAudioPlayer');
+
+// مصفوفة لجميع صور المعرض
+const allImages = [
+  { src: 'صورة رقم 1.jpg', title: 'صورة ' },
+  { src: 'صورة رقم 2.jpg', title: 'صورة ' },
+  { src: 'صورة رقم 3.jpg', title: 'صورة ' },
+  { src: 'صورة رقم 4.jpg', title: 'صورة ' },
+  { src: 'صورة رقم 5.jpg', title: 'صورة ' },
+];
+
+// مصفوفة للفيديوهات الترفيهية
+const entertainmentVideos = [
+  { src: 'مرجان احمد مرجان في الجامعه.mp4', title: 'مرجان احمد مرجان في الجامعه' },
+  { src: 'عوكل عند خطيبته.mp4', title: 'عوكل عند خطيبته' },
+  { src: 'علي ابو ليله انا الحرامي.mp4', title: 'علي ابو ليله انا الحرامي' },
+  { src: 'هاني رمزي و طلعت زكريا.mp4', title: 'هاني رمزي و طلعت زكريا' },
+  { src: 'عبد الباسط حموده.mp4', title: 'عبد الباسط حموده' },
+  { src: 'الليمبي 8 جيجا.mp4', title: 'الليمبي 8 جيجا' },
+  { src: 'توفيق الدقن و هريدي.mp4', title: 'توفيق الدقن و هريدي' },
+];
+
+// مصفوفة للفيديوهات التحفيزية
+const motivationalVideos = [
+  { src: 'video1.mp4', title: 'الفيديو الأول' },
+  { src: 'video2.mp4', title: 'الفيديو الثاني' },
+  { src: 'video3.mp4', title: 'الفيديو الثالث' },
+  { src: 'video4.mp4', title: 'الفيديو الرابع' },
+  { src: 'video5.mp4', title: 'الفيديو الخامس' },
+  { src: 'video6.mp4', title: 'الفيديو السادس' },
+];
+
+// مصفوفة الملفات الصوتية الجديدة (مع إضافة مسار الصورة المصغرة)
+const allAudios = [
+  { src: 'audio1.mp3', title: 'الي رحاب النبي', thumbnail: 'image1_thumbnail.jpg' },
+  { src: 'audio2.mp3', title: 'يا نبي سلام عليك', thumbnail: 'image2_thumbnail.jpg' },
+  { src: 'audio3.mp3', title: 'مولاي اني بدارك', thumbnail: 'image3_thumbnail.jpg' },
+  { src: 'audio4.mp3', title: 'الله ما طلعت شمس', thumbnail: 'image4_thumbnail.jpg' },
+];
+
+let currentMediaList = null;
+let currentMediaIndex = 0;
+let currentMediaType = '';
+
+// دالة لتحديث حالة أيقونة التشغيل - **تم التأكيد على عملها**
+function updateSoundIconState(audioElement, isPlaying) {
+    let playIcon = null;
+    if (audioElement === eagleSound) {
+        playIcon = document.querySelector('.eagle-wrapper .play-sound-icon');
+    } else if (audioElement === lionSound) {
+        playIcon = document.querySelector('.lion-wrapper .play-sound-icon');
+    }
+
+    if (playIcon) {
+        if (isPlaying) {
+            playIcon.classList.add('playing');
+        } else {
+            playIcon.classList.remove('playing');
+        }
+    }
+}
+
+// دالة جديدة لإيقاف جميع الأصوات (مهمة لمنع تداخل الأصوات) - **تم التأكيد على عملها**
+function stopAllSounds() {
+    const allAudioElements = [lionSound, eagleSound, audioTag, modalVideoPlayer];
+    allAudioElements.forEach(audio => {
+        if (audio && !audio.paused) { // تأكد أن العنصر موجود ومش متوقف بالفعل
+            audio.pause();
+            audio.currentTime = 0; // ارجع لنقطة البداية
+        }
+    });
+    // إزالة كلاس 'playing' من جميع أيقونات التشغيل
+    document.querySelectorAll('.play-sound-icon.playing').forEach(icon => {
+        icon.classList.remove('playing');
+    });
+    // إعادة تعيين أيقونة التشغيل في مشغل الصوت المخصص (لو كان شغال)
+    if (playPauseBtn && audioTag && audioTag.paused) { // تأكد من وجود العنصر وأن الصوت متوقف
+        playPauseBtn.innerHTML = '<i class="fas fa-play"></i>';
+        progressBar.style.width = '0%';
+        currentTimeDisplay.textContent = '0:00';
+    }
+}
+
+// دالة تشغيل صوت محدد - **تم التأكيد على عملها**
+async function playSpecificSound(audioElement) {
+  try {
+    stopAllSounds(); // إيقاف جميع الأصوات الأخرى أولاً
+
+    // إعادة ضبط الصوت قبل التشغيل
+    audioElement.currentTime = 0; 
+
+    // تشغيل الصوت
+    await audioElement.play();
+    console.log('تم تشغيل الصوت بنجاح.');
+
+    // تحديث حالة أيقونة التشغيل
+    updateSoundIconState(audioElement, true);
+
+  } catch (error) {
+    console.error('خطأ في تشغيل الصوت:', error);
+    updateSoundIconState(audioElement, false); // إزالة الكلاس في حالة الفشل
+  }
+}
+
+// دالة إيقاف صوت محدد - **تم التأكيد على عملها**
+function stopSpecificSound(audioElement) {
+  audioElement.pause();
+  audioElement.currentTime = 0;
+  console.log('تم إيقاف الصوت.');
+  updateSoundIconState(audioElement, false); // إزالة كلاس 'playing'
+}
+
+function closeMediaModal() {
+  stopAllSounds(); // إيقاف كل الأصوات عند إغلاق المودال
+  
+  mediaModalTitle.style.display = 'none';
+  modalImage.style.display = 'none';
+  modalVideoPlayer.style.display = 'none';
+  customAudioPlayer.style.display = 'none';
+  contactFormContent.style.display = 'none';
+  mediaNavButtons.style.display = 'none';
+
+  mediaModal.style.display = 'none';
+  mediaModalTitle.textContent = '';
+
+  currentMediaList = null;
+  currentMediaIndex = 0;
+  currentMediaType = '';
+}
+
+function openAudioModal(index) {
+  currentMediaList = allAudios;
+  currentMediaIndex = index;
+  currentMediaType = 'audio';
+  updateMediaModal();
+}
+
+function openImageModal(index) {
+  currentMediaList = allImages;
+  currentMediaIndex = index;
+  currentMediaType = 'image';
+  updateMediaModal();
+}
+
+function openVideoModal(index, type) {
+  if (type === 'entertainment') {
+    currentMediaList = entertainmentVideos;
+  } else if (type === 'motivational') {
+    currentMediaList = motivationalVideos;
+  }
+  currentMediaIndex = index;
+  currentMediaType = 'video';
+  updateMediaModal();
+}
+
+function openContactFormModal() {
+  stopAllSounds(); // إيقاف كل الأصوات عند فتح نموذج الاتصال
+
+  mediaModalTitle.style.display = 'none';
+  modalImage.style.display = 'none';
+  modalVideoPlayer.style.display = 'none';
+  customAudioPlayer.style.display = 'none';
+  mediaNavButtons.style.display = 'none';
+
+  contactFormContent.style.display = 'block';
+  
+  mediaModal.style.display = 'flex';
+  currentMediaType = 'contact_form';
+}
+
+function updateMediaModal() {
+  if (!currentMediaList || currentMediaList.length === 0) return;
+
+  stopAllSounds(); // إيقاف كل الأصوات عند فتح مودال جديد
+
+  // إخفاء جميع المحتويات قبل عرض المحتوى الجديد
+  mediaModalTitle.style.display = 'none';
+  modalImage.style.display = 'none';
+  modalVideoPlayer.style.display = 'none';
+  customAudioPlayer.style.display = 'none';
+  contactFormContent.style.display = 'none';
+  
+  const mediaItem = currentMediaList[currentMediaIndex];
+  
+  mediaModalTitle.style.display = 'block'; // تأكد من ظهور العنوان دائماً
+  mediaModalTitle.textContent = mediaItem.title;
+
+  if (currentMediaType === 'image') {
+    modalImage.src = mediaItem.src;
+    modalImage.style.display = 'block';
+    mediaNavButtons.style.display = (currentMediaList.length > 1) ? 'flex' : 'none';
+  } else if (currentMediaType === 'video') {
+    modalVideoPlayer.src = mediaItem.src;
+    modalVideoPlayer.style.display = 'block';
+    modalVideoPlayer.play();
+    mediaNavButtons.style.display = (currentMediaList.length > 1) ? 'flex' : 'none';
+  } else if (currentMediaType === 'audio') {
+    customAudioPlayer.style.display = 'flex';
+    customAudioTitle.textContent = mediaItem.title;
+    audioTag.src = mediaItem.src;
+    audioTag.load();
+    audioTag.play();
+    playPauseBtn.innerHTML = '<i class="fas fa-pause"></i>';
+    mediaNavButtons.style.display = (currentMediaList.length > 1) ? 'flex' : 'none';
+  }
+
+  mediaModal.style.display = 'flex';
+  updateMediaNavButtons();
+}
+
+function updateMediaNavButtons() {
+  if (!currentMediaList || currentMediaType === 'contact_form') {
+      mediaNavButtons.style.display = 'none';
+      return;
+  }
+  prevMediaBtn.disabled = currentMediaIndex === 0;
+  nextMediaBtn.disabled = currentMediaIndex === currentMediaList.length - 1;
+  mediaNavButtons.style.display = (currentMediaList.length > 1) ? 'flex' : 'none';
+}
+
+function prevMedia() {
+  if (currentMediaIndex > 0) {
+    currentMediaIndex--;
+    updateMediaModal();
+  }
+}
+
+function nextMedia() {
+  if (currentMediaIndex < currentMediaList.length - 1) {
+    currentMediaIndex++;
+    updateMediaModal();
+  }
+}
+
+window.onclick = function (event) {
+  if (event.target == mediaModal) {
+    closeMediaModal();
+  }
+};
+
+// إضافة حدث click لفتح القوائم الفرعية للوسائط في وضع الموبايل
+document.querySelectorAll('.dropdown-content li.video-trigger > a, .dropdown-content li.image-gallery-trigger > a, .dropdown-content li.audio-trigger > a').forEach(item => {
+  item.addEventListener('click', function(e) {
+      if (window.innerWidth <= 768) {
+          e.preventDefault();
+          const parentLi = this.parentElement;
+          parentLi.classList.toggle('active');
+      }
+  });
+});
+
+// --- وظائف التحكم في مشغل الصوت المخصص ---
+playPauseBtn.addEventListener('click', () => {
+  if (audioTag.paused) {
+    audioTag.play();
+    playPauseBtn.innerHTML = '<i class="fas fa-pause"></i>';
+  } else {
+    audioTag.pause();
+playPauseBtn.innerHTML = '<i class="fas fa-play"></i>';
+  }
+});
+
+audioTag.addEventListener('timeupdate', () => {
+  const progressPercent = (audioTag.currentTime / audioTag.duration) * 100;
+  progressBar.style.width = `${progressPercent}%`;
+  currentTimeDisplay.textContent = formatTime(audioTag.currentTime);
+});
+
+audioTag.addEventListener('loadedmetadata', () => {
+  durationDisplay.textContent = formatTime(audioTag.duration);
+});
+
+audioTag.addEventListener('ended', () => {
+  playPauseBtn.innerHTML = '<i class="fas fa-play"></i>';
+  progressBar.style.width = '0%';
+  currentTimeDisplay.textContent = '0:00';
+});
+
+progressBarContainer.addEventListener('click', (e) => {
+  const width = progressBarContainer.clientWidth;
+  const clickX = e.offsetX;
+  const duration = audioTag.duration;
+  audioTag.currentTime = (clickX / width) * duration;
+});
+
+function formatTime(seconds) {
+  const minutes = Math.floor(seconds / 60);
+  const remainingSeconds = Math.floor(seconds % 60);
+  return `${minutes}:${remainingSeconds < 10 ? '0' : ''}${remainingSeconds}`;
+}
+// --- نهاية وظائف التحكم في مشغل الصوت المخصص ---
+</script>
+</body>
+</html>
+
+
+
+
+
