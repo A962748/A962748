@@ -8,7 +8,7 @@
         body {
             font-family: Arial, sans-serif;
             background-image: url('images/background.jpeg');
-            background-size: contain;
+            background-size: cover; /* تم التعديل هنا: استخدام cover لملء الشاشة */
             background-position: center center;
             background-repeat: no-repeat;
             background-attachment: fixed;
@@ -29,7 +29,7 @@
             justify-content: space-between;
             align-items: center;
         }
-        
+
         .logo {
             font-size: 1.5em;
             margin: 0;
@@ -103,17 +103,17 @@
             text-decoration: none;
             transition: background-color 0.3s;
         }
-        
+
         #herbs-menu li a:hover {
             background-color: #3e8e41;
             color: #fff;
         }
-        
+
         #videos-menu li a:hover {
             background-color: #3e8e41;
             color: #000;
         }
-        
+
         #quran-menu li a:hover {
             background-color: #3e8e41;
             color: #fff;
@@ -122,17 +122,17 @@
         .dropdown:hover .dropdown-menu {
             display: block;
         }
-        
+
         .modal {
-            display: none; 
-            position: fixed; 
-            z-index: 200; 
+            display: none;
+            position: fixed;
+            z-index: 200;
             left: 0;
             top: 0;
-            width: 100%; 
-            height: 100%; 
-            overflow: auto; 
-            background-color: rgba(0,0,0,0.7); 
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0,0,0,0.7);
             justify-content: center;
             align-items: center;
         }
@@ -142,8 +142,8 @@
             margin: auto;
             padding: 20px;
             border: 1px solid #888;
-            width: 80%; 
-            max-width: 700px; 
+            width: 80%;
+            max-width: 700px;
             border-radius: 10px;
             position: relative;
             text-align: center;
@@ -182,11 +182,11 @@
 
         .modal-body {
             margin-bottom: 20px;
-            max-height: 400px; 
-            overflow-y: auto; 
-            text-align: right; 
+            max-height: 400px;
+            overflow-y: auto;
+            text-align: right;
         }
-        
+
         .modal-body video {
             width: 100%;
             height: auto;
@@ -195,14 +195,14 @@
         }
 
         .modal-image {
-            max-width: 80%;  /* تم التعديل هنا */
-            display: block; /* تم الإضافة هنا */
-            margin: 0 auto; /* تم الإضافة هنا */
+            max-width: 80%;
+            display: block;
+            margin: 0 auto;
             height: auto;
             border-radius: 8px;
             margin-bottom: 15px;
         }
-        
+
         .modal-footer {
             display: flex;
             justify-content: space-around;
@@ -226,20 +226,59 @@
         }
 
         .modal-footer .secondary-button {
-            background-color: #f44336; 
+            background-color: #f44336;
         }
         .modal-footer .secondary-button:hover {
             background-color: #da190b;
         }
 
-        #herb-details-page {
-            display: none !important; 
-        }
-
-        .video-container {
+        #herb-details-page,
+        #video-container {
             display: none !important;
         }
 
+        /* -------------------------------------- */
+        /* تعديلات الموبايل - Media Queries */
+        /* -------------------------------------- */
+        @media (max-width: 768px) {
+            header {
+                flex-direction: column; /* جعل العناصر تتكدس فوق بعضها */
+                padding: 15px;
+            }
+            .logo {
+                font-size: 1.2em; /* تصغير حجم الشعار */
+                margin-bottom: 10px;
+            }
+            .search-container {
+                width: 100%; /* جعل خانة البحث تملأ العرض بالكامل */
+                margin-bottom: 10px;
+            }
+            .search-container input {
+                width: 100%;
+                max-width: none;
+            }
+            .nav-links {
+                flex-direction: column; /* جعل الروابط تظهر بشكل عمودي */
+                align-items: center;
+                width: 100%;
+            }
+            .nav-links li {
+                width: 100%;
+                text-align: center;
+            }
+            .dropdown-menu {
+                position: static; /* تغيير موضع القوائم المنسدلة لتظهر أسفل الرابط مباشرة */
+                width: 100%;
+                box-shadow: none;
+            }
+            .dropdown:hover .dropdown-menu {
+                display: block; /* تم تعديل هذا الجزء ليعمل على الموبايل، لكن يفضل استخدام JavaScript للتحكم في الضغط */
+            }
+            .modal-content {
+                width: 95%; /* توسيع عرض النافذة المنبثقة لتناسب الموبايل */
+                max-width: none;
+            }
+        }
     </style>
 </head>
 <body>
@@ -255,36 +294,35 @@
                 <li class="dropdown">
                     <a href="#">الأعشاب <span class="arrow">▼</span></a>
                     <ul class="dropdown-menu" id="herbs-menu">
-                        </ul>
+                    </ul>
                 </li>
                 <li class="dropdown">
                     <a href="#">الفيديوهات <span class="arrow">▼</span></a>
                     <ul class="dropdown-menu" id="videos-menu">
-                        </ul>
+                    </ul>
                 </li>
                 <li class="dropdown">
                     <a href="#">العلاج بالقرآن <span class="arrow">▼</span></a>
                     <ul class="dropdown-menu" id="quran-menu">
-                        </ul>
+                    </ul>
                 </li>
                 <li class="dropdown">
                     <a href="#">تواصل معنا <span class="arrow">▼</span></a>
                     <ul class="dropdown-menu">
-                        </ul>
+                    </ul>
                 </li>
             </ul>
         </nav>
     </header>
 
-    
-    <div id="myModal" class="modal" style="display: none;">
+    <div id="myModal" class="modal">
         <div class="modal-content">
             <div class="modal-header">
                 <span class="close-button" onclick="hideModal()">&times;</span>
                 <h2 id="modal-title"></h2>
             </div>
             <div class="modal-body" id="modal-body-content">
-                </div>
+            </div>
             <div class="modal-footer">
                 <button id="prevBtn">السابق</button>
                 <button id="nextBtn">التالي</button>
@@ -292,29 +330,12 @@
             </div>
         </div>
     </div>
-    
-    <div id="herb-details-page" class="herb-details-page">
-        <div class="herb-details-content">
-            <button class="back-button" onclick="hideDetailsPage()">العودة</button>
-            <h2 id="herb-name"></h2>
-            <img id="herb-image" src="" alt="صورة العشبة">
-            <p><strong>الفوائد:</strong></p>
-            <ul id="herb-benefits"></ul>
-            <p><strong>طريقة الاستخدام:</strong> <span id="herb-how-to-use"></span></p>
-            <p><strong>المحاذير:</strong> <span id="herb-cautions"></span></p>
-        </div>
-    </div>
-
-    <div id="video-container" class="video-container">
-        <span class="video-close-button" onclick="hideVideo()">×</span>
-        <video id="video-player" controls></video>
-    </div>
 
     <script>
         // بيانات الأعشاب (تم تحديثها بمعلومات إضافية)
         const herbs = [
             {
-                type: "herb", 
+                type: "herb",
                 name: "النعناع",
                 image: "نعناع.jpeg",
                 benefits: [
@@ -450,7 +471,7 @@
             {
                 type: "quran",
                 name: "آيات الشفاء",
-                text: "﴿وَنُنَزِّلُ مِنَ الْقُرْآنِ مَا هُوَ شِفَاءٌ وَرَحْمَةٌ لِلْمُؤْمِنِينَ﴾ سورة الإسراء: 82. <br><br> ﴿قُلْ هُوَ لِلَّذِينَ آمَنُوا هُدًى وَشِفَاءٌ﴾ سورة فصلت: 44. <br><br> ﴿يَا أَيُّهَا النَّاسُ قَدْ جَاءَتْكُم مَوْعِظَةٌ مِنْ رَبِّكُمْ وَشِفَاءٌ لِمَا فِي الصُّدُورِ﴾ سورة يونس: 57.",
+                text: "﴿وَنُنَزِّلُ مِنَ الْقُرْآنِ مَا هُوَ شِفَاءٌ وَرَحْمَةٌ لِلْمُؤْمِنِينَ﴾ سورة الإسراء: 82. <br><br>﴿قُلْ هُوَ لِلَّذِينَ آمَنُوا هُدًى وَشِفَاءٌ﴾ سورة فصلت: 44. <br><br> ﴿يَا أَيُّهَا النَّاسُ قَدْ جَاءَتْكُم مَوْعِظَةٌ مِنْ رَبِّكُمْ وَشِفَاءٌ لِمَا فِي الصُّدُورِ﴾ سورة يونس: 57.",
                 image: "quran_healing.jpeg"
             },
             {
@@ -535,7 +556,7 @@
                 const video = document.createElement('video');
                 video.src = item.videoSrc;
                 video.controls = true;
-                video.autoplay = true; 
+                video.autoplay = true;
                 modalBodyContent.appendChild(video);
 
                 const description = document.createElement('p');
@@ -592,14 +613,14 @@
             link.href = '#';
             link.textContent = `فيديو عن ${video.name}`;
             if (video.videoSrc === null) {
-                    link.style.color = '#ccc';
-                    link.style.cursor = 'default';
+                link.style.color = '#ccc';
+                link.style.cursor = 'default';
             }
             item.appendChild(link);
             link.addEventListener('click', (e) => {
                 e.preventDefault();
                 if (video.videoSrc !== null) {
-                        showModal(videosData, index);
+                    showModal(videosData, index);
                 }
             });
             return item;
@@ -621,23 +642,19 @@
         herbs.forEach((herb, index) => {
             herbsMenu.appendChild(createHerbItemForModal(herb, index));
         });
-        
-        // تم تعديل هذا الجزء لإنشاء القائمة من بيانات الأعشاب
+
         herbs.forEach((herb, index) => {
             const item = document.createElement('li');
             const link = document.createElement('a');
             link.href = '#';
             link.textContent = `فيديو عن ${herb.name}`;
-            
-            // إذا لم يكن هناك فيديو، يتم تعطيل الرابط
+
             if (!herb.videoSrc) {
                 link.style.color = '#ccc';
                 link.style.cursor = 'default';
             } else {
-                // إضافة حدث الضغط إذا كان هناك فيديو
                 link.addEventListener('click', (e) => {
                     e.preventDefault();
-                    // العثور على العنصر المطابق في مصفوفة فيديوهاتنا
                     const videoItemIndex = videosData.findIndex(v => v.name === herb.name);
                     if (videoItemIndex !== -1) {
                         showModal(videosData, videoItemIndex);
@@ -655,6 +672,3 @@
     </script>
 </body>
 </html>
-
-
-
