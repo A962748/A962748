@@ -8,7 +8,7 @@
         body {
             font-family: Arial, sans-serif;
             background-image: url('images/background.jpeg');
-            background-size: cover; /* تم التعديل هنا: استخدام cover لملء الشاشة */
+            background-size: cover;
             background-position: center center;
             background-repeat: no-repeat;
             background-attachment: fixed;
@@ -236,46 +236,75 @@
         #video-container {
             display: none !important;
         }
-
+        
         /* -------------------------------------- */
         /* تعديلات الموبايل - Media Queries */
         /* -------------------------------------- */
         @media (max-width: 768px) {
             header {
-                flex-direction: column; /* جعل العناصر تتكدس فوق بعضها */
+                flex-direction: column;
                 padding: 15px;
+                align-items: center;
             }
+            
             .logo {
-                font-size: 1.2em; /* تصغير حجم الشعار */
-                margin-bottom: 10px;
+                font-size: 1.2em;
+                margin-bottom: 15px;
             }
+
             .search-container {
-                width: 100%; /* جعل خانة البحث تملأ العرض بالكامل */
+                width: 100%;
+                order: 1;
                 margin-bottom: 10px;
             }
+
             .search-container input {
                 width: 100%;
                 max-width: none;
             }
+
+            nav {
+                width: 100%;
+                order: 2;
+            }
+
             .nav-links {
-                flex-direction: column; /* جعل الروابط تظهر بشكل عمودي */
-                align-items: center;
-                width: 100%;
+                display: flex;
+                flex-direction: row;
+                justify-content: center;
+                flex-wrap: wrap;
             }
+
             .nav-links li {
-                width: 100%;
+                width: auto;
                 text-align: center;
+                margin: 0 5px;
             }
+
+            .nav-links li a {
+                padding: 8px 10px;
+                font-size: 1em;
+                white-space: nowrap;
+            }
+
             .dropdown-menu {
-                position: static; /* تغيير موضع القوائم المنسدلة لتظهر أسفل الرابط مباشرة */
+                position: absolute;
+                top: 100%;
+                right: 0;
                 width: 100%;
-                box-shadow: none;
+                box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
             }
+            
+            .dropdown-menu li a {
+                font-weight: normal;
+            }
+            
             .dropdown:hover .dropdown-menu {
-                display: block; /* تم تعديل هذا الجزء ليعمل على الموبايل، لكن يفضل استخدام JavaScript للتحكم في الضغط */
+                display: block;
             }
+
             .modal-content {
-                width: 95%; /* توسيع عرض النافذة المنبثقة لتناسب الموبايل */
+                width: 95%;
                 max-width: none;
             }
         }
