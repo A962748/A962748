@@ -1,1 +1,811 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>بستان الأعشاب</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-image: url('images/background.jpeg');
+            background-size: cover;
+            background-position: center center;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            margin: 0;
+            padding: 0;
+            direction: rtl;
+            text-align: right;
+            min-height: 100vh;
+            background-color: #f5e8de;
+        }
+
+        header {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            display: flex;
+            flex-direction: row-reverse;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5em;
+            margin: 0;
+            flex-grow: 1;
+            text-align: center;
+            padding: 0 15px;
+            color: #000;
+            font-weight: bold;
+        }
+
+        .search-container {
+            margin-right: 0;
+            flex-grow: 0;
+        }
+
+        .search-container input {
+            width: 90%;
+            max-width: 300px;
+            padding: 8px;
+            border: none;
+            border-radius: 20px;
+            text-align: right;
+        }
+
+        nav {
+            margin-top: 0;
+            padding-right: 0;
+        }
+
+        .nav-links {
+            list-style: none;
+            display: flex;
+            margin: 0;
+            padding: 0;
+        }
+
+        .nav-links li a {
+            color: #000;
+            font-weight: bold;
+            font-size: 1.2em;
+            text-decoration: none;
+            padding: 10px 15px;
+            display: block;
+        }
+
+        .dropdown {
+            position: relative;
+        }
+
+        .dropdown-menu {
+            display: none;
+            position: absolute;
+            top: 100%;
+            right: 0;
+            background-color: #4CAF50;
+            min-width: 200px;
+            box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+            z-index: 10;
+            list-style: none;
+            padding: 0;
+            max-height: 400px;
+            overflow-y: auto;
+        }
+
+        .dropdown-menu li a {
+            color: #000;
+            font-weight: normal;
+            font-size: 1em;
+            padding: 12px 16px;
+            display: block;
+            text-decoration: none;
+            transition: background-color 0.3s;
+        }
+
+        #herbs-menu li a:hover {
+            background-color: #3e8e41;
+            color: #fff;
+        }
+
+        #videos-menu li a:hover {
+            background-color: #3e8e41;
+            color: #000;
+        }
+
+        #quran-menu li a:hover {
+            background-color: #3e8e41;
+            color: #fff;
+        }
+
+        .dropdown:hover .dropdown-menu {
+            display: block;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 200;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0,0,0,0.7);
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-content {
+            background-color: #fefefe;
+            margin: auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+            max-width: 700px;
+            border-radius: 10px;
+            position: relative;
+            text-align: center;
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #eee;
+        }
+
+        .modal-header h2 {
+            margin: 0;
+            color: #4CAF50;
+            font-size: 1.8em;
+            flex-grow: 1;
+            text-align: center;
+        }
+
+        .close-button {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .close-button:hover,
+        .close-button:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        .modal-body {
+            margin-bottom: 20px;
+            max-height: 400px;
+            overflow-y: auto;
+            text-align: right;
+        }
+
+        .modal-body video {
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+            margin-bottom: 15px;
+        }
+
+        .modal-image {
+            max-width: 80%;
+            display: block;
+            margin: 0 auto;
+            height: auto;
+            border-radius: 8px;
+            margin-bottom: 15px;
+        }
+
+        .modal-footer {
+            display: flex;
+            justify-content: space-around;
+            padding-top: 15px;
+            border-top: 1px solid #eee;
+        }
+
+        .modal-footer button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1em;
+            transition: background-color 0.3s;
+        }
+
+        .modal-footer button:hover {
+            background-color: #3e8e41;
+        }
+
+        .modal-footer .secondary-button {
+            background-color: #f44336;
+        }
+        .modal-footer .secondary-button:hover {
+            background-color: #da190b;
+        }
+
+        #contact-form textarea {
+            width: 90%;
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            margin-bottom: 10px;
+            resize: vertical;
+        }
+        
+        #contact-form button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1em;
+        }
+
+        #herb-details-page,
+        #video-container {
+            display: none !important;
+        }
+        
+        /* -------------------------------------- */
+        /* تعديلات الموبايل - Media Queries */
+        /* -------------------------------------- */
+        @media (max-width: 768px) {
+            header {
+                flex-direction: column;
+                padding: 15px;
+                align-items: center;
+            }
+            
+            .logo {
+                font-size: 1.2em;
+                margin-bottom: 15px;
+            }
+
+            .search-container {
+                width: 100%;
+                order: 1;
+                margin-bottom: 10px;
+            }
+
+            .search-container input {
+                width: 100%;
+                max-width: none;
+            }
+
+            nav {
+                width: 100%;
+                order: 2;
+            }
+
+            .nav-links {
+                display: flex;
+                flex-direction: row;
+                justify-content: center;
+                flex-wrap: wrap;
+            }
+
+            .nav-links li {
+                width: auto;
+                text-align: center;
+                margin: 0 5px;
+            }
+
+            .nav-links li a {
+                padding: 8px 10px;
+                font-size: 1em;
+                white-space: nowrap;
+            }
+
+            .dropdown-menu {
+                position: absolute;
+                top: 100%;
+                right: 0;
+                width: 100%;
+                box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+            }
+            
+            .dropdown-menu li a {
+                font-weight: normal;
+            }
+            
+            .dropdown:hover .dropdown-menu {
+                display: block;
+            }
+
+            .modal-content {
+                width: 95%;
+                max-width: none;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="search-container">
+            <input type="text" id="searchInput" placeholder="ابحث عن الأعشاب...">
+        </div>
+        <h1 class="logo">بستان الأعشاب</h1>
+        <nav>
+            <ul class="nav-links">
+                <li id="home-link-item"><a href="#" id="home-link">الرئيسية</a></li>
+                <li class="dropdown">
+                    <a href="#">الأعشاب <span class="arrow">▼</span></a>
+                    <ul class="dropdown-menu" id="herbs-menu">
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a href="#">الفيديوهات <span class="arrow">▼</span></a>
+                    <ul class="dropdown-menu" id="videos-menu">
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a href="#">العلاج بالقرآن <span class="arrow">▼</span></a>
+                    <ul class="dropdown-menu" id="quran-menu">
+                    </ul>
+                </li>
+                <li id="contact-link-item"><a href="#" id="contact-link">تواصل معنا</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div id="myModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <span class="close-button" onclick="hideModal()">&times;</span>
+                <h2 id="modal-title"></h2>
+            </div>
+            <div class="modal-body" id="modal-body-content">
+            </div>
+            <div class="modal-footer">
+                <button id="prevBtn">السابق</button>
+                <button id="nextBtn">التالي</button>
+                <button class="secondary-button" onclick="hideModal()">العودة للصفحة الرئيسية</button>
+            </div>
+        </div>
+    </div>
+    
+    <div id="contactModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <span class="close-button" onclick="hideContactModal()">&times;</span>
+                <h2 id="contact-modal-title">تواصل معنا</h2>
+            </div>
+            <div class="modal-body">
+                <p><strong>رقم التليفون:</strong> <a href="tel:01289440108">01289440108</a></p>
+                <p><strong>البريد الإلكتروني:</strong> <a href="mailto:aaeabs.1000000@gmail.com">aaeabs.1000000@gmail.com</a></p>
+                <form id="contact-form">
+                    <textarea id="message-area" rows="4" placeholder="اكتب رسالتك هنا..."></textarea>
+                    <button type="submit">إرسال الرسالة</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // بيانات الأعشاب (تم تحديثها بمعلومات إضافية)
+        const herbs = [
+            {
+                type: "herb",
+                name: "النعناع",
+                image: "نعناع.jpeg",
+                benefits: [
+                    "يساعد على تهدئة آلام المعدة وتحسين الهضم.",
+                    "يعمل كمسكن طبيعي للصداع والصداع النصفي.",
+                    "يخفف من احتقان الأنف والجيوب الأنفية."
+                ],
+                howToUse: "يُضاف كأوراق طازجة إلى الشاي أو الماء البارد لإعداد مشروب منعش. يمكن استخدامه أيضاً في السلطات وبعض الأطباق الرئيسية.",
+                cautions: "قد يسبب حرقة في المعدة لدى بعض الأشخاص عند تناوله بكميات كبيرة. يفضل استشارة الطبيب قبل إعطائه للأطفال الرضع.",
+                videoSrc: "النعناع.mp4"
+            },
+            {
+                type: "herb",
+                name: "الكمون",
+                image: "كمون.jpeg",
+                benefits: [
+                    "مفيد جداً للجهاز الهضمي ويقلل من الانتفاخ والغازات.",
+                    "مصدر جيد للحديد ويعزز من صحة الجهاز المناعي.",
+                    "يساعد في السيطرة على مستوى السكر في الدم."
+                ],
+                howToUse: "يُضاف كبودرة إلى الأطعمة كبهار، ويمكن شربه كشاي عن طريق غلي حبوب الكمون في الماء.",
+                cautions: "تناول كميات مفرطة قد يؤثر على الكبد أو يسبب انخفاضاً حاداً في مستوى السكر في الدم.",
+                videoSrc: "الكمون.mp4"
+            },
+            {
+                type: "herb",
+                name: "البابونج",
+                image: "بابونج.jpeg",
+                benefits: [
+                    "مهدئ طبيعي ومساعد فعال على الاسترخاء والنوم.",
+                    "يقلل من القلق والتوتر.",
+                    "يحتوي على خصائص مضادة للالتهابات ومضادة للأكسدة."
+                ],
+                howToUse: "يُشرب كشاي عن طريق نقع زهور البابونج المجففة في الماء الساخن.",
+                cautions: "قد يسبب حساسية لدى الأشخاص الذين يعانون من حساسية تجاه نباتات عائلة الرجيد.",
+                videoSrc: "البابونج.mp4"
+            },
+            {
+                type: "herb",
+                name: "القرفة",
+                image: "قرفه.jpeg",
+                benefits: [
+                    "تساعد على تنظيم مستويات السكر في الدم.",
+                    "تعتبر مضادة قوية للأكسدة وتساعد في حماية الجسم من التلف.",
+                    "لها خصائص مضادة للالتهابات."
+                ],
+                howToUse: "تُضاف كبودرة إلى المشروبات والحلويات، ويمكن استخدامها في الأطباق اللذيذة مثل الحساء.",
+                cautions: "الاستهلاك المفرط للقرفة من نوع 'كاسيا' (النوع الشائع) قد يسبب تلفاً في الكبد بسبب مادة الكومارين.",
+                videoSrc: "القرفه.mp4"
+            },
+            {
+                type: "herb",
+                name: "الكركم",
+                image: "كركم.jpeg",
+                benefits: [
+                    "يحتوي على مادة الكركمين التي تعتبر مضاداً قوياً للالتهابات.",
+                    "يساعد في تقوية المناعة.",
+                    "يُعتقد أنه يحسن وظائف المخ ويقلل من خطر الإصابة بأمراض المخ."
+                ],
+                howToUse: "يُضاف كبودرة إلى الطعام، ويُستخدم في تحضير مشروبات مثل 'الحليب الذهبي'.",
+                cautions: "قد يتفاعل مع الأدوية المضادة للتجلط، ويجب استشارة الطبيب عند استخدامه بكميات علاجية.",
+                videoSrc: "الكركم.mp4"
+            },
+            {
+                type: "herb",
+                name: "الجنزبيل",
+                image: "جنزبيل.jpeg",
+                benefits: [
+                    "فعال جداً في علاج الغثيان والقيء.",
+                    "يساعد في تخفيف آلام العضلات والمفاصل.",
+                    "له خصائص مضادة للالتهابات ومضادة للأكسدة."
+                ],
+                howToUse: "يُضاف طازجاً أو بودرة إلى الشاي، أو يستخدم في الطبخ لإضافة نكهة حارة.",
+                cautions: "الاستهلاك المفرط قد يسبب حرقة في المعدة أو اضطراباً في الجهاز الهضمي.",
+                videoSrc: "الجنزبيل.mp4"
+            },
+            {
+                type: "herb",
+                name: "البقدونس",
+                image: "بقدونيس.jpeg",
+                benefits: [
+                    "غني بفيتامينات A و C و K، الضرورية لصحة الجسم.",
+                    "يساعد على إدرار البول، مما يجعله مفيداً لصحة الكلى.",
+                    "يعمل كمنعش طبيعي للفم."
+                ],
+                howToUse: "يُضاف طازجاً للسلطات مثل التبولة، ويزين به الأطباق.",
+                cautions: "يُنصح بعدم تناول كميات كبيرة جداً منه للحوامل.",
+                videoSrc: "البقدونس.mp4"
+            },
+            {
+                type: "herb",
+                name: "الينسون",
+                image: "ينسون.jpeg",
+                benefits: [
+                    "يساعد على تحسين عملية الهضم والتقليل من الانتفاخ.",
+                    "يستخدم كمهدئ للأعصاب ويساعد على الاسترخاء.",
+                    "يُعتقد أنه يساعد في التخفيف من المغص عند الرضع."
+                ],
+                howToUse: "يُشرب كشاي عن طريق نقع حبوب الينسون في الماء الساخن.",
+                cautions: "قد يسبب حساسية لدى بعض الأشخاص، وله تأثيرات هرمونية خفيفة.",
+                videoSrc: "الينسون.mp4"
+            },
+            {
+                type: "herb",
+                name: "الكزبرة",
+                image: "كزبره.jpeg",
+                benefits: [
+                    "تساعد في خفض مستويات السكر في الدم.",
+                    "غنية بمضادات الأكسدة التي تحمي الجسم من التلف.",
+                    "تساهم في صحة القلب عن طريق خفض الكوليسترول."
+                ],
+                howToUse: "تُستخدم الأوراق الطازجة في السلطات والأطباق، وتُستخدم البذور المجففة كبهار في الطبخ.",
+                cautions: "قد تسبب حساسية لدى بعض الأشخاص أو تزيد من حساسية الجلد لأشعة الشمس.",
+                videoSrc: "الكزبره.mp4"
+            },
+            {
+                type: "herb",
+                name: "الروزماري",
+                image: "روزمارى.jpeg",
+                benefits: [
+                    "يُعتقد أنه يحسن الذاكرة والتركيز.",
+                    "يحتوي على مضادات للأكسدة ومضادات للالتهابات.",
+                    "يساعد في حماية الخلايا من التلف."
+                ],
+                howToUse: "يُستخدم كمنكه في الطبخ، خاصة مع اللحوم والبطاطس، ويمكن إضافته إلى الشاي.",
+                cautions: "يُفضل عدم استخدامه بكميات كبيرة للحوامل أو للمصابين بارتفاع ضغط الدم.",
+                videoSrc: "الروزمارى.mp4"
+            },
+            {
+                type: "herb",
+                name: "الشعير",
+                image: "شعير.jpeg",
+                benefits: [
+                    "يحتوي على الألياف التي تساعد على تحسين الهضم.",
+                    "يساعد في خفض مستويات الكوليسترول.",
+                    "مصدر جيد للفيتامينات والمعادن مثل السيلينيوم والمغنيسيوم."
+                ],
+                howToUse: "يمكن شربه كمنقوع أو استخدامه في الحساء أو السلطات.",
+                cautions: "قد يسبب الانتفاخ لبعض الأشخاص، ويجب تجنبه في حالة حساسية الغلوتين.",
+                videoSrc: "الشعير.mp4"
+            },
+            {
+                type: "herb",
+                name: "الشمر",
+                image: "شمر.jpeg",
+                benefits: [
+                    "يساعد في تخفيف آلام الجهاز الهضمي والغازات.",
+                    "يستخدم كمنكه طبيعي للأطعمة والمشروبات.",
+                    "يُعتقد أنه يساعد على تهدئة السعال."
+                ],
+                howToUse: "يمكن شربه كشاي عن طريق نقع البذور في الماء الساخن، أو إضافة الأوراق الطازجة للسلطات.",
+                cautions: "يُفضل استشارة الطبيب قبل استخدامه بكميات كبيرة للحوامل.",
+                videoSrc: "الشمر.mp4"
+            }
+        ];
+
+        // بيانات العلاج بالقرآن
+        const quranData = [
+            {
+                type: "quran",
+                name: "آيات الشفاء",
+                text: "﴿وَنُنَزِّلُ مِنَ الْقُرْآنِ مَا هُوَ شِفَاءٌ وَرَحْمَةٌ لِلْمُؤْمِنِينَ﴾ سورة الإسراء: 82. <br><br>﴿قُلْ هُوَ لِلَّذِينَ آمَنُوا هُدًى وَشِفَاءٌ﴾ سورة فصلت: 44. <br><br> ﴿يَا أَيُّهَا النَّاسُ قَدْ جَاءَتْكُم مَوْعِظَةٌ مِنْ رَبِّكُمْ وَشِفَاءٌ لِمَا فِي الصُّدُورِ﴾ سورة يونس: 57.",
+                image: "quran_healing.jpeg"
+            },
+            {
+                type: "quran",
+                name: "الرقية الشرعية العامة",
+                text: "الرقية الشرعية من القرآن والسنة، لتحصين النفس والبيت وعلاج العين والسحر والحسد. تشمل آيات من سورة الفاتحة، آية الكرسي، أواخر سورة البقرة، وسور الإخلاص والمعوذتين. <br><br> *الفاتحة، آية الكرسي، الإخلاص، الفلق، الناس، وباقي الآيات المخصصة للرقية.*",
+                image: "ruqyah_general.jpeg"
+            }
+        ];
+
+        // تم إنشاء مصفوفة جديدة للفيديوهات بناءً على بيانات الأعشاب
+        const videosData = herbs.filter(h => h.videoSrc !== null).map(h => ({
+            type: "video",
+            name: h.name,
+            videoSrc: h.videoSrc,
+            description: `فيديو توضيحي عن أهم فوائد ${h.name} وكيفية استخدامه.`
+        }));
+
+        const herbsMenu = document.getElementById('herbs-menu');
+        const videosMenu = document.getElementById('videos-menu');
+        const quranMenu = document.getElementById('quran-menu');
+        const homeLink = document.getElementById('home-link');
+        const contactLink = document.getElementById('contact-link');
+        const contactForm = document.getElementById('contact-form');
+        const messageArea = document.getElementById('message-area');
+
+        const myModal = document.getElementById('myModal');
+        const contactModal = document.getElementById('contactModal');
+        const modalTitle = document.getElementById('modal-title');
+        const modalBodyContent = document.getElementById('modal-body-content');
+        const prevBtn = document.getElementById('prevBtn');
+        const nextBtn = document.getElementById('nextBtn');
+
+        let currentCategory = [];
+        let currentIndex = 0;
+
+        function showModal(category, index) {
+            hideContactModal();
+            currentCategory = category;
+            currentIndex = index;
+            renderModalContent();
+            myModal.style.display = 'flex';
+        }
+
+        function hideModal() {
+            myModal.style.display = 'none';
+            const videoElement = modalBodyContent.querySelector('video');
+            if (videoElement) {
+                videoElement.pause();
+                videoElement.src = '';
+            }
+        }
+        
+        function resetPage() {
+            hideModal();
+            hideContactModal();
+        }
+        
+        function showContactModal() {
+            hideModal();
+            contactModal.style.display = 'flex';
+        }
+        
+        function hideContactModal() {
+            contactModal.style.display = 'none';
+        }
+
+        // ربط الوظيفة بزر الرئيسية
+        homeLink.addEventListener('click', (e) => {
+            e.preventDefault();
+            resetPage();
+        });
+
+        // ربط الوظيفة بزر "تواصل معنا"
+        contactLink.addEventListener('click', (e) => {
+            e.preventDefault();
+            showContactModal();
+        });
+
+        // التعامل مع إرسال الرسالة
+        contactForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const userMessage = messageArea.value;
+            if (userMessage.trim() !== '') {
+                alert('شكراً لك! تم إرسال رسالتك بنجاح.');
+                // هنا يمكن إضافة كود لإرسال الرسالة إلى بريد إلكتروني أو قاعدة بيانات
+                // (هذه الوظيفة تحتاج إلى كود من جهة الخادم وليس HTML/JS فقط)
+                messageArea.value = ''; // إفراغ حقل الرسالة بعد الإرسال
+                hideContactModal();
+            } else {
+                alert('الرجاء كتابة رسالة قبل الإرسال.');
+            }
+        });
+
+        function renderModalContent() {
+            if (currentCategory.length === 0) return;
+
+            const item = currentCategory[currentIndex];
+            modalTitle.textContent = item.name;
+            modalBodyContent.innerHTML = '';
+
+            if (item.type === "herb") {
+                const img = document.createElement('img');
+                img.src = item.image;
+                img.alt = item.name;
+                img.classList.add('modal-image');
+                modalBodyContent.appendChild(img);
+
+                const benefitsTitle = document.createElement('p');
+                benefitsTitle.innerHTML = '<strong>الفوائد:</strong>';
+                modalBodyContent.appendChild(benefitsTitle);
+                const benefitsList = document.createElement('ul');
+                item.benefits.forEach(benefit => {
+                    const li = document.createElement('li');
+                    li.textContent = benefit;
+                    benefitsList.appendChild(li);
+                });
+                modalBodyContent.appendChild(benefitsList);
+
+                const howToUse = document.createElement('p');
+                howToUse.innerHTML = `<strong>طريقة الاستخدام:</strong> ${item.howToUse}`;
+                modalBodyContent.appendChild(howToUse);
+
+                const cautions = document.createElement('p');
+                cautions.innerHTML = `<strong>المحاذير:</strong> ${item.cautions}`;
+                modalBodyContent.appendChild(cautions);
+
+            } else if (item.type === "video") {
+                const video = document.createElement('video');
+                video.src = item.videoSrc;
+                video.controls = true;
+                video.autoplay = true;
+                modalBodyContent.appendChild(video);
+
+                const description = document.createElement('p');
+                description.innerHTML = `<strong>الوصف:</strong> ${item.description}`;
+                modalBodyContent.appendChild(description);
+
+            } else if (item.type === "quran") {
+                if (item.image) {
+                    const img = document.createElement('img');
+                    img.src = item.image;
+                    img.alt = item.name;
+                    img.classList.add('modal-image');
+                    modalBodyContent.appendChild(img);
+                }
+                const quranText = document.createElement('p');
+                quranText.innerHTML = `<strong>المحتوى:</strong> ${item.text}`;
+                modalBodyContent.appendChild(quranText);
+            }
+
+            prevBtn.disabled = (currentIndex === 0);
+            nextBtn.disabled = (currentIndex === currentCategory.length - 1);
+        }
+
+        prevBtn.addEventListener('click', () => {
+            if (currentIndex > 0) {
+                currentIndex--;
+                renderModalContent();
+            }
+        });
+
+        nextBtn.addEventListener('click', () => {
+            if (currentIndex < currentCategory.length - 1) {
+                currentIndex++;
+                renderModalContent();
+            }
+        });
+
+        function createHerbItemForModal(herb, index) {
+            const item = document.createElement('li');
+            const link = document.createElement('a');
+            link.href = '#';
+            link.textContent = `فوائد ${herb.name}`;
+            item.appendChild(link);
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                showModal(herbs, index);
+            });
+            return item;
+        }
+
+        function createVideoItemForModal(video, index) {
+            const item = document.createElement('li');
+            const link = document.createElement('a');
+            link.href = '#';
+            link.textContent = `فيديو عن ${video.name}`;
+            if (video.videoSrc === null) {
+                link.style.color = '#ccc';
+                link.style.cursor = 'default';
+            }
+            item.appendChild(link);
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                if (video.videoSrc !== null) {
+                    showModal(videosData, index);
+                }
+            });
+            return item;
+        }
+
+        function createQuranItemForModal(quran, index) {
+            const item = document.createElement('li');
+            const link = document.createElement('a');
+            link.href = '#';
+            link.textContent = quran.name;
+            item.appendChild(link);
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                showModal(quranData, index);
+            });
+            return item;
+        }
+
+        herbs.forEach((herb, index) => {
+            herbsMenu.appendChild(createHerbItemForModal(herb, index));
+        });
+
+        herbs.forEach((herb, index) => {
+            const item = document.createElement('li');
+            const link = document.createElement('a');
+            link.href = '#';
+            link.textContent = `فيديو عن ${herb.name}`;
+
+            if (!herb.videoSrc) {
+                link.style.color = '#ccc';
+                link.style.cursor = 'default';
+            } else {
+                link.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    const videoItemIndex = videosData.findIndex(v => v.name === herb.name);
+                    if (videoItemIndex !== -1) {
+                        showModal(videosData, videoItemIndex);
+                    }
+                });
+            }
+            item.appendChild(link);
+            videosMenu.appendChild(item);
+        });
+
+        quranData.forEach((quran, index) => {
+            quranMenu.appendChild(createQuranItemForModal(quran, index));
+        });
+
+    </script>
+</body>
+</html>
+
+
 
