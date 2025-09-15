@@ -2,15 +2,16 @@
 <html lang="ar">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width,
+initial-scale=1.0">
     <title>بستان الأعشاب</title>
     <style>
         body {
             font-family: Arial, sans-serif;
-            background-image: url('images/background.jpeg');
-            background-size: cover;
+            background-image: url('images/herbal-pattern.jpeg');
+            background-size: auto;
+            background-repeat: repeat;
             background-position: center center;
-            background-repeat: no-repeat;
             background-attachment: fixed;
             margin: 0;
             padding: 0;
@@ -19,7 +20,7 @@
             min-height: 100vh;
             background-color: #f5e8de;
         }
-
+        
         header {
             background-color: #4CAF50;
             color: white;
@@ -794,6 +795,7 @@
             const link = document.createElement('a');
             link.href = '#';
             link.textContent = `فيديو عن ${video.name}`;
+
             if (video.videoSrc === null) {
                 link.style.color = '#ccc';
                 link.style.cursor = 'default';
@@ -854,6 +856,3 @@
     </script>
 </body>
 </html>
-
-
-
