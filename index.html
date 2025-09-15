@@ -9,7 +9,7 @@ initial-scale=1.0">
         body {
             font-family: Arial, sans-serif;
             background-image: url('herbal-garden.png');
-            background-size: cover;
+            background-size: contain; /* تم تعديل هذه الخاصية */
             background-repeat: no-repeat;
             background-position: center center;
             background-attachment: fixed;
@@ -804,7 +804,7 @@ initial-scale=1.0">
             link.addEventListener('click', (e) => {
                 e.preventDefault();
                 if (video.videoSrc !== null) {
-                    showModal(videosData, index);
+                    showModal(videosData, videoItemIndex);
                 }
             });
             return item;
