@@ -2,8 +2,7 @@
 <html lang="ar">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width,
-initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>بستان الأعشاب</title>
     <style>
         body {
@@ -91,8 +90,9 @@ initial-scale=1.0">
             z-index: 10;
             list-style: none;
             padding: 0;
-            max-height: 400px;
-            overflow-y: auto;
+            /* إضافة شريط التمرير */
+            max-height: 300px; /* يمكنك تعديل القيمة حسب الحاجة */
+            overflow-y: scroll; /* تم التغيير إلى scroll لضمان ظهوره دائمًا */
         }
 
         .dropdown-menu li a {
@@ -112,7 +112,7 @@ initial-scale=1.0">
 
         #videos-menu li a:hover {
             background-color: #3e8e41;
-            color: #000;
+            color: #fff;
         }
 
         #quran-menu li a:hover {
@@ -184,7 +184,7 @@ initial-scale=1.0">
         .modal-body {
             margin-bottom: 20px;
             max-height: 400px;
-            overflow-y: auto;
+            overflow-y: scroll; /* تم التغيير إلى scroll لضمان ظهوره دائمًا */
             text-align: right;
         }
 
@@ -394,7 +394,7 @@ initial-scale=1.0">
     </div>
 
     <script>
-        // بيانات الأعشاب (تم تحديثها بمعلومات إضافية)
+        // بيانات الأعشاب
         const herbs = [
             {
                 type: "herb",
@@ -554,19 +554,49 @@ initial-scale=1.0">
             }
         ];
 
-        // بيانات العلاج بالقرآن
+        // بيانات العلاج بالقرآن (تم تحديثها بالآيات كاملة)
         const quranData = [
             {
                 type: "quran",
                 name: "آيات الشفاء",
-                text: "﴿وَنُنَزِّلُ مِنَ الْقُرْآنِ مَا هُوَ شِفَاءٌ وَرَحْمَةٌ لِلْمُؤْمِنِينَ﴾ سورة الإسراء: 82. <br><br>﴿قُلْ هُوَ لِلَّذِينَ آمَنُوا هُدًى وَشِفَاءٌ﴾ سورة فصلت: 44. <br><br> ﴿يَا أَيُّهَا النَّاسُ قَدْ جَاءَتْكُم مَوْعِظَةٌ مِنْ رَبِّكُمْ وَشِفَاءٌ لِمَا فِي الصُّدُورِ﴾ سورة يونس: 57.",
+                text: "قَالَ يَا قَوْمِ لِمَ تَسْتَعْجِلُونَ بِالسَّيِّئَةِ قَبْلَ الْحَسَنَةِ لَوْلَا تَسْتَغْفِرُونَ اللَّهَ لَعَلَّكُمْ تُرْحَمُونَ. وَنُنَزِّلُ مِنَ الْقُرْآنِ مَا هُوَ شِفَاءٌ وَرَحْمَةٌ لِلْمُؤْمِنِينَ ۙ وَلَا يَزِيدُ الظَّالِمِينَ إِلَّا خَسَارًا. (سورة الإسراء، 82). قُلْ هُوَ لِلَّذِينَ آمَنُوا هُدًى وَشِفَاءٌ ۚ وَالَّذِينَ لَا يُؤْمِنُونَ فِي آذَانِهِمْ وَقْرٌ وَهُوَ عَلَيْهِمْ عَمًى ۚ أُولَٰئِكَ يُنَادَوْنَ مِنْ مَكَانٍ بَعِيدٍ (سورة فصلت، 44). يَا أَيُّهَا النَّاسُ قَدْ جَاءَتْكُمْ مَوْعِظَةٌ مِنْ رَبِّكُمْ وَشِفَاءٌ لِمَا فِي الصُّدُورِ وَهُدًى وَرَحْمَةٌ لِلْمُؤْمِنِينَ (سورة يونس، 57).",
                 image: "quran_healing.jpeg"
             },
             {
                 type: "quran",
                 name: "الرقية الشرعية العامة",
-                text: "الرقية الشرعية من القرآن والسنة، لتحصين النفس والبيت وعلاج العين والسحر والحسد. تشمل آيات من سورة الفاتحة، آية الكرسي، أواخر سورة البقرة، وسور الإخلاص والمعوذتين. <br><br> *الفاتحة، آية الكرسي، الإخلاص، الفلق، الناس، وباقي الآيات المخصصة للرقية.*",
+                text: "بِسْمِ اللَّهِ الرَّحْمَنِ الرَّحِيمِ. الْحَمْدُ لِلَّهِ رَبِّ الْعَالَمِينَ. الرَّحْمَنِ الرَّحِيمِ. مَالِكِ يَوْمِ الدِّينِ. إِيَّاكَ نَعْبُدُ وَإِيَّاكَ نَسْتَعِينُ. اهْدِنَا الصِّرَاطَ الْمُسْتَقِيمَ. صِرَاطَ الَّذِينَ أَنْعَمْتَ عَلَيْهِمْ غَيْرِ الْمَغْضُوبِ عَلَيْهِمْ وَلَا الضَّالِّينَ. (سورة الفاتحة). اللَّهُ لَا إِلَٰهَ إِلَّا هُوَ الْحَيُّ الْقَيُّومُ ۚ لَا تَأْخُذُهُ سِنَةٌ وَلَا نَوْمٌ ۚ لَهُ مَا فِي السَّمَاوَاتِ وَمَا فِي الْأَرْضِ ۗ مَنْ ذَا الَّذِي يَشْفَعُ عِنْدَهُ إِلَّا بِإِذْنِهِ ۚ يَعْلَمُ مَا بَيْنَ أَيْدِيهِمْ وَمَا خَلْفَهُمْ ۖ وَلَا يُحِيطُونَ بِشَيْءٍ مِنْ عِلْمِهِ إِلَّا بِمَا شَاءَ ۚ وَسِعَ كُرْسِيُّهُ السَّمَاوَاتِ وَالْأَرْضَ ۖ وَلَا يَئُودُهُ حِفْظُهُمَا ۚ وَهُوَ الْعَلِيُّ الْعَظِيمُ (آية الكرسي).",
                 image: "ruqyah_general.jpeg"
+            },
+            {
+                type: "quran",
+                name: "آيات السكينة والطمأنينة",
+                text: "الَّذِينَ آمَنُوا وَتَطْمَئِنُّ قُلُوبُهُمْ بِذِكْرِ اللَّهِ ۗ أَلَا بِذِكْرِ اللَّهِ تَطْمَئِنُّ الْقُلُوبُ. (سورة الرعد، 28). إِنَّ الَّذِينَ قَالُوا رَبُّنَا اللَّهُ ثُمَّ اسْتَقَامُوا فَلَا خَوْفٌ عَلَيْهِمْ وَلَا هُمْ يَحْزَنُونَ. (سورة الأحقاف، 13).",
+                image: null 
+            },
+            {
+                type: "quran",
+                name: "أدعية نبوية للشفاء",
+                text: "أَدْهِبِ الْبَاسَ رَبَّ النَّاسِ، وَاشْفِ أَنْتَ الشَّافِي، لَا شِفَاءَ إِلَّا شِفَاؤُكَ، شِفَاءً لَا يُغَادِرُ سَقَمًا.",
+                image: null
+            },
+             {
+                type: "quran",
+                name: "آيات الرزق والبركة",
+                text: "قُلْ إِنَّ رَبِّي يَبْسُطُ الرِّزْقَ لِمَنْ يَشَاءُ مِنْ عِبَادِهِ وَيَقْدِرُ لَهُ ۚ وَمَا أَنْفَقْتُمْ مِنْ شَيْءٍ فَهُوَ يُخْلِفُهُ ۖ وَهُوَ خَيْرُ الرَّازِقِينَ. (سورة سبأ، 39). وَمَا مِنْ دَابَّةٍ فِي الْأَرْضِ إِلَّا عَلَى اللَّهِ رِزْقُهَا وَيَعْلَمُ مُسْتَقَرَّهَا وَمُسْتَوْدَعَهَا ۚ كُلٌّ فِي كِتَابٍ مُبِينٍ. (سورة هود، 6).",
+                image: null
+            },
+            {
+                type: "quran",
+                name: "آيات تيسير الأمور",
+                text: "فَأَمَّا مَنْ أَعْطَىٰ وَاتَّقَىٰ. وَصَدَّقَ بِالْحُسْنَىٰ. فَسَنُيَسِّرُهُ لِلْيُسْرَىٰ. (سورة الليل، 5-7). قَالَ رَبِّ اشْرَحْ لِي صَدْرِي. وَيَسِّرْ لِي أَمْرِي. وَاحْلُلْ عُقْدَةً مِنْ لِسَانِي. يَفْقَهُوا قَوْلِي. (سورة طه، 25-28).",
+                image: null
+            },
+             {
+                type: "quran",
+                name: "أذكار الصباح والمساء",
+                text: "أصبحنا وأصبح الملك لله، والحمد لله، لا إله إلا الله وحده لا شريك له، له الملك وله الحمد وهو على كل شيء قدير، رب أسألك خير ما في هذا اليوم وخير ما بعده، وأعوذ بك من شر ما في هذا اليوم وشر ما بعده، رب أعوذ بك من الكسل وسوء الكبر، رب أعوذ بك من عذاب في النار وعذاب في القبر. (ذِكْرُ الصَّبَاحِ). <br><br> أمسينا وأمسى الملك لله، والحمد لله، لا إله إلا الله وحده لا شريك له، له الملك وله الحمد وهو على كل شيء قدير، رب أسألك خير ما في هذه الليلة وخير ما بعدها، وأعوذ بك من شر ما في هذه الليلة وشر ما بعدها، رب أعوذ بك من الكسل وسوء الكبر، رب أعوذ بك من عذاب في النار وعذاب في القبر. (ذِكْرُ الْمَسَاءِ).",
+                image: null
             }
         ];
 
@@ -629,7 +659,6 @@ initial-scale=1.0">
             contactModal.style.display = 'none';
         }
 
-        // **وظيفة جديدة لإظهار نافذة البحث المنبثقة**
         function showSearchResultsModal(herb) {
             modalTitle.textContent = herb.name;
             modalBodyContent.innerHTML = `
@@ -639,7 +668,6 @@ initial-scale=1.0">
                     <button id="show-video-btn" style="background-color: #008CBA; color: white; padding: 10px 15px; border: none; border-radius: 5px; cursor: pointer;">مشاهدة الفيديو</button>
                 </div>
             `;
-            // Hide prev/next buttons for this modal
             footerButtons.style.display = 'none';
             myModal.style.display = 'flex';
             
@@ -659,7 +687,6 @@ initial-scale=1.0">
             });
         }
 
-        // **ربط البحث بحدث الكتابة**
         searchInput.addEventListener('input', (e) => {
             const query = e.target.value.trim();
             if (query.length > 1) {
@@ -672,27 +699,22 @@ initial-scale=1.0">
             }
         });
 
-        // ربط الوظيفة بزر الرئيسية
         homeLink.addEventListener('click', (e) => {
             e.preventDefault();
             resetPage();
         });
 
-        // ربط الوظيفة بزر "تواصل معنا"
         contactLink.addEventListener('click', (e) => {
             e.preventDefault();
             showContactModal();
         });
 
-        // التعامل مع إرسال الرسالة
         contactForm.addEventListener('submit', (e) => {
             e.preventDefault();
             const userMessage = messageArea.value;
             if (userMessage.trim() !== '') {
                 alert('شكراً لك! تم إرسال رسالتك بنجاح.');
-                // هنا يمكن إضافة كود لإرسال الرسالة إلى بريد إلكتروني أو قاعدة بيانات
-                // (هذه الوظيفة تحتاج إلى كود من جهة الخادم وليس HTML/JS فقط)
-                messageArea.value = ''; // إفراغ حقل الرسالة بعد الإرسال
+                messageArea.value = '';
                 hideContactModal();
             } else {
                 alert('الرجاء كتابة رسالة قبل الإرسال.');
@@ -706,7 +728,6 @@ initial-scale=1.0">
             modalTitle.textContent = item.name;
             modalBodyContent.innerHTML = '';
 
-            // Show prev/next buttons for normal navigation
             footerButtons.style.display = 'flex';
 
             if (item.type === "herb") {
@@ -827,33 +848,15 @@ initial-scale=1.0">
             herbsMenu.appendChild(createHerbItemForModal(herb, index));
         });
 
-        herbs.forEach((herb, index) => {
-            const item = document.createElement('li');
-            const link = document.createElement('a');
-            link.href = '#';
-            link.textContent = `فيديو عن ${herb.name}`;
-
-            if (!herb.videoSrc) {
-                link.style.color = '#ccc';
-                link.style.cursor = 'default';
-            } else {
-                link.addEventListener('click', (e) => {
-                    e.preventDefault();
-                    const videoItemIndex = videosData.findIndex(v => v.name === herb.name);
-                    if (videoItemIndex !== -1) {
-                        showModal(videosData, videoItemIndex);
-                    }
-                });
-            }
-            item.appendChild(link);
-            videosMenu.appendChild(item);
+        videosData.forEach((video, index) => {
+            videosMenu.appendChild(createVideoItemForModal(video, index));
         });
 
         quranData.forEach((quran, index) => {
             quranMenu.appendChild(createQuranItemForModal(quran, index));
         });
-
     </script>
+
 </body>
 </html>
 
