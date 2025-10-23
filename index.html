@@ -16,6 +16,8 @@ margin: 0;
 padding: 0;
 box-sizing: border-box;
 font-family: "Tajawal", sans-serif;
+/* إضافة خاصية التمرير السلس */
+scroll-behavior: smooth;
 }
 /* **التعديل الجديد: جعل حقوق الطبع بخط عريض وثقيل وواضح** */
 .copyright {
@@ -366,13 +368,13 @@ grid-template-columns: 1fr;
 <span>وَذَكِّرْ فَإِنَّ الذِّكْرَى تَنْفَعُ الْمُؤْمِنِينَ</span>
 </a>
 <div class="nav-links">
-    <a href="#hero-section">0- العودة إلى القائمة الرئيسية</a>
+    <a href="#hero-section" onclick="closeMenu()">0- العودة إلى القائمة الرئيسية</a>
     
-    <a href="tel:01289440108">1- تواصل معي واتس: 01289440108</a>
-    <a href="tel:01117359911">2- تواصل معي واتس: 01117359911</a>
+    <a href="tel:01289440108">1- تواصل معي: 01289440108</a>
+    <a href="tel:01117359911">2- تواصل معي: 01117359911</a>
     <a href="mailto:aaeabs.1000000@gmail.com">3- راسلني: aaeabs.1000000@gmail.com</a>
     
-    <a href="#">4- الخروج من التطبيق</a>
+    <a href="#" onclick="exitApp()">4- الخروج من التطبيق</a>
 </div>
 <div class="menu-btn">
 <i class="fas fa-bars"></i>
@@ -421,9 +423,22 @@ grid-template-columns: 1fr;
 <script>
 const menuBtn = document.querySelector('.menu-btn');
 const navLinks = document.querySelector('.nav-links');
+
+// دالة جديدة لإغلاق القائمة بعد النقر على رابط (خاصة بروابط التمرير)
+function closeMenu() {
+    navLinks.classList.remove('active');
+}
+
+// دالة جديدة لمحاولة إغلاق النافذة (الخروج من التطبيق)
+function exitApp() {
+    // محاولة إغلاق النافذة، قد لا تعمل في جميع المتصفحات لأسباب أمنية
+    window.close();
+}
+
 menuBtn.addEventListener('click', () => {
 navLinks.classList.toggle('active');
 });
+
 let currentlyPlaying = null;
 let customPlayers = [];
 // Custom Audio Player Class
