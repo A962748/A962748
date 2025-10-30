@@ -161,6 +161,19 @@ display: block;
 .menu-btn {
     display: block;
 }
+
+/* ************************************ */
+/* الإصلاح الجديد لعنوان التطبيق في الجوال */
+/* ************************************ */
+.logo {
+    font-size: 1.3rem; /* تصغير الخط ليتناسب مع الشاشة الصغيرة */
+    max-width: 60%; /* تحديد أقصى عرض للوغو لترك مساحة للأيقونات */
+    white-space: nowrap; /* منع النص من الالتفاف */
+    overflow: hidden; /* إخفاء النص الزائد */
+    text-overflow: ellipsis; /* إضافة نقاط (...) للنص المخفي */
+}
+/* ************************************ */
+
 .nav-links {
 /* إظهار الروابط في قائمة الهاتف */
 display: none;
@@ -747,7 +760,7 @@ const specificReplacements = [
     // General tafsir, placed last to avoid overriding Tabari
     { identifiers: ['تفسير القران الكريم'], target: 'تفسير القرأن الكريم' },
     // CLEANUP: Ensure قصص الأنبياء is always clean and consistent
-    { identifiers: ['قصص الانبياء', 'قصص الأنبياء والرسل', 'قصة الأنبياء', 'الأنبياء والرسل'], target: 'قصص الأنبياء' }
+    { identifiers: ['قصص الانبياء', ' قصص الأنبياء والرسل', 'قصة الأنبياء', 'الأنبياء والرسل'], target: 'قصص الأنبياء' }
 
 ];
 
