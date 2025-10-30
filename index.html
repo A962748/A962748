@@ -113,6 +113,17 @@ left: 50%;
 transform: translateX(-50%);
 z-index: 1002;
 }
+
+/* Fix: make search & menu icons stay above the centered logo on mobile */
+.nav-container .search-btn,
+.nav-container .menu-btn {
+  position: relative;     /* ensure z-index works */
+  z-index: 1003;          /* أعلى من logo (1002) */
+  background: none;
+  border: none;
+  color: white;
+}
+
 .nav-links {
 /* إخفاء عنصر الروابط الفارغ لمركزة اللوجو */
 display: none;
@@ -147,6 +158,8 @@ cursor: pointer;
 position: relative;
 z-index: 1001;
 order: 4; /* يظهر أخيراً على اليمين */
+background: none;
+border: none;
 }
 .overlay {
 display: none;
@@ -189,23 +202,25 @@ display: block;
 /* NEW: زيادة المسافة بين أيقونتي البحث والقائمة */
 .search-btn {
     margin-left: 1.5rem; /* تم زيادتها لعمل مسافة أكبر بين الأيقونتين */
+    order: 2; /* ترتيب جديد على الموبايل */
 }
 .menu-btn {
     display: block;
     margin-right: 1rem; /* NEW: إضافة هامش لدفعه بعيداً عن حافة الشاشة قليلاً */
+    order: 3; /* ترتيب جديد على الموبايل */
 }
 /* ************************************ */
 
 /* الإصلاح لعنوان التطبيق في الجوال */
 .logo {
     font-size: 1.3rem; 
-    /* تم زيادة العرض إلى 85% لضمان ظهور النص بالكامل */
-    max-width: 85%; 
+    /* تم زيادة العرض إلى 65% لضمان عدم تغطيته للأيقونات */
+    max-width: 65%; 
     white-space: nowrap; 
     overflow: hidden; 
     text-overflow: ellipsis; 
-    /* تم تعديل قيمة الـ translateX لتقليل الإزاحة لليسار (وبالتالي تحريكه يميناً قليلاً) لمركزة العنوان */
-    transform: translateX(-45%); 
+    /* استعادة التحريك المركزي الدقيق */
+    transform: translateX(-50%); 
 }
 
 .nav-links {
@@ -322,7 +337,7 @@ display: none;
 
 /* Cairo Section Styling (Point 3) */
 .cairo-radio-section {
-    /* تم تعديل الـ padding-top في JS ليتناسب مع إظهار شريط البحث */
+    /* تم تعديل الـ padding-top في JS لتتوافق مع إظهار شريط البحث */
     padding: 80px 20px 20px; 
     background: linear-gradient(to bottom, #f5f5dc, #e0d8c7);
     transition: padding-top 0.3s ease; /* للتحريك السلس عند ظهور شريط البحث */
@@ -465,7 +480,7 @@ margin-top: 0.5rem;
 <span>وَذَكِّرْ فَإِنَّ الذِّكْرَى تَنْفَعُ الْمُؤْمِنِينَ</span>
 </a>
 <button class="search-btn" id="navSearchBtn" aria-label="بحث عن تلاوة">
-    <i class="fas fa-search"></i>
+    <i class="fas fa-search" aria-hidden="true"></i>
 </button>
 <div class="nav-links">
     <div class="menu-avatar-container">
@@ -508,9 +523,10 @@ margin-top: 0.5rem;
         <i class="fas fa-power-off"></i> الخروج من التطبيق
     </a>
 </div>
-<div class="menu-btn">
-<i class="fas fa-bars"></i>
-</div>
+<!-- تم تحويل عنصر القائمة إلى زر لتحسين الوصول وعدم كسره في المتصفحات -->
+<button class="menu-btn" aria-label="قائمة">
+  <i class="fas fa-bars" aria-hidden="true"></i>
+</button>
 </div>
 </nav>
 
@@ -805,7 +821,7 @@ const specificReplacements = [
     // Must be sorted from most specific/required to least specific (Tabari before general tafsir)
     { identifiers: ['الطبري', 'الخلاصة من تفسير الطبري'], target: 'تفسير القران الكريم للطبري' },
     // UPDATE: السيره النبويه الشريفه
-    { identifiers: ['السيرة النبوية', 'السيره النبويه'], target: 'السيره النبويه الشريفه' },
+    { identifiers: ['السيرة النبوية', 'السيره النبوويه'], target: 'السيره النبوويه الشريفه' },
     { identifiers: ['رقية', 'الرقية الشرعية'], target: 'الرقية الشرعية' },
     { identifiers: ['فتاوى', 'الفتاوى العامة'], target: 'الفتاوى العامة' },
     // General tafsir, placed last to avoid overriding Tabari
@@ -1027,6 +1043,3 @@ document.addEventListener('DOMContentLoaded', () => {
 </script>
 </body>
 </html>
-
-
-
