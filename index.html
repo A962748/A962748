@@ -67,7 +67,6 @@ border-top: 1px solid #eee;
 }
 /* ************************************ */
 
-
 .all-stations-section,
 .stations-section,
 .hero-section {
@@ -168,15 +167,13 @@ display: block;
 .social-links-container {
     display: flex;
     justify-content: center; /* توسيط الأيقونات أفقياً */
-    /* تم زيادة المسافة بين الأيقونات */
-    gap: 30px; 
+    gap: 20px; /* مسافة بين الأيقونات */
     padding: 10px 0 20px;
 }
 
 .social-links-container a {
     padding: 0; /* إزالة الـ padding العمودي */
-    /* تم زيادته إلى 3.5rem ليكون أكبر وأوضح */
-    font-size: 3.5rem; 
+    font-size: 2rem; /* حجم أكبر للأيقونات */
     color: white;
     transition: transform 0.2s, color 0.2s;
 }
@@ -189,32 +186,25 @@ display: block;
 
 @media (max-width: 768px) {
 /* ************************************ */
-/* التعديل الجديد والحاسم لحل مشكلة التداخل */
+/* NEW: زيادة المسافة بين أيقونتي البحث والقائمة */
 .search-btn {
-    /* **التعديل الجديد:** سحب أيقونة البحث إلى أقصى اليسار مع هامش بسيط */
-    margin-left: 0.8rem; 
-    margin-right: 0; /* إلغاء الهامش الأيمن لدفعه لليسار أكثر */
-    order: 4; /* يوضع كعنصر أخير في الترتيب (أقصى اليسار في RTL) */
+    margin-left: 1.5rem; /* تم زيادتها لعمل مسافة أكبر بين الأيقونتين */
 }
 .menu-btn {
-    /* **التعديل الجديد:** سحب أيقونة القائمة إلى أقصى اليمين مع هامش بسيط */
     display: block;
-    margin-right: 0.8rem; 
-    order: 1; /* يوضع كعنصر أول في الترتيب (أقصى اليمين في RTL) */
+    margin-right: 1rem; /* NEW: إضافة هامش لدفعه بعيداً عن حافة الشاشة قليلاً */
 }
 /* ************************************ */
 
 /* الإصلاح لعنوان التطبيق في الجوال */
 .logo {
-    /* **التعديل الجديد:** تقليص حجم الخط أكثر لتقليل المساحة التي يحتلها. */
-    font-size: 1.1rem; 
-    /* **التعديل الجديد:** زيادة العرض لأقصى حد مسموح به بين الأيقونات. */
-    max-width: 75%; 
+    font-size: 1.3rem; 
+    max-width: 60%; /* تم تقليل العرض قليلاً ليتناسب مع الهوامش الجديدة */
     white-space: nowrap; 
     overflow: hidden; 
     text-overflow: ellipsis; 
-    /* التأكد من تمركزه في المنتصف بين الأيقونتين */
-    transform: translateX(-50%); 
+    /* تم تعديل قيمة الـ translateX لتعويض المسافات الجديدة */
+    transform: translateX(-15%); 
 }
 
 .nav-links {
@@ -370,7 +360,6 @@ display: none;
 .cairo-card .mute-btn:hover {
     background: #e0e0e0;
 }
-
 
 /* Main Grid Section */
 .all-stations-section {
@@ -554,7 +543,6 @@ margin-top: 0.5rem;
     </div>
 </section>
 
-
 <section class="all-stations-section" id="all-stations-section">
 <div class="stations-content">
 <div class="stations-grid" id="allStationsGrid">
@@ -568,7 +556,6 @@ margin-top: 0.5rem;
 </p>
 </section>
 
-
 <script>
 const menuBtn = document.querySelector('.menu-btn');
 const navLinks = document.querySelector('.nav-links');
@@ -577,7 +564,6 @@ const searchInput = document.getElementById('searchInput');
 const searchBarContainer = document.getElementById('searchBarContainer');
 const externalSearchIcon = document.getElementById('externalSearchIcon'); // NEW
 const cairoSection = document.getElementById('cairo-radio-section');
-
 
 // دالة جديدة لإغلاق القائمة بعد النقر على رابط (خاصة بروابط التمرير)
 function closeMenu() {
@@ -665,7 +651,6 @@ document.addEventListener('keydown', (e) => {
         applySearchFilter('');
     }
 });
-
 
 let currentlyPlaying = null;
 let customPlayers = [];
@@ -803,7 +788,6 @@ const forbiddenKeywords = [
 "English", "France", "French", "Türkçe", "Espanol", "German"
 ].map(k => k.toLowerCase().trim());
 
-
 // --- أدوات التعديل الخاصة بالأسماء المطلوبة ---
 
 // 1. الصحابة
@@ -932,7 +916,6 @@ async function loadAllStations() {
                     finalDisplayName = finalDisplayName.replace(`${reciterPrefix} `, sheikhInsertion);
                 }
 
-
                 // **6. CLEANUP: Remove any asterisks and extra whitespace from the final display name.**
                 finalDisplayName = finalDisplayName.replace(/\*/g, '').trim();
                 // -------------------------------------------------------------
@@ -973,7 +956,6 @@ async function loadAllStations() {
         stationsGrid.innerHTML = '<p class="error-message" style="color: #d32f2f; text-align: center;">عذراً، حدث خطأ في تحميل التلاوات</p>';
     }
 }
-
 
 // Search functionality filter (Internal filter on input, External on Enter/Icon click)
 function applySearchFilter(searchTerm) {
@@ -1022,7 +1004,6 @@ function applySearchFilter(searchTerm) {
     }
 }
 
-
 // Initialize custom players and load stations when page loads
 document.addEventListener('DOMContentLoaded', () => {
     
@@ -1045,3 +1026,6 @@ document.addEventListener('DOMContentLoaded', () => {
 </script>
 </body>
 </html>
+
+
+
