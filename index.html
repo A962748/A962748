@@ -59,14 +59,6 @@ border-top: 1px solid #eee;
     /* إلغاء الـ vertical-align: middle لأنه لا حاجة له هنا */
 }
 
-/* ************************************ */
-/* التعديل: المسافة بين الأيقونة والنص في قائمة الهمبرغر (الروابط العمودية) */
-.nav-links a:not(.social-links-container a) i {
-    margin-left: 10px; /* مسافة على يسار الأيقونة (لأنه RTL) */
-    vertical-align: top;
-}
-/* ************************************ */
-
 .all-stations-section,
 .stations-section,
 .hero-section {
@@ -161,29 +153,6 @@ z-index: 998;
 .overlay.active {
 display: block;
 }
-
-/* ************************************ */
-/* تنسيق الأيقونات الأفقية للتواصل الاجتماعي */
-.social-links-container {
-    display: flex;
-    justify-content: center; /* توسيط الأيقونات أفقياً */
-    gap: 20px; /* مسافة بين الأيقونات */
-    padding: 10px 0 20px;
-}
-
-.social-links-container a {
-    padding: 0; /* إزالة الـ padding العمودي */
-    font-size: 2rem; /* حجم أكبر للأيقونات */
-    color: white;
-    transition: transform 0.2s, color 0.2s;
-}
-
-.social-links-container a:hover {
-    color: #4db6ac;
-    transform: scale(1.1);
-}
-/* ************************************ */
-
 @media (max-width: 768px) {
 .search-btn {
     margin-left: 0.5rem;
@@ -193,15 +162,16 @@ display: block;
 }
 
 /* ************************************ */
-/* الإصلاح لعنوان التطبيق في الجوال */
+/* الإصلاح الجديد لعنوان التطبيق في الجوال */
 /* ************************************ */
 .logo {
-    font-size: 1.3rem; 
-    max-width: 75%; 
-    white-space: nowrap; 
-    overflow: hidden; 
-    text-overflow: ellipsis; 
-    transform: translateX(-30%); 
+    font-size: 1.3rem; /* تصغير الخط ليتناسب مع الشاشة الصغيرة */
+    max-width: 75%; /* تم زيادة العرض للسماح بظهور كلمة "المؤمنين" */
+    white-space: nowrap; /* منع النص من الالتفاف */
+    overflow: hidden; /* إخفاء النص الزائد */
+    text-overflow: ellipsis; /* إضافة نقاط (...) للنص المخفي */
+    /* التعديل الجديد: إزاحة العنوان قليلاً نحو اليمين لعمل مسافة مع أيقونة البحث */
+    transform: translateX(-30%); /* تم تقليل القيمة لدفعه لليمين أكثر، وزيادة المسافة عن أيقونة البحث */
 }
 /* ************************************ */
 
@@ -474,42 +444,13 @@ grid-template-columns: 1fr;
     <div class="menu-avatar-container">
         <img src="أشرف.jpg" alt="صورة المطور" class="developer-avatar">
     </div>
-    
-    <a href="#all-stations-section" onclick="closeMenu()">
-        <i class="fas fa-list-ul"></i> العودة إلى القائمة الرئيسية
-    </a>
-    
-    <h4 style="color: #4db6ac; padding: 10px 0 5px; margin-top: 10px; border-top: 1px solid #00695c;">
-        للتواصل والمتابعة
-    </h4>
-    <div class="social-links-container">
-        <a href="https://facebook.com/ashraf.bashir.mohamed" target="_blank" aria-label="Facebook">
-            <i class="fab fa-facebook"></i>
-        </a>
-        <a href="https://m.me/ashraf.bashir.mohamed" target="_blank" aria-label="Messenger">
-            <i class="fab fa-facebook-messenger"></i>
-        </a>
-        <a href="https://instagram.com/ashraf.bashir.mohamed" target="_blank" aria-label="Instagram">
-            <i class="fab fa-instagram"></i>
-        </a>
-         <a href="https://wa.me/201289440108" target="_blank" aria-label="WhatsApp">
-            <i class="fab fa-whatsapp"></i>
-        </a>
-    </div>
+<a href="#all-stations-section" onclick="closeMenu()"> العودة إلى القائمة الرئيسية</a>
 
-    <a href="https://wa.me/201289440108" target="_blank">
-        <i class="fab fa-whatsapp"></i> تواصل معي واتس:<br>01289440108
-    </a>
-    <a href="https://wa.me/201117359911" target="_blank">
-        <i class="fab fa-whatsapp"></i> تواصل معي واتس:<br>01117359911
-    </a>
-    <a href="mailto:aaeabs.1000000@gmail.com">
-        <i class="fas fa-envelope"></i> راسلني بالبريد:<br>aaeabs.1000000@gmail.com
-    </a>
-    
-    <a href="#" onclick="exitApp()">
-        <i class="fas fa-power-off"></i> الخروج من التطبيق
-    </a>
+<a href="tel:01289440108"> تواصل معي واتس: 01289440108</a>
+<a href="tel:01117359911"> تواصل معي واتس: 01117359911</a>
+<a href="mailto:aaeabs.1000000@gmail.com"> راسلني: aaeabs.1000000@gmail.com</a>
+
+<a href="#" onclick="exitApp()"> الخروج من التطبيق</a>
 </div>
 <div class="menu-btn">
 <i class="fas fa-bars"></i>
