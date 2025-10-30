@@ -174,7 +174,9 @@ display: block;
 
 .social-links-container a {
     padding: 0; /* إزالة الـ padding العمودي */
-    font-size: 2rem; /* حجم أكبر للأيقونات */
+    /* ************************************************* */
+    font-size: 3rem; /* تم زيادته إلى 3rem لجعله أكبر وأوضح */
+    /* ************************************************* */
     color: white;
     transition: transform 0.2s, color 0.2s;
 }
@@ -200,13 +202,13 @@ display: block;
 /* الإصلاح لعنوان التطبيق في الجوال */
 .logo {
     font-size: 1.3rem; 
-    /* تم زيادة العرض مرة أخرى ليتسع للآية كاملة */
-    max-width: 75%; 
+    /* تم زيادة العرض إلى 85% لضمان ظهور النص بالكامل */
+    max-width: 85%; 
     white-space: nowrap; 
     overflow: hidden; 
     text-overflow: ellipsis; 
-    /* تم تعديل قيمة الـ translateX لمركزة العنوان الممتد */
-    transform: translateX(-35%); 
+    /* تم تعديل قيمة الـ translateX لتقليل الإزاحة لليسار (وبالتالي تحريكه يميناً قليلاً) لمركزة العنوان */
+    transform: translateX(-45%); 
 }
 
 .nav-links {
