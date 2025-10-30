@@ -199,12 +199,13 @@ display: block;
 /* الإصلاح لعنوان التطبيق في الجوال */
 .logo {
     font-size: 1.3rem; 
-    max-width: 60%; /* تم تقليل العرض قليلاً ليتناسب مع الهوامش الجديدة */
+    /* تم زيادة العرض إلى 85% لضمان ظهور النص بالكامل */
+    max-width: 85%; 
     white-space: nowrap; 
     overflow: hidden; 
     text-overflow: ellipsis; 
-    /* تم تعديل قيمة الـ translateX لتعويض المسافات الجديدة */
-    transform: translateX(-15%); 
+    /* تم تعديل قيمة الـ translateX لتقليل الإزاحة لليسار (وبالتالي تحريكه يميناً قليلاً) لمركزة العنوان */
+    transform: translateX(-45%); 
 }
 
 .nav-links {
