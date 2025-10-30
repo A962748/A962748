@@ -186,25 +186,27 @@ display: block;
 /* ************************************ */
 
 @media (max-width: 768px) {
+/* ************************************ */
+/* NEW: زيادة المسافة بين أيقونتي البحث والقائمة */
 .search-btn {
-    margin-left: 0.5rem;
+    margin-left: 1.5rem; /* تم زيادتها لعمل مسافة أكبر بين الأيقونتين */
 }
 .menu-btn {
     display: block;
+    margin-right: 1rem; /* NEW: إضافة هامش لدفعه بعيداً عن حافة الشاشة قليلاً */
 }
+/* ************************************ */
 
-/* ************************************ */
 /* الإصلاح لعنوان التطبيق في الجوال */
-/* ************************************ */
 .logo {
     font-size: 1.3rem; 
-    max-width: 75%; 
+    max-width: 60%; /* تم تقليل العرض قليلاً ليتناسب مع الهوامش الجديدة */
     white-space: nowrap; 
     overflow: hidden; 
     text-overflow: ellipsis; 
-    transform: translateX(-30%); 
+    /* تم تعديل قيمة الـ translateX لتعويض المسافات الجديدة */
+    transform: translateX(-15%); 
 }
-/* ************************************ */
 
 .nav-links {
 /* إظهار الروابط في قائمة الهاتف */
@@ -400,14 +402,8 @@ font-family: "Amiri", serif;
 .station-card .custom-audio-player {
 margin-top: 0.5rem;
 }
-@media (max-width: 768px) {
-.stations-content h1 {
-font-size: 2rem;
-}
-.stations-grid {
-grid-template-columns: 1fr;
-}
-}
+
+/* ملاحظة: إعدادات الموبايل موجودة أعلى هذا الكود */
 
 /* NEW: Search Bar Container (Sliding Bar) */
 .search-bar-container {
