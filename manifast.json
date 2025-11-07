@@ -1,6 +1,6 @@
 {
   "name": "تسابيح",
-  "short_name": "AshrafApp",
+  "short_name": "تسابيح",
   "start_url": "./index.html",
   "display": "standalone",
   "background_color": "#ffffff",
