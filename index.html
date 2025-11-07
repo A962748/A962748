@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>كُنْ مَعَ اللهِ تَرى اللهَ مَعَكْ</title>
+<link rel="manifest" href="manifest.json">
 <link rel="icon" type="image/x-icon" href="kaaba.png">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@700&family=Reem+Kufi:wght@600&display=swap"
@@ -1024,6 +1025,22 @@ document.addEventListener('DOMContentLoaded', () => {
         yearSpan.textContent = new Date().getFullYear();
     }
 });
+// ... (بقية كود الـ JavaScript الموجود لديك)
+
+// *** NEW PWA REGISTRATION CODE ***
+// تسجيل ملف الـ Service Worker عند تحميل الصفحة
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('/service-worker.js')
+      .then(registration => {
+        console.log('ServiceWorker registered: ', registration);
+      })
+      .catch(registrationError => {
+        console.log('ServiceWorker registration failed: ', registrationError);
+      });
+  });
+}
+// *** END PWA REGISTRATION CODE ***
 </script>
 </body>
 </html>
