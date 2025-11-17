@@ -1,11 +1,12 @@
 {
   "name": "تسابيح",
   "short_name": "تسابيح",
+  "description": "تطبيق تسابيح وأذكار مع بث مباشر لإذاعات القرآن الكريم",
   "start_url": "./index.html",
   "display": "standalone",
-  "background_color": "#ffffff",
-  "theme_color": "#0a3d62",
-  "description": "تطبيق تفاعلي للقرآن الكريم من تصميم أشرف بشير، يحتوي على تلاوات وروابط وأدعية.",
+  "background_color": "#004d40",
+  "theme_color": "#004d40",
+  "lang": "ar",
   "icons": [
     {
       "src": "kaaba192.png",
@@ -17,6 +18,5 @@
       "sizes": "512x512",
       "type": "image/png"
     }
-  ],
-  "lang": "ar"
+  ]
 }
