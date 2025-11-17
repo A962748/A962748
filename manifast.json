@@ -8,15 +8,7 @@
   "theme_color": "#004d40",
   "lang": "ar",
   "icons": [
-    {
-      "src": "kaaba192.png",
-      "sizes": "192x192",
-      "type": "image/png"
-    },
-    {
-      "src": "kaaba512.png",
-      "sizes": "512x512",
-      "type": "image/png"
-    }
+    { "src": "kaaba192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "kaaba512.png", "sizes": "512x512", "type": "image/png" }
   ]
 }
