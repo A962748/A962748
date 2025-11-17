@@ -24,47 +24,47 @@ scroll-behavior: smooth;
 text-align: center;
 padding: 15px;
 margin-top: 15px;
-color: #000; 
-font-size: 16px; 
-font-weight: 700; 
+color: #000;
+font-size: 16px;
+font-weight: 700;
 border-top: 1px solid #eee;
 }
 /* كود جديد لتهيئة الصورة الشخصية في حقوق النشر */
 .developer-avatar {
-    width: 30px;        /* حجم صغير ومناسب لحقوق النشر */
-    height: 30px;
-    border-radius: 50%; /* لجعلها دائرية الشكل */
-    object-fit: cover;  /* لضمان ملء الصورة للدائرة */
-    margin: 0 5px;      /* مسافة بسيطة عن النص */
-    border: 1px solid #004d40; /* إطار خفيف بلون التطبيق */
-    vertical-align: middle; /* لمحاذاة منتصف الصورة مع النص */
+width: 30px; /* حجم صغير ومناسب لحقوق النشر */
+height: 30px;
+border-radius: 50%; /* لجعلها دائرية الشكل */
+object-fit: cover; /* لضمان ملء الصورة للدائرة */
+margin: 0 5px; /* مسافة بسيطة عن النص */
+border: 1px solid #004d40; /* إطار خفيف بلون التطبيق */
+vertical-align: middle; /* لمحاذاة منتصف الصورة مع النص */
 }
 
 /* NEW: Styling for the avatar inside the mobile menu */
 /* Container for centering and spacing in the menu */
 .menu-avatar-container {
-    padding-bottom: 20px;
-    margin-bottom: 20px; /* فاصل بين الصورة والروابط */
-    border-bottom: 1px solid #00695c; /* فاصل بصري */
-    /* لضمان عمل التوسيط في القائمة (حتى لو كانت flex) */
-    text-align: center; 
+padding-bottom: 20px;
+margin-bottom: 20px; /* فاصل بين الصورة والروابط */
+border-bottom: 1px solid #00695c; /* فاصل بصري */
+/* لضمان عمل التوسيط في القائمة (حتى لو كانت flex) */
+text-align: center;
 }
 
 /* تحديد حجم وتنسيق الصورة في قائمة الهمبرغر */
 .nav-links .developer-avatar {
-    width: 80px; /* حجم كبير للمنيو */
-    height: 80px;
-    margin: 0 auto; /* توسيط أفقي */
-    border: 3px solid #4db6ac; /* إطار أوضح */
-    display: block; /* لضمان أن margin auto يعمل */
-    /* إلغاء الـ vertical-align: middle لأنه لا حاجة له هنا */
+width: 80px; /* حجم كبير للمنيو */
+height: 80px;
+margin: 0 auto; /* توسيط أفقي */
+border: 3px solid #4db6ac; /* إطار أوضح */
+display: block; /* لضمان أن margin auto يعمل */
+/* إلغاء الـ vertical-align: middle لأنه لا حاجة له هنا */
 }
 
 /* ************************************ */
 /* التعديل: المسافة بين الأيقونة والنص في قائمة الهمبرغر (الروابط العمودية) */
 .nav-links a:not(.social-links-container a) i {
-    margin-left: 10px; /* مسافة على يسار الأيقونة (لأنه RTL) */
-    vertical-align: top;
+margin-left: 10px; /* مسافة على يسار الأيقونة (لأنه RTL) */
+vertical-align: top;
 }
 /* ************************************ */
 
@@ -81,8 +81,8 @@ color: #333;
 /* تعديل المسافة العلوية لقسم hero بعد حذف المحتوى */
 .hero-section {
 /* تم تقليل الـ padding ليصبح قسم فاصل بسيط بعد حذف المحتوى */
-padding-top: 60px; 
-padding-bottom: 0px; 
+padding-top: 60px;
+padding-bottom: 0px;
 }
 nav {
 background-color: #004d40;
@@ -108,7 +108,7 @@ font-size: 2rem;
 font-weight: 700;
 text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
 /* مركزة النص فوق العناصر الأخرى */
-width: auto; 
+width: auto;
 position: absolute;
 left: 50%;
 transform: translateX(-50%);
@@ -130,15 +130,15 @@ color: #4db6ac;
 }
 /* NEW: Search button style */
 .search-btn {
-    background: none;
-    border: none;
-    color: white;
-    font-size: 1.5rem;
-    cursor: pointer;
-    margin-left: 1rem; /* Space from menu icon */
-    position: relative;
-    z-index: 1001;
-    order: 3; /* يظهر على اليسار في هذا الترتيب */
+background: none;
+border: none;
+color: white;
+font-size: 1.5rem;
+cursor: pointer;
+margin-left: 1rem; /* Space from menu icon */
+position: relative;
+z-index: 1001;
+order: 3; /* يظهر على اليسار في هذا الترتيب */
 }
 .menu-btn {
 display: block; /* Ensure it's visible to use order */
@@ -166,22 +166,22 @@ display: block;
 /* ************************************ */
 /* تنسيق الأيقونات الأفقية للتواصل الاجتماعي */
 .social-links-container {
-    display: flex;
-    justify-content: center; /* توسيط الأيقونات أفقياً */
-    gap: 20px; /* مسافة بين الأيقونات */
-    padding: 10px 0 20px;
+display: flex;
+justify-content: center; /* توسيط الأيقونات أفقياً */
+gap: 20px; /* مسافة بين الأيقونات */
+padding: 10px 0 20px;
 }
 
 .social-links-container a {
-    padding: 0; /* إزالة الـ padding العمودي */
-    font-size: 2rem; /* حجم أكبر للأيقونات */
-    color: white;
-    transition: transform 0.2s, color 0.2s;
+padding: 0; /* إزالة الـ padding العمودي */
+font-size: 2rem; /* حجم أكبر للأيقونات */
+color: white;
+transition: transform 0.2s, color 0.2s;
 }
 
 .social-links-container a:hover {
-    color: #4db6ac;
-    transform: scale(1.1);
+color: #4db6ac;
+transform: scale(1.1);
 }
 /* ************************************ */
 
@@ -189,24 +189,24 @@ display: block;
 /* ************************************ */
 /* NEW: زيادة المسافة بين أيقونتي البحث والقائمة */
 .search-btn {
-    margin-left: 1rem; /* تم زيادتها لعمل مسافة أكبر بين الأيقونتين */
+margin-left: 1rem; /* تم زيادتها لعمل مسافة أكبر بين الأيقونتين */
 }
 .menu-btn {
-    display: block;
-    margin-right: 1rem; /* NEW: إضافة هامش لدفعه بعيداً عن حافة الشاشة قليلاً */
+display: block;
+margin-right: 1rem; /* NEW: إضافة هامش لدفعه بعيداً عن حافة الشاشة قليلاً */
 }
 /* ************************************ */
 
 /* الإصلاح لعنوان التطبيق في الجوال */
 .logo {
-    font-size: 2rem; 
-    /* تم زيادة العرض إلى 85% لضمان ظهور النص بالكامل */
-    max-width: 85%; 
-    white-space: nowrap; 
-    overflow: hidden; 
-    text-overflow: ellipsis; 
-    /* تم تعديل قيمة الـ translateX لتقليل الإزاحة لليسار (وبالتالي تحريكه يميناً قليلاً) لمركزة العنوان */
-    transform: translateX(-40%); 
+font-size: 2rem;
+/* تم زيادة العرض إلى 85% لضمان ظهور النص بالكامل */
+max-width: 85%;
+white-space: nowrap;
+overflow: hidden;
+text-overflow: ellipsis;
+/* تم تعديل قيمة الـ translateX لتقليل الإزاحة لليسار (وبالتالي تحريكه يميناً قليلاً) لمركزة العنوان */
+transform: translateX(-40%);
 }
 
 .nav-links {
@@ -252,7 +252,7 @@ color: #4db6ac;
 }
 .radio-player {
 /* هذا كان مخصصًا للمشغل في قسم hero وتم حذفه */
-display: none; 
+display: none;
 }
 /* Custom Audio Player Styles - يستخدم الآن لقائمة التلاوات فقط */
 .custom-audio-player {
@@ -261,7 +261,7 @@ border-radius: 12px;
 padding: 15px;
 display: flex;
 /* التعديل: توسيط العناصر بعد إزالة النص */
-justify-content: center; 
+justify-content: center;
 align-items: center;
 /* التعديل: زيادة المسافة بين الأزرار */
 gap: 20px;
@@ -313,7 +313,7 @@ background: #f44336;
 .station-info,
 .station-name,
 .status {
-    display: none; 
+display: none;
 }
 
 /* Hide default audio element */
@@ -323,49 +323,49 @@ display: none;
 
 /* Cairo Section Styling (Point 3) */
 .cairo-radio-section {
-    /* تم تعديل الـ padding-top في JS ليتناسب مع إظهار شريط البحث */
-    padding: 80px 20px 20px; 
-    background: linear-gradient(to bottom, #f5f5dc, #e0d8c7);
-    transition: padding-top 0.3s ease; /* للتحريك السلس عند ظهور شريط البحث */
+/* تم تعديل الـ padding-top في JS ليتناسب مع إظهار شريط البحث */
+padding: 80px 20px 20px;
+background: linear-gradient(to bottom, #f5f5dc, #e0d8c7);
+transition: padding-top 0.3s ease; /* للتحريك السلس عند ظهور شريط البحث */
 }
 .cairo-radio-section .stations-content {
-    max-width: 600px;
-    margin: 0 auto;
-    text-align: center;
+max-width: 600px;
+margin: 0 auto;
+text-align: center;
 }
 .cairo-card {
-    background: #004d40;
-    color: white;
-    padding: 2rem;
-    border-radius: 15px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-    border: 3px solid #4db6ac;
+background: #004d40;
+color: white;
+padding: 2rem;
+border-radius: 15px;
+box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+border: 3px solid #4db6ac;
 }
 .cairo-card h3 {
-    color: white;
-    font-size: 1.8rem;
-    margin-bottom: 1.5rem;
-    font-family: "Amiri", serif;
+color: white;
+font-size: 1.8rem;
+margin-bottom: 1.5rem;
+font-family: "Amiri", serif;
 }
 .cairo-card .custom-audio-player {
-    background: rgba(255, 255, 255, 0.2);
-    border-color: rgba(255, 255, 255, 0.4);
-    max-width: 350px;
-    margin: 0 auto;
+background: rgba(255, 255, 255, 0.2);
+border-color: rgba(255, 255, 255, 0.4);
+max-width: 350px;
+margin: 0 auto;
 }
 .cairo-card .play-pause-btn,
 .cairo-card .mute-btn {
-    background: white;
-    color: #004d40;
+background: white;
+color: #004d40;
 }
 .cairo-card .play-pause-btn:hover,
 .cairo-card .mute-btn:hover {
-    background: #e0e0e0;
+background: #e0e0e0;
 }
 
 /* Main Grid Section */
 .all-stations-section {
-    padding-top: 20px; /* Less padding as Cairo section handles the space */
+padding-top: 20px; /* Less padding as Cairo section handles the space */
 }
 .stations-content {
 max-width: 1200px;
@@ -373,7 +373,7 @@ margin: 0 auto;
 }
 .stations-content h1 {
 /* تم حذف هذا العنوان بالطلب */
-display: none; 
+display: none;
 }
 .stations-grid {
 display: grid;
@@ -407,55 +407,55 @@ margin-top: 0.5rem;
 
 /* NEW: Search Bar Container (Sliding Bar) */
 .search-bar-container {
-    background-color: #00695c; /* Darker green background */
-    padding: 10px 20px;
-    position: fixed;
-    top: 60px; /* Below the nav bar (which is approx 60px tall) */
-    width: 100%;
-    z-index: 999;
-    /* استخدام transform للتحريك وإخفاء السلس */
-    transform: translateY(-100%); 
-    transition: transform 0.3s ease-in-out;
-    box-shadow: 0 3px 5px rgba(0, 0, 0, 0.2);
+background-color: #00695c; /* Darker green background */
+padding: 10px 20px;
+position: fixed;
+top: 60px; /* Below the nav bar (which is approx 60px tall) */
+width: 100%;
+z-index: 999;
+/* استخدام transform للتحريك وإخفاء السلس */
+transform: translateY(-100%);
+transition: transform 0.3s ease-in-out;
+box-shadow: 0 3px 5px rgba(0, 0, 0, 0.2);
 }
 
 .search-bar-container.active {
-    transform: translateY(0); /* إظهار الشريط بالكامل */
+transform: translateY(0); /* إظهار الشريط بالكامل */
 }
 
 .search-bar-container .search-container {
-    max-width: 900px;
-    margin: 0 auto;
-    padding: 0;
-    position: relative;
+max-width: 900px;
+margin: 0 auto;
+padding: 0;
+position: relative;
 }
 
 .search-bar-container .search-container input {
-    width: 100%;
-    padding: 0.8rem 1rem 0.8rem 3.5rem;
-    font-size: 1.1rem;
-    border: none;
-    border-radius: 8px;
-    background: rgba(255, 255, 255, 0.9);
-    color: #004d40;
+width: 100%;
+padding: 0.8rem 1rem 0.8rem 3.5rem;
+font-size: 1.1rem;
+border: none;
+border-radius: 8px;
+background: rgba(255, 255, 255, 0.9);
+color: #004d40;
 }
 .search-bar-container .search-container input::placeholder {
-    color: #004d40;
+color: #004d40;
 }
 .search-bar-container .search-container input:focus {
-    outline: none;
-    box-shadow: 0 0 0 2px #4db6ac;
+outline: none;
+box-shadow: 0 0 0 2px #4db6ac;
 }
 
 /* NEW: Search Icon inside the search bar for submitting external search */
 .search-bar-container .search-container .search-icon {
-    position: absolute;
-    left: 2rem;
-    top: 50%;
-    transform: translateY(-50%);
-    color: #004d40;
-    font-size: 1.2rem;
-    cursor: pointer; /* To indicate it's clickable */
+position: absolute;
+left: 2rem;
+top: 50%;
+transform: translateY(-50%);
+color: #004d40;
+font-size: 1.2rem;
+cursor: pointer; /* To indicate it's clickable */
 }
 </style>
 </head>
@@ -466,48 +466,45 @@ margin-top: 0.5rem;
 <span>فَاذْكُرُونِي أَذْكُرْكُمْ</span>
 </a>
 <button class="search-btn" id="navSearchBtn" aria-label="بحث عن تلاوة">
-    <i class="fas fa-search"></i>
+<i class="fas fa-search"></i>
 </button>
 <div class="nav-links">
-    <div class="menu-avatar-container">
-        <img src="أشرف.jpg" alt="صورة المطور" class="developer-avatar">
-    </div>
-    
-    <a href="#all-stations-section" onclick="closeMenu()">
-        <i class="fas fa-list-ul"></i> العودة إلى القائمة الرئيسية
-    </a>
-    
-    <h4 style="color: #4db6ac; padding: 10px 0 5px; margin-top: 10px; border-top: 1px solid #00695c;">
-        للتواصل والمتابعة
-    </h4>
-    <div class="social-links-container">
-        <a href="https://www.facebook.com/ashrf.bshyr.433480" target="_blank" aria-label="Facebook">
-            <i class="fab fa-facebook"></i>
-        </a>
-        <a href="https://m.me/ashrf.bshyr.433480" target="_blank" aria-label="Messenger">
-            <i class="fab fa-facebook-messenger"></i>
-        </a>
-        <a href="https://www.instagram.com/ashraf_besher25" target="_blank" aria-label="Instagram">
-            <i class="fab fa-instagram"></i>
-        </a>
-         <a href="https://wa.me/201289440108" target="_blank" aria-label="WhatsApp">
-            <i class="fab fa-whatsapp"></i>
-        </a>
-    </div>
+<div class="menu-avatar-container">
+<img src="أشرف.jpg" alt="صورة المطور" class="developer-avatar">
+</div>
+<a href="#all-stations-section" onclick="closeMenu()">
+<i class="fas fa-list-ul"></i> العودة إلى القائمة الرئيسية
+</a>
+<h4 style="color: #4db6ac; padding: 10px 0 5px; margin-top: 10px; border-top: 1px solid #00695c;">
+للتواصل والمتابعة
+</h4>
+<div class="social-links-container">
+<a href="https://www.facebook.com/ashrf.bshyr.433480" target="_blank" aria-label="Facebook">
+<i class="fab fa-facebook"></i>
+</a>
+<a href="https://m.me/ashrf.bshyr.433480" target="_blank" aria-label="Messenger">
+<i class="fab fa-facebook-messenger"></i>
+</a>
+<a href="https://www.instagram.com/ashraf_besher25" target="_blank" aria-label="Instagram">
+<i class="fab fa-instagram"></i>
+</a>
+<a href="https://wa.me/201289440108" target="_blank" aria-label="WhatsApp">
+<i class="fab fa-whatsapp"></i>
+</a>
+</div>
 
-    <a href="https://wa.me/201289440108" target="_blank">
-        <i class="fab fa-whatsapp"></i> تواصل معي واتس:<br>01289440108
-    </a>
-    <a href="https://wa.me/201117359911" target="_blank">
-        <i class="fab fa-whatsapp"></i> تواصل معي واتس:<br>01117359911
-    </a>
-    <a href="mailto:aaeabs.1000000@gmail.com">
-        <i class="fas fa-envelope"></i> راسلني بالبريد:<br>aaeabs.1000000@gmail.com
-    </a>
-    
-    <a href="#" onclick="exitApp()">
-        <i class="fas fa-power-off"></i> الخروج من التطبيق
-    </a>
+<a href="https://wa.me/201289440108" target="_blank">
+<i class="fab fa-whatsapp"></i> تواصل معي واتس:<br>01289440108
+</a>
+<a href="https://wa.me/201117359911" target="_blank">
+<i class="fab fa-whatsapp"></i> تواصل معي واتس:<br>01117359911
+</a>
+<a href="mailto:aaeabs.1000000@gmail.com">
+<i class="fas fa-envelope"></i> راسلني بالبريد:<br>aaeabs.1000000@gmail.com
+</a>
+<a href="#" onclick="exitApp()">
+<i class="fas fa-power-off"></i> الخروج من التطبيق
+</a>
 </div>
 <div class="menu-btn">
 <i class="fas fa-bars"></i>
@@ -516,33 +513,33 @@ margin-top: 0.5rem;
 </nav>
 
 <div class="search-bar-container" id="searchBarContainer">
-    <div class="search-container">
-        <input type="text" id="searchInput" placeholder="اكتب للبحث داخل التلاوات، أو اضغط Enter للبحث الخارجي...">
-        <i class="fas fa-search search-icon" id="externalSearchIcon"></i>
-    </div>
+<div class="search-container">
+<input type="text" id="searchInput" placeholder="اكتب للبحث داخل التلاوات، أو اضغط Enter للبحث الخارجي...">
+<i class="fas fa-search search-icon" id="externalSearchIcon"></i>
+</div>
 </div>
 
 <main class="hero-section" id="hero-section"></main>
 
 <section class="cairo-radio-section" id="cairo-radio-section">
-    <div class="stations-content">
-        <div class="station-card cairo-card">
-            <h3>إذاعة القرآن الكريم من القاهرة (بث مباشر)</h3>
-            <div class="custom-audio-player" data-src="https://stream.radiojar.com/8s5u5tpdtwzuv" id="cairoPlayer">
-                <button class="play-pause-btn">
-                    <i class="fas fa-play"></i>
-                </button>
-                <div class="station-info">
-                    <span class="station-name">إذاعة القرآن الكريم من القاهرة (بث مباشر)</span>
-                    <span class="status">اضغط للتشغيل</span>
-                </div>
-                <button class="mute-btn">
-                    <i class="fas fa-volume-up"></i>
-                </button>
-            </div>
-        </div>
-        <hr style="margin: 30px auto; border-color: #004d4040; max-width: 80%;" />
-    </div>
+<div class="stations-content">
+<div class="station-card cairo-card">
+<h3>إذاعة القرآن الكريم من القاهرة (بث مباشر)</h3>
+<div class="custom-audio-player" data-src="https://stream.radiojar.com/8s5u5tpdtwzuv" id="cairoPlayer">
+<button class="play-pause-btn">
+<i class="fas fa-play"></i>
+</button>
+<div class="station-info">
+<span class="station-name">إذاعة القرآن الكريم من القاهرة (بث مباشر)</span>
+<span class="status">اضغط للتشغيل</span>
+</div>
+<button class="mute-btn">
+<i class="fas fa-volume-up"></i>
+</button>
+</div>
+</div>
+<hr style="margin: 30px auto; border-color: #004d4040; max-width: 80%;" />
+</div>
 </section>
 
 <section class="all-stations-section" id="all-stations-section">
@@ -552,7 +549,7 @@ margin-top: 0.5rem;
 </div>
 </div>
 <p class="copyright">
-جميع الحقوق محفوظة &copy; <span id="year">2024</span> 
+جميع الحقوق محفوظة &copy; <span id="year">2024</span>
 <img src="أشرف.jpg" alt="صورة المطور" class="developer-avatar">
 **أشرف بشير محمد**
 </p>
@@ -584,74 +581,70 @@ navLinks.classList.toggle('active');
 // External Search Logic Function
 // **********************************************
 function performExternalSearch() {
-    const query = searchInput.value.trim();
-    if (query) {
-        // فتح نافذة جديدة والبحث في Google
-        const searchURL = `https://www.google.com/search?q=${encodeURIComponent(query)}`;
-        window.open(searchURL, '_blank');
-        
-        // إغلاق شريط البحث بعد البحث الخارجي
-        searchBarContainer.classList.remove('active');
-        cairoSection.style.paddingTop = '80px';
-        searchInput.value = '';
-        applySearchFilter('');
-    } else {
-        // إذا كان البحث فارغاً، يكتفي بإغلاق الشريط وتصفية النتائج الداخلية (وهي إظهار الكل)
-        searchBarContainer.classList.remove('active');
-        cairoSection.style.paddingTop = '80px';
-    }
+const query = searchInput.value.trim();
+if (query) {
+// فتح نافذة جديدة والبحث في Google
+const searchURL = `https://www.google.com/search?q=${encodeURIComponent(query)}`;
+window.open(searchURL, '_blank');
+// إغلاق شريط البحث بعد البحث الخارجي
+searchBarContainer.classList.remove('active');
+cairoSection.style.paddingTop = '80px';
+searchInput.value = '';
+applySearchFilter('');
+} else {
+// إذا كان البحث فارغاً، يكتفي بإغلاق الشريط وتصفية النتائج الداخلية (وهي إظهار الكل)
+searchBarContainer.classList.remove('active');
+cairoSection.style.paddingTop = '80px';
+}
 }
 
 // NEW: Toggle search bar visibility and manage padding/focus
 navSearchBtn.addEventListener('click', () => {
-    const isActive = searchBarContainer.classList.toggle('active');
-    
-    // Adjust top padding of the main content sections to prevent overlap
-    if (isActive) {
-        // Search bar is approx 50-60px tall. Nav is 60px. Total offset ~110px.
-        cairoSection.style.paddingTop = '115px'; // Adjust padding to clear fixed search bar
-        searchInput.focus();
-    } else {
-        // Restore default padding (80px in CSS)
-        cairoSection.style.paddingTop = '80px';
-        
-        // Clear search input and re-run filter to show all
-        searchInput.value = '';
-        applySearchFilter('');
-    }
-    // Also close the mobile menu if open
-    closeMenu(); 
+const isActive = searchBarContainer.classList.toggle('active');
+// Adjust top padding of the main content sections to prevent overlap
+if (isActive) {
+// Search bar is approx 50-60px tall. Nav is 60px. Total offset ~110px.
+cairoSection.style.paddingTop = '115px'; // Adjust padding to clear fixed search bar
+searchInput.focus();
+} else {
+// Restore default padding (80px in CSS)
+cairoSection.style.paddingTop = '80px';
+// Clear search input and re-run filter to show all
+searchInput.value = '';
+applySearchFilter('');
+}
+// Also close the mobile menu if open
+closeMenu();
 });
 
 // NEW: Event listener for internal search (on input)
 searchInput.addEventListener('input', (e) => {
-    applySearchFilter(e.target.value.toLowerCase());
+applySearchFilter(e.target.value.toLowerCase());
 });
 
 // NEW: Event listener for ENTER key press (to trigger external search)
 searchInput.addEventListener('keydown', (e) => {
-    if (e.key === 'Enter') {
-        e.preventDefault(); // منع الإجراء الافتراضي (مثل إرسال نموذج)
-        performExternalSearch();
-    }
+if (e.key === 'Enter') {
+e.preventDefault(); // منع الإجراء الافتراضي (مثل إرسال نموذج)
+performExternalSearch();
+}
 });
 
 // NEW: Event listener for clicking the icon inside the search bar
 externalSearchIcon.addEventListener('click', () => {
-    performExternalSearch();
+performExternalSearch();
 });
 
 // Allow closing with ESC key and clearing search
 document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape' && searchBarContainer.classList.contains('active')) {
-        // Toggle off the search bar, which triggers the close logic in the click event
-        searchBarContainer.classList.remove('active');
-        cairoSection.style.paddingTop = '80px';
-        
-        // Clear search input and re-run filter to show all
-        searchInput.value = '';
-        applySearchFilter('');
-    }
+if (e.key === 'Escape' && searchBarContainer.classList.contains('active')) {
+// Toggle off the search bar, which triggers the close logic in the click event
+searchBarContainer.classList.remove('active');
+cairoSection.style.paddingTop = '80px';
+// Clear search input and re-run filter to show all
+searchInput.value = '';
+applySearchFilter('');
+}
 });
 
 let currentlyPlaying = null;
@@ -664,7 +657,7 @@ this.audio = null;
 this.playBtn = playerElement.querySelector('.play-pause-btn');
 this.muteBtn = playerElement.querySelector('.mute-btn');
 // لا يزال يتم البحث عن هذا العنصر لتحديث الحالة داخليًا، ولكنه مخفي الآن
-this.statusElement = playerElement.querySelector('.status'); 
+this.statusElement = playerElement.querySelector('.status');
 this.isPlaying = false;
 this.isMuted = false;
 this.volumeBeforeMute = 0.8;
@@ -794,25 +787,25 @@ const forbiddenKeywords = [
 
 // 1. الصحابة
 const sahabaIdentifiers = [
-    'صور من حياة الصحابة', 
-    'صور الصحابة', 
-    'حياة الصحابة', 
-    'الصحابة والتابعين'
+'صور من حياة الصحابة',
+'صور الصحابة',
+'حياة الصحابة',
+'الصحابة والتابعين'
 ].map(k => k.toLowerCase().trim());
 const targetSahabaPhrase = 'نبذة عن حياة الصحابة';
 
 // 2. باقي التعديلات المخصصة
 const specificReplacements = [
-    // Must be sorted from most specific/required to least specific (Tabari before general tafsir)
-    { identifiers: ['الطبري', 'الخلاصة من تفسير الطبري'], target: 'تفسير القران الكريم للطبري' },
-    // UPDATE: السيره النبويه الشريفه
-    { identifiers: ['السيرة النبوية', 'السيره النبويه'], target: 'السيره النبويه الشريفه' },
-    { identifiers: ['رقية', 'الرقية الشرعية'], target: 'الرقية الشرعية' },
-    { identifiers: ['فتاوى', 'الفتاوى العامة'], target: 'الفتاوى العامة' },
-    // General tafsir, placed last to avoid overriding Tabari
-    { identifiers: ['تفسير القران الكريم'], target: 'تفسير القرأن الكريم' },
-    // CLEANUP: Ensure قصص الأنبياء is always clean and consistent
-    { identifiers: ['قصص الانبياء', ' قصص الأنبياء والرسل', 'قصة الأنبياء', 'الأنبياء والرسل'], target: 'قصص الأنبياء' }
+// Must be sorted from most specific/required to least specific (Tabari before general tafsir)
+{ identifiers: ['الطبري', 'الخلاصة من تفسير الطبري'], target: 'تفسير القران الكريم للطبري' },
+// UPDATE: السيره النبويه الشريفه
+{ identifiers: ['السيرة النبوية', 'السيره النبويه'], target: 'السيره النبويه الشريفه' },
+{ identifiers: ['رقية', 'الرقية الشرعية'], target: 'الرقية الشرعية' },
+{ identifiers: ['فتاوى', 'الفتاوى العامة'], target: 'الفتاوى العامة' },
+// General tafsir, placed last to avoid overriding Tabari
+{ identifiers: ['تفسير القران الكريم'], target: 'تفسير القرأن الكريم' },
+// CLEANUP: Ensure قصص الأنبياء is always clean and consistent
+{ identifiers: ['قصص الانبياء', ' قصص الأنبياء والرسل', 'قصة الأنبياء', 'الأنبياء والرسل'], target: 'قصص الأنبياء' }
 
 ];
 
@@ -829,220 +822,203 @@ return containsAllowed && !containsForbidden;
 
 // دالة تحميل التلاوات وتطبيق التصفية والتعديل
 async function loadAllStations() {
-    const stationsGrid = document.getElementById('allStationsGrid');
-    if (!stationsGrid) return;
-    
-    // وضع رسالة التحميل
-    stationsGrid.innerHTML = '<p style="color: #004d40; text-align: center;">جاري تحميل التلاوات...</p>';
-    
-    // بيانات إذاعة القرآن الكريم من القاهرة (موجودة الآن كعنصر منفصل)
-    const cairoStationUrl = "https://stream.radiojar.com/8s5u5tpdtwzuv";
-    
-    try {
-        const response = await fetch('https://mp3quran.net/api/v3/radios');
-        const data = await response.json();
-        
-        stationsGrid.innerHTML = ''; // مسح رسالة التحميل
-        let count = 0;
-        let abdulBasitCount = 0; // عداد لحساب تلاوات عبد الباسط
-        let husaryCount = 0; // عداد لحساب تلاوات الحصري
+const stationsGrid = document.getElementById('allStationsGrid');
+if (!stationsGrid) return;
+// وضع رسالة التحميل
+stationsGrid.innerHTML = '<p style="color: #004d40; text-align: center;">جاري تحميل التلاوات...</p>';
+// بيانات إذاعة القرآن الكريم من القاهرة (موجودة الآن كعنصر منفصل)
+const cairoStationUrl = "https://stream.radiojar.com/8s5u5tpdtwzuv";
+try {
+const response = await fetch('https://mp3quran.net/api/v3/radios');
+const data = await response.json();
+stationsGrid.innerHTML = ''; // مسح رسالة التحميل
+let count = 0;
+let abdulBasitCount = 0; // عداد لحساب تلاوات عبد الباسط
+let husaryCount = 0; // عداد لحساب تلاوات الحصري
 
-        // تحميل وتصفية المحطات من الـ API
-        data.radios.forEach(station => {
-            // التأكد من عدم تكرار محطة القاهرة
-            if (station.url === cairoStationUrl) return; 
-            
-            const stationNameLower = station.name.toLowerCase();
-            
-            // تحقق من الفلاتر المطلوبة
-            if (isAllowed(station.name)) {
-                
-                // فلتر حذف الثانية لعبد الباسط
-                const isAbdulBasit = abdulBasitIdentifiers.some(keyword => stationNameLower.includes(keyword));
-                if (isAbdulBasit) {
-                    abdulBasitCount++;
-                    if (abdulBasitCount === 2) {
-                        return; // تجاوز هذه المحطة (حذفها)
-                    }
-                }
-                
-                // فلتر حذف الثالثة للحصري
-                const isHusary = husaryIdentifiers.some(keyword => stationNameLower.includes(keyword));
-                if (isHusary) {
-                    husaryCount++;
-                    if (husaryCount === 3) {
-                        return; // تجاوز هذه المحطة (حذفها)
-                    }
-                }
-                
-                // -------------------------------------------------------------
-                // *** NEW MODIFICATION: تطبيق التعديلات المخصصة للمحطات المطلوب تغيير اسمها ***
-                // -------------------------------------------------------------
-                let finalDisplayName = station.name;
-                let isSpecificReplacement = false;
-                
-                // 1. Sahaba (Highest Priority from previous turns)
-                if (sahabaIdentifiers.some(keyword => stationNameLower.includes(keyword))) {
-                    finalDisplayName = targetSahabaPhrase; // 'نبذة عن حياة الصحابة'
-                    isSpecificReplacement = true;
-                } else {
-                    // 2. Apply all other specific replacements in order
-                    for (const rule of specificReplacements) {
-                        // يجب تحويل كل معرف إلى حالة الأحرف الصغيرة للمقارنة
-                        if (rule.identifiers.some(id => stationNameLower.includes(id.toLowerCase()))) {
-                            finalDisplayName = rule.target;
-                            isSpecificReplacement = true;
-                            break; // Stop after the first specific match
-                        }
-                    }
-                }
-                
-                // 3. Fallback: Apply general 'إذاعة' -> 'تلاوات' replacement if no specific replacement was made
-                if (!isSpecificReplacement) {
-                    // يغير "إذاعة" إلى "تلاوات" في اسم المحطة بشكل عام
-                    finalDisplayName = finalDisplayName.replace(/إذاعة/g, 'تلاوات').replace(/إذاعات/g, 'تلاوات');
-                }
-                
-                // **4. CRITICAL FIX: Normalize spacing for reliable matching/replacement.**
-                // إزالة المسافات المتعددة والمسافات البادئة/الزائدة
-                finalDisplayName = finalDisplayName.trim().replace(/\s+/g, ' ');
+// تحميل وتصفية المحطات من الـ API
+data.radios.forEach(station => {
+// التأكد من عدم تكرار محطة القاهرة
+if (station.url === cairoStationUrl) return;
+const stationNameLower = station.name.toLowerCase();
+// تحقق من الفلاتر المطلوبة
+if (isAllowed(station.name)) {
+// فلتر حذف الثانية لعبد الباسط
+const isAbdulBasit = abdulBasitIdentifiers.some(keyword => stationNameLower.includes(keyword));
+if (isAbdulBasit) {
+abdulBasitCount++;
+if (abdulBasitCount === 2) {
+return; // تجاوز هذه المحطة (حذفها)
+}
+}
+// فلتر حذف الثالثة للحصري
+const isHusary = husaryIdentifiers.some(keyword => stationNameLower.includes(keyword));
+if (isHusary) {
+husaryCount++;
+if (husaryCount === 3) {
+return; // تجاوز هذه المحطة (حذفها)
+}
+}
+// -------------------------------------------------------------
+// *** NEW MODIFICATION: تطبيق التعديلات المخصصة للمحطات المطلوب تغيير اسمها ***
+// -------------------------------------------------------------
+let finalDisplayName = station.name;
+let isSpecificReplacement = false;
+// 1. Sahaba (Highest Priority from previous turns)
+if (sahabaIdentifiers.some(keyword => stationNameLower.includes(keyword))) {
+finalDisplayName = targetSahabaPhrase; // 'نبذة عن حياة الصحابة'
+isSpecificReplacement = true;
+} else {
+// 2. Apply all other specific replacements in order
+for (const rule of specificReplacements) {
+// يجب تحويل كل معرف إلى حالة الأحرف الصغيرة للمقارنة
+if (rule.identifiers.some(id => stationNameLower.includes(id.toLowerCase()))) {
+finalDisplayName = rule.target;
+isSpecificReplacement = true;
+break; // Stop after the first specific match
+}
+}
+}
+// 3. Fallback: Apply general 'إذاعة' -> 'تلاوات' replacement if no specific replacement was made
+if (!isSpecificReplacement) {
+// يغير "إذاعة" إلى "تلاوات" في اسم المحطة بشكل عام
+finalDisplayName = finalDisplayName.replace(/إذاعة/g, 'تلاوات').replace(/إذاعات/g, 'تلاوات');
+}
+// **4. CRITICAL FIX: Normalize spacing for reliable matching/replacement.**
+// إزالة المسافات المتعددة والمسافات البادئة/الزائدة
+finalDisplayName = finalDisplayName.trim().replace(/\s+/g, ' ');
 
-                // **5. NEW: Insert "الشيخ" after "تلاوات" for reciter names (if not already there).**
-                const reciterPrefix = 'تلاوات';
-                const sheikhWord = 'الشيخ';
-                const sheikhInsertion = `${reciterPrefix} ${sheikhWord} `;
+// **5. NEW: Insert "الشيخ" after "تلاوات" for reciter names (if not already there).**
+const reciterPrefix = 'تلاوات';
+const sheikhWord = 'الشيخ';
+const sheikhInsertion = `${reciterPrefix} ${sheikhWord} `;
 
-                // التحقق من أنها تبدأ بـ 'تلاوات ' وأنها لا تحتوي على كلمة 'الشيخ' لتجنب التكرار
-                if (finalDisplayName.startsWith(`${reciterPrefix} `) && !finalDisplayName.includes(sheikhWord)) {
-                    // استبدال 'تلاوات ' بـ 'تلاوات الشيخ '
-                    finalDisplayName = finalDisplayName.replace(`${reciterPrefix} `, sheikhInsertion);
-                }
+// التحقق من أنها تبدأ بـ 'تلاوات ' وأنها لا تحتوي على كلمة 'الشيخ' لتجنب التكرار
+if (finalDisplayName.startsWith(`${reciterPrefix} `) && !finalDisplayName.includes(sheikhWord)) {
+// استبدال 'تلاوات ' بـ 'تلاوات الشيخ '
+finalDisplayName = finalDisplayName.replace(`${reciterPrefix} `, sheikhInsertion);
+}
 
-                // **6. CLEANUP: Remove any asterisks and extra whitespace from the final display name.**
-                finalDisplayName = finalDisplayName.replace(/\*/g, '').trim();
-                // -------------------------------------------------------------
+// **6. CLEANUP: Remove any asterisks and extra whitespace from the final display name.**
+finalDisplayName = finalDisplayName.replace(/\*/g, '').trim();
+// -------------------------------------------------------------
 
-                const stationCard = document.createElement('div');
-                stationCard.className = 'station-card';
-                stationCard.innerHTML = `
-                    <div class="station-content">
-                        <h3>${finalDisplayName}</h3>
-                        <div class="custom-audio-player" data-src="${station.url}">
-                            <button class="play-pause-btn">
-                                <i class="fas fa-play"></i>
-                            </button>
-                            <div class="station-info">
-                                <span class="station-name">${finalDisplayName}</span>
-                                <span class="status">اضغط للتشغيل</span>
-                            </div>
-                            <button class="mute-btn">
-                                <i class="fas fa-volume-up"></i>
-                            </button>
-                        </div>
-                    </div>
-                `;
-                stationsGrid.appendChild(stationCard);
-                count++;
-                // Initialize custom player for this station
-                const playerElement = stationCard.querySelector('.custom-audio-player');
-                const player = new CustomAudioPlayer(playerElement);
-                customPlayers.push(player);
-            }
-        });
-        
-        if (count === 0) { 
-             // نترك رسالة التحميل فارغة إذا لم نجد محطات
-        }
-    } catch (error) {
-        console.error('Error loading stations:', error);
-        stationsGrid.innerHTML = '<p class="error-message" style="color: #d32f2f; text-align: center;">عذراً، حدث خطأ في تحميل التلاوات</p>';
-    }
+const stationCard = document.createElement('div');
+stationCard.className = 'station-card';
+stationCard.innerHTML = `
+<div class="station-content">
+<h3>${finalDisplayName}</h3>
+<div class="custom-audio-player" data-src="${station.url}">
+<button class="play-pause-btn">
+<i class="fas fa-play"></i>
+</button>
+<div class="station-info">
+<span class="station-name">${finalDisplayName}</span>
+<span class="status">اضغط للتشغيل</span>
+</div>
+<button class="mute-btn">
+<i class="fas fa-volume-up"></i>
+</button>
+</div>
+</div>
+`;
+stationsGrid.appendChild(stationCard);
+count++;
+// Initialize custom player for this station
+const playerElement = stationCard.querySelector('.custom-audio-player');
+const player = new CustomAudioPlayer(playerElement);
+customPlayers.push(player);
+}
+});
+if (count === 0) {
+// نترك رسالة التحميل فارغة إذا لم نجد محطات
+}
+} catch (error) {
+console.error('Error loading stations:', error);
+stationsGrid.innerHTML = '<p class="error-message" style="color: #d32f2f; text-align: center;">عذراً، حدث خطأ في تحميل التلاوات</p>';
+}
 }
 
 // Search functionality filter (Internal filter on input, External on Enter/Icon click)
 function applySearchFilter(searchTerm) {
-    const stationsGrid = document.getElementById('allStationsGrid');
-    const cairoCard = document.querySelector('.cairo-card');
-    const cairoName = cairoCard.querySelector('h3').textContent.toLowerCase();
-    const hr = document.querySelector('.cairo-radio-section hr');
-    const allStations = document.querySelectorAll('#allStationsGrid .station-card');
-    
-    if (!stationsGrid || !cairoCard) {
-        return;
-    }
+const stationsGrid = document.getElementById('allStationsGrid');
+const cairoCard = document.querySelector('.cairo-card');
+const cairoName = cairoCard.querySelector('h3').textContent.toLowerCase();
+const hr = document.querySelector('.cairo-radio-section hr');
+const allStations = document.querySelectorAll('#allStationsGrid .station-card');
+if (!stationsGrid || !cairoCard) {
+return;
+}
 
-    let foundTotal = 0;
+let foundTotal = 0;
 
-    // 1. Handle Cairo Station visibility
-    const cairoMatch = cairoName.includes(searchTerm);
-    cairoCard.style.display = cairoMatch ? 'block' : 'none';
-    hr.style.display = cairoMatch ? 'block' : 'none';
-    if (cairoMatch) foundTotal++;
+// 1. Handle Cairo Station visibility
+const cairoMatch = cairoName.includes(searchTerm);
+cairoCard.style.display = cairoMatch ? 'block' : 'none';
+hr.style.display = cairoMatch ? 'block' : 'none';
+if (cairoMatch) foundTotal++;
 
-    // 2. Handle the main stations grid visibility
-    allStations.forEach(station => {
-        const stationName = station.querySelector('h3').textContent.toLowerCase();
-        const match = stationName.includes(searchTerm);
-        station.style.display = match ? 'block' : 'none';
-        if (match) foundTotal++;
-    });
-    
-    // 3. Add/Remove "No results" message
-    const noResultsMessageId = 'no-results-message';
-    let messageElement = document.getElementById(noResultsMessageId);
+// 2. Handle the main stations grid visibility
+allStations.forEach(station => {
+const stationName = station.querySelector('h3').textContent.toLowerCase();
+const match = stationName.includes(searchTerm);
+station.style.display = match ? 'block' : 'none';
+if (match) foundTotal++;
+});
+// 3. Add/Remove "No results" message
+const noResultsMessageId = 'no-results-message';
+let messageElement = document.getElementById(noResultsMessageId);
 
-    if (foundTotal === 0) {
-        if (!messageElement) {
-            messageElement = document.createElement('p');
-            messageElement.id = noResultsMessageId;
-            messageElement.style.cssText = "color: #004d40; text-align: center;";
-            messageElement.textContent = 'لا توجد نتائج مطابقة لبحثك.';
-            stationsGrid.appendChild(messageElement);
-        }
-    } else {
-        if (messageElement) {
-            messageElement.remove();
-        }
-    }
+if (foundTotal === 0) {
+if (!messageElement) {
+messageElement = document.createElement('p');
+messageElement.id = noResultsMessageId;
+messageElement.style.cssText = "color: #004d40; text-align: center;";
+messageElement.textContent = 'لا توجد نتائج مطابقة لبحثك.';
+stationsGrid.appendChild(messageElement);
+}
+} else {
+if (messageElement) {
+messageElement.remove();
+}
+}
 }
 
 // Initialize custom players and load stations when page loads
 document.addEventListener('DOMContentLoaded', () => {
-    
-    // Initialize Cairo player (Point 3)
-    const cairoPlayerElement = document.getElementById('cairoPlayer');
-    if (cairoPlayerElement) {
-        const cairoPlayer = new CustomAudioPlayer(cairoPlayerElement);
-        customPlayers.push(cairoPlayer);
-    }
-    
-    // تحميل التلاوات المفلترة
-    loadAllStations();
-    
-    // تحديث السنة في حقوق النشر
-    const yearSpan = document.getElementById('year');
-    if (yearSpan) {
-        yearSpan.textContent = new Date().getFullYear();
-    }
+// Initialize Cairo player (Point 3)
+const cairoPlayerElement = document.getElementById('cairoPlayer');
+if (cairoPlayerElement) {
+const cairoPlayer = new CustomAudioPlayer(cairoPlayerElement);
+customPlayers.push(cairoPlayer);
+}
+// تحميل التلاوات المفلترة
+loadAllStations();
+// تحديث السنة في حقوق النشر
+const yearSpan = document.getElementById('year');
+if (yearSpan) {
+yearSpan.textContent = new Date().getFullYear();
+}
 });
 // ... (بقية كود الـ JavaScript الموجود لديك)
 
 // *** NEW PWA REGISTRATION CODE ***
 // تسجيل ملف الـ Service Worker عند تحميل الصفحة
 if ('serviceWorker' in navigator) {
-  window.addEventListener('load', () => {
-    navigator.serviceWorker.register('/service-worker.js')
-      .then(registration => {
-        console.log('ServiceWorker registered: ', registration);
-      })
-      .catch(registrationError => {
-        console.log('ServiceWorker registration failed: ', registrationError);
-      });
-  });
+window.addEventListener('load', () => {
+navigator.serviceWorker.register('/service-worker.js')
+.then(registration => {
+console.log('ServiceWorker registered: ', registration);
+})
+.catch(registrationError => {
+console.log('ServiceWorker registration failed: ', registrationError);
+});
+});
 }
 // *** END PWA REGISTRATION CODE ***
 </script>
 </body>
 </html>
+
 
 

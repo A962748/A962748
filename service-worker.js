@@ -1,60 +1,68 @@
-'kaaba.png',            // الأيقونة الرئيسية
-  'أشرف.jpg',             // صورتك الشخصية (افتراضاً أنها بهذا الاسم)
-  // ملفات الـ CSS والأيقونات الخارجية:
-  'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css',
-  // خطوط جوجل (قد تحتاج لتعديلها إذا كان لديك خطوط أخرى)
-  'https://fonts.googleapis.com/css2?family=Amiri:wght@700&family=Reem+Kufi:wght@600&display=swap',
-  'https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700&display=swap'
+// اسم ذاكرة التخزين المؤقت (Cache)
+const CACHE_NAME = 'tasabih-v1'; 
+
+// قائمة بجميع الأصول التي يجب تخزينها مؤقتًا للعمل دون اتصال
+// يجب تحديث هذه القائمة في كل مرة يتم فيها تغيير الأصول
+const urlsToCache = [
+  '/', 
+  '/index.html', // أو إذا كان الملف الرئيسي هو 1.docx يجب تسميته بالاسم الصحيح
+  '/manifest.json', // ملف الإعدادات الخاص بالـ PWA
+  '/kaaba.png', // أيقونة التطبيق (مذكورة في HTML)
+  '/أشرف.jpg', // صورة المطور (مذكورة في HTML)
+  'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css', // خطوط Font Awesome
+  // ملاحظة: يجب أيضاً تخزين ملف الـ CSS إذا كان منفصلاً (غير مضمن)
 ];
 
-// 1. مرحلة التثبيت: تخزين الملفات الأساسية مؤقتاً
-self.addEventListener('install', event => {
+// ********************************************************
+// 1. حدث التثبيت (Install Event) - لتخزين الأصول الأساسية
+// ********************************************************
+self.addEventListener('install', (event) => {
+  // انتظر حتى يتم فتح الذاكرة المؤقتة وتخزين جميع الملفات
   event.waitUntil(
     caches.open(CACHE_NAME)
-      .then(cache => {
-        console.log('Opened cache and caching files');
-        // يتم تجاهل الأخطاء في جلب بعض الروابط الخارجية مؤقتاً لضمان تثبيت ملفاتك المحلية
-        return cache.addAll(urlsToCache.map(url => {
-          return new Request(url, { cache: "no-cache" });
-        }));
+      .then((cache) => {
+        console.log('Opened cache and adding all static assets');
+        return cache.addAll(urlsToCache);
       })
   );
 });
 
-// 2. مرحلة الجلب: استخدام الملفات المخزنة مؤقتاً في وضع عدم الاتصال
-self.addEventListener('fetch', event => {
-  // نحن نخزن فقط الأصول الثابتة، وليس روابط البث المباشر (الراديو)
-  // روابط الراديو يتم جلبها مباشرة من الشبكة دائماً
-  if (event.request.url.includes('radiojar.com') || event.request.url.includes('mp3quran.net/api')) {
-    return; // لا تخزن أو تخدم طلبات الراديو والـ API من الكاش
-  }
-
-  // لجميع الملفات الأخرى، حاول جلبها من الشبكة، وإذا فشل، استخدم الكاش
+// ********************************************************
+// 2. حدث الجلب (Fetch Event) - لخدمة المحتوى من الذاكرة المؤقتة أولاً
+// ********************************************************
+self.addEventListener('fetch', (event) => {
+  // استراتيجية Cache-First: حاول إرجاع الأصول من الذاكرة المؤقتة، وإلا اذهب إلى الشبكة
   event.respondWith(
     caches.match(event.request)
-      .then(response => {
-        // إذا كان الملف موجوداً في الكاش (وضع عدم الاتصال)، استخدمه
+      .then((response) => {
+        // إذا وجد تطابق في الذاكرة المؤقتة، قم بإرجاعه
         if (response) {
           return response;
         }
-        // وإلا، قم بجلبه من الشبكة (وضع الاتصال)
+        // وإلا، اذهب إلى الشبكة لجلب الأصل
         return fetch(event.request);
       })
   );
 });
 
-// 3. مرحلة التفعيل: مسح الكاشات القديمة
-self.addEventListener('activate', event => {
+// ********************************************************
+// 3. حدث التفعيل (Activate Event) - لتنظيف أي إصدارات قديمة من الـ Cache
+// ********************************************************
+self.addEventListener('activate', (event) => {
   const cacheWhitelist = [CACHE_NAME];
+  
+  // قم بإزالة أي Cache غير موجود في القائمة البيضاء
   event.waitUntil(
-    caches.keys().then(cacheNames => {
+    caches.keys().then((cacheNames) => {
       return Promise.all(
-        cacheNames.map(cacheName => {
+        cacheNames.map((cacheName) => {
           if (cacheWhitelist.indexOf(cacheName) === -1) {
-            return caches.delete(cacheName); // حذف الكاشات القديمة
+            console.log('Deleting old cache:', cacheName);
+            return caches.delete(cacheName);
           }
         })
       );
     })
   );
 });
+
