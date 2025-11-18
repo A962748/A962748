@@ -7,7 +7,7 @@
 <link rel="manifest" href="manifest.json">
 <link rel="icon" type="image/x-icon" href="kaaba.png">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@700&family=Reem+Kufi:wght=600&display=swap"
+<link href="https://fonts.googleapis.com/css2?family=Amiri:wght=700&family=Reem+Kufi:wght=600&display=swap"
 rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght=400;500;700&display=swap" rel="stylesheet">
 <style>
@@ -100,7 +100,7 @@ display: none;
 display: flex;
 flex-direction: row; 
 /* 🔴 NEW: زيادة المسافة بين الروابط (والقوائم المنسدلة) */
-gap: 2.5rem; /* تم زيادتها من 1.5rem إلى 2.5rem */
+gap: 3rem; /* تم زيادتها إلى 3rem */
 position: static;
 width: auto;
 height: auto;
@@ -132,8 +132,9 @@ display: flex;
 color: white;
 text-decoration: none;
 /* 🔴 NEW: تكبير حجم الخط */
-font-size: 1.25rem; /* تم زيادته من 1.1rem إلى 1.25rem */
-font-weight: 500;
+font-size: 1.25rem; 
+/* 🔴 NEW: جعل الخط عريضاً */
+font-weight: 700; 
 transition: color 0.3s ease;
 position: relative;
 padding: 0;
@@ -172,6 +173,8 @@ display: block;
 text-align: right;
 font-size: 1rem;
 white-space: nowrap;
+/* 🔴 NEW: جعل خط القوائم المنسدلة الفرعية عادياً */
+font-weight: 500; 
 }
 .horizontal-dropdown-content a:hover {
 background-color: #00695c;
@@ -275,6 +278,8 @@ transform: scale(1.1);
     .nav-links a {
         /* 🔴 NEW: حجم الخط في وضع الموبايل */
         font-size: 1.1rem; 
+        /* 🔴 NEW: الخط العريض أيضاً في وضع الموبايل */
+        font-weight: 700;
         padding: 5px 6px; 
     }
 
@@ -516,7 +521,7 @@ cursor: pointer;
 <div class="nav-links">
     <div class="nav-dropdown-item" id="desktop-quran-dropdown">
         <a href="#all-stations-section">
-            <i class="fas fa-quran"></i> القرآن <i class="fas fa-caret-down" style="margin-right: 5px;"></i>
+            <i class="fas fa-quran"></i> القرآن الكريم <i class="fas fa-caret-down" style="margin-right: 5px;"></i>
         </a>
         <div class="horizontal-dropdown-content">
             <a href="#">القرآن كاملاً قراءة</a>
@@ -787,10 +792,18 @@ play() {
     this.audio.src = this.audio.originalSrc;
     this.audio.load();
     
-    this.audio.play().catch((error) => {
-        console.error('Error playing audio:', error);
-        this.updateStatus('فشل التشغيل. حاول مجدداً.'); 
-    });
+    // 🔴 NEW FIX: محاولة تشغيل الصوت مع كشف المتطلبات
+    const playPromise = this.audio.play();
+        
+    if (playPromise !== undefined) {
+        playPromise.then(() => {
+            // التشغيل نجح
+        }).catch(error => {
+            // فشل التشغيل (عادة بسبب متطلبات المتصفح للتشغيل التلقائي)
+            console.error('Playback attempt failed (User interaction needed?):', error);
+            this.updateStatus('فشل التشغيل. حاول مجدداً.'); 
+        });
+    }
 }
 pause() {
 this.audio.pause();
@@ -898,7 +911,7 @@ const specificReplacements = [
 // General tafsir, placed last to avoid overriding Tabari
 { identifiers: ['تفسير القران الكريم'], target: 'تفسير القرأن الكريم' },
 // CLEANUP: Ensure قصص الأنبياء is always clean and consistent
-{ identifiers: ['قصص الانبياء', ' قصص الأنبياء والرسل', 'قصة الأنبياء', 'الأنبياء والرسل'], target: 'قصص الأنبياء' }
+{ identifiers: [' قصص الانبياء', ' قصص الأنبياء والرسل', 'قصة الأنبياء', 'الأنبياء والرسل'], target: 'قصص الأنبياء' }
 
 ];
 
