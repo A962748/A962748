@@ -7,6 +7,7 @@
 <link rel="manifest" href="manifest.json">
 <link rel="icon" type="image/x-icon" href="kaaba.png">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/howler/2.2.4/howler.min.js"></script>
 <link href="https://fonts.googleapis.com/css2?family=Amiri:wght=700&family=Reem+Kufi:wght=600&display=swap"
 rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght=400;500;700&display=swap" rel="stylesheet">
@@ -16,9 +17,10 @@ margin: 0;
 padding: 0;
 box-sizing: border-box;
 font-family: "Tajawal", sans-serif;
-/* إضافة خاصية التمرير السلس */
 scroll-behavior: smooth;
 }
+/* ... (بقية تنسيقات CSS كما هي) ... */
+
 .copyright {
 text-align: center;
 padding: 15px;
@@ -326,7 +328,7 @@ transform: scale(1.1);
         padding: 0.8rem 0;
     }
 }
-/* ... بقية الـ CSS ... */
+
 .radio-player {
 display: none;
 }
@@ -735,136 +737,133 @@ document.addEventListener('keydown', (e) => {
 });
 
 
-// Custom Audio Player Class and other functions (loadAllStations, applySearchFilter, etc.) remain the same.
+// ***************************************************************************************************
+// 🔴 CRITICAL CHANGE: Using Howler.js for reliable streaming
 // ***************************************************************************************************
 let currentlyPlaying = null;
 let customPlayers = [];
-// Custom Audio Player Class
-class CustomAudioPlayer {
-constructor(playerElement) {
-this.playerElement = playerElement;
-this.audio = null;
-this.playBtn = playerElement.querySelector('.play-pause-btn');
-this.muteBtn = playerElement.querySelector('.mute-btn');
-// لا يزال يتم البحث عن هذا العنصر لتحديث الحالة داخليًا، ولكنه مخفي الآن
-this.statusElement = playerElement.querySelector('.status');
-this.isPlaying = false;
-this.isMuted = false;
-this.volumeBeforeMute = 0.8;
-this.init();
-}
-init() {
-    const audioSrc = this.playerElement.dataset.src;
-    this.audio = new Audio();
-    this.audio.src = audioSrc;
-    this.audio.volume = 0.8;
-    // 🟢 NEW: إضافة خاصية لتخزين الرابط الأصلي
-    this.audio.originalSrc = audioSrc; 
-    
-    this.playBtn.addEventListener('click', () => this.togglePlay());
-    if (this.muteBtn) {
-        this.muteBtn.addEventListener('click', () => this.toggleMute());
-    }
-    this.audio.addEventListener('loadstart', () => this.handleLoadStart());
-    this.audio.addEventListener('canplay', () => this.handleCanPlay());
-    this.audio.addEventListener('play', () => this.handlePlay());
-    this.audio.addEventListener('pause', () => this.handlePause());
-    this.audio.addEventListener('error', () => this.handleError());
-    this.audio.addEventListener('waiting', () => this.handleWaiting());
-    this.audio.addEventListener('playing', () => this.handlePlaying());
-}
-togglePlay() {
-if (this.isPlaying) {
-this.pause();
-} else {
-this.play();
-}
-}
-play() {
-    customPlayers.forEach(player => {
-        if (player !== this && player.isPlaying) {
-            player.pause();
-        }
-    });
 
-    // 🔴 CRITICAL FIX: إعادة تعيين مصدر البث والتحميل قبل التشغيل مباشرة
-    // هذا يعزز فرص عمل البث الخارجي عبر إجبار المتصفح على بدء اتصال جديد.
-    this.audio.src = this.audio.originalSrc;
-    this.audio.load();
-    
-    // 🔴 NEW FIX: محاولة تشغيل الصوت مع كشف المتطلبات
-    const playPromise = this.audio.play();
+class CustomAudioPlayer {
+    constructor(playerElement) {
+        this.playerElement = playerElement;
+        this.playBtn = playerElement.querySelector('.play-pause-btn');
+        this.muteBtn = playerElement.querySelector('.mute-btn');
+        this.statusElement = playerElement.querySelector('.status');
+        this.isPlaying = false;
+        this.isMuted = false;
+        this.volumeBeforeMute = 0.8;
+        this.howl = null;
+        this.init();
+    }
+
+    init() {
+        const audioSrc = this.playerElement.dataset.src;
         
-    if (playPromise !== undefined) {
-        playPromise.then(() => {
-            // التشغيل نجح
-        }).catch(error => {
-            // فشل التشغيل (عادة بسبب متطلبات المتصفح للتشغيل التلقائي)
-            console.error('Playback attempt failed (User interaction needed?):', error);
-            this.updateStatus('فشل التشغيل. حاول مجدداً.'); 
+        // 🔴 NEW: إنشاء كائن Howl
+        this.howl = new Howl({
+            src: [audioSrc],
+            html5: true, // ضروري للبث المباشر (Streaming)
+            volume: 0.8,
+            format: ['mp3', 'aac', 'ogg', 'wav'], // تحديد التنسيقات المتوقعة
+            // 🔴 NEW: إدارة حالات التحميل والتشغيل عبر الأحداث
+            onplay: () => this.handlePlay(),
+            onpause: () => this.handlePause(),
+            onloaderror: () => this.handleError('فشل التحميل'),
+            onstalled: () => this.handleWaiting(),
+            onstop: () => this.handlePause()
         });
+        
+        // ربط أزرار التشغيل/الإيقاف
+        this.playBtn.addEventListener('click', () => this.togglePlay());
+        if (this.muteBtn) {
+            this.muteBtn.addEventListener('click', () => this.toggleMute());
+        }
+    }
+
+    togglePlay() {
+        if (this.howl.playing()) {
+            this.pause();
+        } else {
+            this.play();
+        }
+    }
+
+    play() {
+        customPlayers.forEach(player => {
+            if (player !== this && player.howl.playing()) {
+                player.pause();
+            }
+        });
+
+        // 🔴 CRITICAL FIX: إذا لم يكن الصوت جاهزاً، ابدأ التحميل
+        if (this.howl.state() === 'unloaded') {
+            this.howl.load();
+        }
+
+        this.updateStatus('جاري الاتصال...');
+        
+        // 🔴 Howler.js Play
+        const playPromise = this.howl.play();
+
+        if (playPromise !== undefined && typeof playPromise.catch === 'function') {
+            playPromise.catch(error => {
+                // فشل التشغيل (عادة بسبب متطلبات المتصفح للتشغيل التلقائي)
+                console.error('Playback failed:', error);
+                this.handleError('فشل التشغيل. حاول مجدداً.');
+            });
+        }
+    }
+
+    pause() {
+        this.howl.pause();
+    }
+
+    toggleMute() {
+        if (this.isMuted) {
+            this.howl.volume(this.volumeBeforeMute);
+            this.isMuted = false;
+            this.muteBtn.classList.remove('muted');
+            this.muteBtn.innerHTML = '<i class="fas fa-volume-up"></i>';
+        } else {
+            this.volumeBeforeMute = this.howl.volume();
+            this.howl.volume(0);
+            this.isMuted = true;
+            this.muteBtn.classList.add('muted');
+            this.muteBtn.innerHTML = '<i class="fas fa-volume-mute"></i>';
+        }
+    }
+
+    handlePlay() {
+        this.isPlaying = true;
+        this.playBtn.innerHTML = '<i class="fas fa-pause"></i>';
+        this.updateStatus('استماع مباشر');
+    }
+
+    handlePause() {
+        this.isPlaying = false;
+        this.playBtn.innerHTML = '<i class="fas fa-play"></i>';
+        this.updateStatus('اضغط للتشغيل');
+    }
+
+    handleError(message = 'خطأ في البث') {
+        this.updateStatus(message);
+        this.playBtn.innerHTML = '<i class="fas fa-redo"></i>'; // Change icon to retry
+    }
+
+    handleWaiting() {
+        this.updateStatus('جاري الاتصال...');
+    }
+    
+    updateStatus(text) {
+        if (this.statusElement) {
+            this.statusElement.textContent = text;
+        }
     }
 }
-pause() {
-this.audio.pause();
-}
-toggleMute() {
-if (this.isMuted) {
-this.audio.volume = this.volumeBeforeMute;
-this.isMuted = false;
-this.muteBtn.classList.remove('muted');
-this.muteBtn.innerHTML = '<i class="fas fa-volume-up"></i>';
-} else {
-this.volumeBeforeMute = this.audio.volume;
-this.audio.volume = 0;
-this.isMuted = true;
-this.muteBtn.classList.add('muted');
-this.muteBtn.innerHTML = '<i class="fas fa-volume-mute"></i>';
-}
-}
-handleLoadStart() {
-this.updateStatus('جاري التحميل...');
-}
-handleCanPlay() {
-// Not necessarily playing yet, but ready
-if (!this.isPlaying) {
-this.updateStatus('جاهز للتشغيل');
-}
-}
-handlePlay() {
-this.isPlaying = true;
-this.playBtn.innerHTML = '<i class="fas fa-pause"></i>';
-this.updateStatus('استماع مباشر');
-currentlyPlaying = this.audio;
-}
-handlePause() {
-this.isPlaying = false;
-this.playBtn.innerHTML = '<i class="fas fa-play"></i>';
-this.updateStatus('اضغط للتشغيل');
-if (currentlyPlaying === this.audio) {
-currentlyPlaying = null;
-}
-}
-handleError() {
-this.updateStatus('خطأ في البث');
-this.playBtn.innerHTML = '<i class="fas fa-redo"></i>'; // Change icon to retry
-if (currentlyPlaying === this.audio) {
-currentlyPlaying = null;
-}
-}
-handleWaiting() {
-this.updateStatus('جاري الاتصال...');
-}
-handlePlaying() {
-// Actual playing started
-this.updateStatus('استماع مباشر');
-}
-updateStatus(text) {
-if (this.statusElement) {
-this.statusElement.textContent = text;
-}
-}
-}
+// ***************************************************************************************************
+// (بقية الكود الخاص بالتحميل والتصفية كما هو)
+// ***************************************************************************************************
+
 // الكلمات المفتاحية التي يجب أن تحتوي عليها التلاوة لتظهر
 const allowedKeywords = [
 "فتاوى", "رقية", "عبد الباسط", "عبد الباسط عبد الصمد", "عبدالباسط", "عبد الصمد",
