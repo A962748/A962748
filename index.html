@@ -99,7 +99,8 @@ display: none;
 .nav-links {
 display: flex;
 flex-direction: row; 
-gap: 1.5rem;
+/* 🔴 NEW: زيادة المسافة بين الروابط (والقوائم المنسدلة) */
+gap: 2.5rem; /* تم زيادتها من 1.5rem إلى 2.5rem */
 position: static;
 width: auto;
 height: auto;
@@ -130,7 +131,8 @@ display: flex;
 .nav-links a {
 color: white;
 text-decoration: none;
-font-size: 1.1rem;
+/* 🔴 NEW: تكبير حجم الخط */
+font-size: 1.25rem; /* تم زيادته من 1.1rem إلى 1.25rem */
 font-weight: 500;
 transition: color 0.3s ease;
 position: relative;
@@ -271,8 +273,9 @@ transform: scale(1.1);
     
     /* 🟢 NEW: تكبير حجم الخط والـ padding لروابط الـ nav-links */
     .nav-links a {
-        font-size: 1rem; /* ⬅️ تم تكبير الخط */
-        padding: 5px 6px; /* ⬅️ تم زيادة الـ padding */
+        /* 🔴 NEW: حجم الخط في وضع الموبايل */
+        font-size: 1.1rem; 
+        padding: 5px 6px; 
     }
 
     /* 🟢 إلغاء إخفاء القوائم المنسدلة: */
@@ -291,7 +294,7 @@ transform: scale(1.1);
     }
     .menu-btn {
         display: block; 
-        margin-right: 0.5rem; /* ⬅️ تقليل الهامش لعدم الحاجة إليه بعد إضافة gap */
+        margin-right: 0.5rem; 
         order: 5; /* الهمبرغر */
     }
     
