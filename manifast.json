@@ -1,22 +1,21 @@
 {
-  "name": "تسابيح",
+  "name": "فَاذْكُرُونِي أَذْكُرْكُمْ",
   "short_name": "تسابيح",
-  "start_url": "./index.html",
+  "description": "إذاعات وتلاوات القرآن الكريم والبث المباشر",
+  "start_url": "/index.html",
   "display": "standalone",
-  "background_color": "#ffffff",
-  "theme_color": "#0a3d62",
-  "description": "تطبيق تفاعلي للقرآن الكريم من تصميم أشرف بشير، يحتوي على تلاوات وروابط وأدعية.",
+  "background_color": "#004d40",
+  "theme_color": "#004d40",
   "icons": [
     {
-      "src": "kaaba192.png",   
+      "src": "/kaaba.png",
       "sizes": "192x192",
-      "type": "image.png"     
+      "type": "image/png"
     },
     {
-      "src": "kaaba512.png",   
+      "src": "/kaaba.png",
       "sizes": "512x512",
-      "type": "image.png"     
+      "type": "image/png"
     }
-  ],
-  "lang": "ar"
+  ]
 }

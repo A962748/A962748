@@ -1,68 +1,100 @@
-// اسم ذاكرة التخزين المؤقت (Cache)
-const CACHE_NAME = 'tasabih-v1'; 
+// 1. تحديد اسم ونسخة الذاكرة المؤقتة (Cache)
+// تغيير هذا الاسم يؤدي إلى تحديث جميع الملفات المخزنة لدى المستخدمين
+const CACHE_NAME = 'tasabeeh-cache-v1.0.1';
 
-// قائمة بجميع الأصول التي يجب تخزينها مؤقتًا للعمل دون اتصال
-// يجب تحديث هذه القائمة في كل مرة يتم فيها تغيير الأصول
+// 2. قائمة بالملفات الأساسية التي يجب تخزينها مؤقتاً
+// هذه هي كل الملفات المطلوبة لتشغيل التطبيق دون اتصال بالإنترنت
 const urlsToCache = [
-  '/', 
-  '/index.html', // أو إذا كان الملف الرئيسي هو 1.docx يجب تسميته بالاسم الصحيح
-  '/manifest.json', // ملف الإعدادات الخاص بالـ PWA
-  '/kaaba.png', // أيقونة التطبيق (مذكورة في HTML)
-  '/أشرف.jpg', // صورة المطور (مذكورة في HTML)
-  'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css', // خطوط Font Awesome
-  // ملاحظة: يجب أيضاً تخزين ملف الـ CSS إذا كان منفصلاً (غير مضمن)
+    '/', // المسار الأساسي (نفس index.html)
+    'index.html',
+    'style.css',
+    'script.js',
+    'manifest.json', // ملف إعدادات التثبيت
+    'kaaba.png', // أيقونة التطبيق (مستخدمة كـ favicon)
+    'أشرف.jpg', // صورة المطور (مستخدمة في حقوق النشر والقائمة)
+    // المكتبات والخطوط الخارجية (يفضل تخزينها أيضاً لضمان التشغيل دون اتصال)
+    'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css',
+    'https://fonts.googleapis.com/css2?family=Amiri:wght@700&family=Reem+Kufi:wght@600&display=swap',
+    'https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700&display=swap'
+    // ملاحظة: لا يمكن تخزين الخطوط نفسها (*.woff, *.ttf) مباشرةً بدون إضافة أكواد إضافية، لكن سنعتمد على الرابط
 ];
 
-// ********************************************************
-// 1. حدث التثبيت (Install Event) - لتخزين الأصول الأساسية
-// ********************************************************
+// *************************************************************
+// 3. حدث "التثبيت" (Install Event)
+// يتم تشغيل هذا الحدث عندما يتم تثبيت الـ Service Worker لأول مرة
+// *************************************************************
 self.addEventListener('install', (event) => {
-  // انتظر حتى يتم فتح الذاكرة المؤقتة وتخزين جميع الملفات
-  event.waitUntil(
-    caches.open(CACHE_NAME)
-      .then((cache) => {
-        console.log('Opened cache and adding all static assets');
-        return cache.addAll(urlsToCache);
-      })
-  );
+    // نطلب من المتصفح الانتظار حتى يتم تخزين كل الملفات بنجاح
+    event.waitUntil(
+        caches.open(CACHE_NAME)
+            .then((cache) => {
+                console.log('Opened cache. Caching core app shell files...');
+                return cache.addAll(urlsToCache); // تخزين جميع الملفات في القائمة
+            })
+    );
+    // تفعيل الـ Service Worker فوراً دون انتظار إغلاق الصفحات القديمة
+    self.skipWaiting();
 });
 
-// ********************************************************
-// 2. حدث الجلب (Fetch Event) - لخدمة المحتوى من الذاكرة المؤقتة أولاً
-// ********************************************************
+// *************************************************************
+// 4. حدث "الجلب" (Fetch Event)
+// يتم تشغيل هذا الحدث في كل مرة يطلب فيها التطبيق أي ملف
+// *************************************************************
 self.addEventListener('fetch', (event) => {
-  // استراتيجية Cache-First: حاول إرجاع الأصول من الذاكرة المؤقتة، وإلا اذهب إلى الشبكة
-  event.respondWith(
-    caches.match(event.request)
-      .then((response) => {
-        // إذا وجد تطابق في الذاكرة المؤقتة، قم بإرجاعه
-        if (response) {
-          return response;
-        }
-        // وإلا، اذهب إلى الشبكة لجلب الأصل
-        return fetch(event.request);
-      })
-  );
+    // استراتيجية "Cache-First, then Network"
+    // أولاً: البحث في الذاكرة المؤقتة (الـ Cache)
+    event.respondWith(
+        caches.match(event.request)
+            .then((response) => {
+                // إذا وجدنا الملف في الذاكرة المؤقتة، نعيده مباشرةً
+                if (response) {
+                    return response;
+                }
+
+                // إذا لم نجده، نتوجه للشبكة لجلبه
+                return fetch(event.request)
+                    .then((networkResponse) => {
+                        // ملاحظة: لا يتم تخزين استجابة الـ Network API (إلا إذا كانت ملفات ثابتة)
+                        return networkResponse;
+                    })
+                    // معالجة أي خطأ في الاتصال بالشبكة
+                    .catch(() => {
+                        // إذا فشل الاتصال بالشبكة وكان الطلب هو الصفحة الرئيسية، يمكنك إرجاع صفحة "Offline"
+                        if (event.request.mode === 'navigate') {
+                            // يمكنك هنا إضافة صفحة HTML بسيطة لـ "أنت غير متصل بالإنترنت"
+                            // حالياً، سنعتمد على أن الملفات الأساسية مخزنة
+                            return caches.match('index.html'); 
+                        }
+                    });
+            })
+    );
 });
 
-// ********************************************************
-// 3. حدث التفعيل (Activate Event) - لتنظيف أي إصدارات قديمة من الـ Cache
-// ********************************************************
+
+// *************************************************************
+// 5. حدث "التفعيل" (Activate Event)
+// يتم تشغيله عند تفعيل Service Worker جديد
+// *************************************************************
 self.addEventListener('activate', (event) => {
-  const cacheWhitelist = [CACHE_NAME];
-  
-  // قم بإزالة أي Cache غير موجود في القائمة البيضاء
-  event.waitUntil(
-    caches.keys().then((cacheNames) => {
-      return Promise.all(
-        cacheNames.map((cacheName) => {
-          if (cacheWhitelist.indexOf(cacheName) === -1) {
-            console.log('Deleting old cache:', cacheName);
-            return caches.delete(cacheName);
-          }
+    // نطلب من المتصفح حذف جميع الذاكرة المؤقتة القديمة التي لا تتطابق مع CACHE_NAME الحالي
+    event.waitUntil(
+        caches.keys().then((cacheNames) => {
+            return Promise.all(
+                cacheNames.map((cacheName) => {
+                    if (cacheName !== CACHE_NAME) {
+                        console.log('Deleting old cache:', cacheName);
+                        return caches.delete(cacheName); // حذف الذاكرة المؤقتة القديمة
+                    }
+                })
+            );
         })
-      );
-    })
-  );
+    );
+    // نطلب السيطرة الفورية على جميع الصفحات المفتوحة حالياً
+    event.waitUntil(self.clients.claim());
 });
 
+// *************************************************************
+// ملاحظة هامة:
+// بث الإذاعات (Radio Streaming) لا يمكن تخزينه مؤقتاً، لذا لا حاجة لمعالجته هنا،
+// وستظل تتطلب اتصالاً بالإنترنت.
+// *************************************************************
