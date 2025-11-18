@@ -7,7 +7,7 @@
 <link rel="manifest" href="manifest.json">
 <link rel="icon" type="image/x-icon" href="kaaba.png">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@700&family=Reem+Kufi:wght@600&display=swap"
+<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@700&family=Reem+Kufi:wght=600&display=swap"
 rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700&display=swap" rel="stylesheet">
 <style>
@@ -19,7 +19,6 @@ font-family: "Tajawal", sans-serif;
 /* إضافة خاصية التمرير السلس */
 scroll-behavior: smooth;
 }
-/* **التعديل الجديد: جعل حقوق الطبع بخط عريض وثقيل وواضح** */
 .copyright {
 text-align: center;
 padding: 15px;
@@ -29,58 +28,49 @@ font-size: 16px;
 font-weight: 700;
 border-top: 1px solid #eee;
 }
-/* كود جديد لتهيئة الصورة الشخصية في حقوق النشر */
 .developer-avatar {
-width: 30px; /* حجم صغير ومناسب لحقوق النشر */
+width: 30px; 
 height: 30px;
-border-radius: 50%; /* لجعلها دائرية الشكل */
-object-fit: cover; /* لضمان ملء الصورة للدائرة */
-margin: 0 5px; /* مسافة بسيطة عن النص */
-border: 1px solid #004d40; /* إطار خفيف بلون التطبيق */
-vertical-align: middle; /* لمحاذاة منتصف الصورة مع النص */
+border-radius: 50%;
+object-fit: cover;
+margin: 0 5px;
+border: 1px solid #004d40;
+vertical-align: middle;
 }
-
-/* NEW: Styling for the avatar inside the mobile menu */
-/* Container for centering and spacing in the menu */
 .menu-avatar-container {
 padding-bottom: 20px;
-margin-bottom: 20px; /* فاصل بين الصورة والروابط */
-border-bottom: 1px solid #00695c; /* فاصل بصري */
-/* لضمان عمل التوسيط في القائمة (حتى لو كانت flex) */
+margin-bottom: 20px; 
+border-bottom: 1px solid #00695c; 
 text-align: center;
 }
 
-/* تحديد حجم وتنسيق الصورة في قائمة الهمبرغر */
-.nav-links .developer-avatar {
-width: 80px; /* حجم كبير للمنيو */
+.mobile-menu-content-sidebar .developer-avatar {
+width: 80px; 
 height: 80px;
-margin: 0 auto; /* توسيط أفقي */
-border: 3px solid #4db6ac; /* إطار أوضح */
-display: block; /* لضمان أن margin auto يعمل */
-/* إلغاء الـ vertical-align: middle لأنه لا حاجة له هنا */
+margin: 0 auto; 
+border: 3px solid #4db6ac;
+display: block;
 }
-
-/* ************************************ */
-/* التعديل: المسافة بين الأيقونة والنص في قائمة الهمبرغر (الروابط العمودية) */
-.nav-links a:not(.social-links-container a) i {
-margin-left: 10px; /* مسافة على يسار الأيقونة (لأنه RTL) */
+.mobile-menu-content-sidebar a:not(.social-links-container a) i {
+margin-left: 10px;
 vertical-align: top;
 }
-/* ************************************ */
+.mobile-menu-content-sidebar h4 i {
+margin-left: 5px;
+}
+.mobile-menu-content-sidebar a i {
+margin-left: 8px;
+}
+
 
 .all-stations-section,
 .stations-section,
 .hero-section {
-/* إزالة min-height: 100vh لضغط الصفحة */
-/* ضغط الـ Padding العلوي والسفلي */
 padding: 80px 20px 20px;
-/* الخلفية البيج الدافئة */
 background: linear-gradient(to bottom, #f5f5dc, #e0d8c7);
 color: #333;
 }
-/* تعديل المسافة العلوية لقسم hero بعد حذف المحتوى */
 .hero-section {
-/* تم تقليل الـ padding ليصبح قسم فاصل بسيط بعد حذف المحتوى */
 padding-top: 60px;
 padding-bottom: 0px;
 }
@@ -94,40 +84,117 @@ z-index: 1000;
 }
 .nav-container {
 display: flex;
-/* توزيع العناصر على اليمين واليسار */
-justify-content: flex-end;
+justify-content: space-between;
 align-items: center;
 max-width: 1200px;
 margin: 0 auto;
 position: relative;
 }
 .logo {
-color: white;
-text-decoration: none;
-font-size: 2rem;
-font-weight: 700;
-text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
-/* مركزة النص فوق العناصر الأخرى */
-width: auto;
-position: absolute;
-left: 50%;
-transform: translateX(-50%);
-z-index: 1002;
-}
-.nav-links {
-/* إخفاء عنصر الروابط الفارغ لمركزة اللوجو */
 display: none;
 }
+
+/* 🚨 التعديل الرئيسي 🚨: السماح بتوسيع Nav Links في وضع الكمبيوتر ليعمل كـ Sidebar */
+.nav-links {
+display: flex;
+flex-direction: row; /* الوضع الافتراضي للكمبيوتر */
+gap: 1.5rem;
+position: static;
+width: auto;
+height: auto;
+padding-top: 0;
+text-align: right;
+order: 1;
+}
+
+/* 🆕 NEW: عند تفعيل قائمة الهمبرغر على الكمبيوتر، يتم تحويلها إلى قائمة عمودية (Sidebar) */
+.nav-links.active {
+/* overrides the default desktop display */
+position: fixed; 
+top: 0;
+right: 0; /* فتح القائمة من اليمين */
+width: 250px;
+height: 100vh;
+background-color: #004d40;
+flex-direction: column;
+padding-top: 80px;
+text-align: center;
+transition: 0.3s ease-in-out;
+z-index: 999;
+order: 1;
+/* تأكيد عرض الـ flex لكي تعمل القائمة العمودية */
+display: flex; 
+}
+
 .nav-links a {
 color: white;
 text-decoration: none;
 font-size: 1.1rem;
 font-weight: 500;
 transition: color 0.3s ease;
+position: relative;
+padding: 0;
 }
 .nav-links a:hover {
 color: #4db6ac;
 }
+
+/* Horizontal Dropdown Styling (Desktop/Tablet) */
+.nav-dropdown-item {
+position: relative;
+display: inline-block;
+}
+.nav-dropdown-item > a {
+display: block;
+padding: 5px 0;
+}
+.horizontal-dropdown-content {
+display: none;
+position: absolute;
+background-color: #004d40;
+min-width: 160px;
+box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+z-index: 1001;
+border-top: 3px solid #4db6ac;
+right: 0;
+}
+.nav-dropdown-item:hover .horizontal-dropdown-content {
+display: block;
+}
+.horizontal-dropdown-content a {
+color: white !important;
+padding: 12px 16px;
+text-decoration: none;
+display: block;
+text-align: right;
+font-size: 1rem;
+white-space: nowrap;
+}
+.horizontal-dropdown-content a:hover {
+background-color: #00695c;
+color: #4db6ac !important;
+}
+
+/* **🚨 NEW: يتم إخفاء محتوى الهمبرغر في الوضع الافتراضي للكمبيوتر ويظهر فقط عند التفعيل** */
+.mobile-menu-content-sidebar {
+display: none; 
+width: 100%; /* تأكيد أن القائمة تملأ عرض الشريط الجانبي في حالة ظهورها */
+}
+/* 🆕 NEW: إظهار محتوى الهمبرغر عند تفعيل القائمة */
+.nav-links.active .mobile-menu-content-sidebar {
+display: flex;
+flex-direction: column;
+}
+
+/* **🚨 NEW: يتم إخفاء الروابط الأفقية (القوائم المنسدلة) عند تفعيل قائمة الهمبرغر** */
+.nav-links.active .nav-dropdown-item {
+display: none;
+}
+.nav-links.active .horizontal-dropdown-content {
+display: none !important;
+}
+
+
 /* NEW: Search button style */
 .search-btn {
 background: none;
@@ -135,19 +202,21 @@ border: none;
 color: white;
 font-size: 1.5rem;
 cursor: pointer;
-margin-left: 1rem; /* Space from menu icon */
+margin-left: 0.5rem; 
 position: relative;
 z-index: 1001;
-order: 3; /* يظهر على اليسار في هذا الترتيب */
+order: 2;
 }
+
+/* 🚨 التعديل الرئيسي 🚨: إظهار زر الهمبرغر دائماً */
 .menu-btn {
-display: block; /* Ensure it's visible to use order */
+display: block; /* جعله مرئياً دائماً */
 color: white;
 font-size: 1.5rem;
 cursor: pointer;
 position: relative;
 z-index: 1001;
-order: 4; /* يظهر أخيراً على اليمين */
+order: 3;
 }
 .overlay {
 display: none;
@@ -163,18 +232,16 @@ z-index: 998;
 display: block;
 }
 
-/* ************************************ */
-/* تنسيق الأيقونات الأفقية للتواصل الاجتماعي */
 .social-links-container {
 display: flex;
-justify-content: center; /* توسيط الأيقونات أفقياً */
-gap: 20px; /* مسافة بين الأيقونات */
+justify-content: center;
+gap: 20px;
 padding: 10px 0 20px;
 }
 
 .social-links-container a {
-padding: 0; /* إزالة الـ padding العمودي */
-font-size: 2rem; /* حجم أكبر للأيقونات */
+padding: 0;
+font-size: 2rem;
 color: white;
 transition: transform 0.2s, color 0.2s;
 }
@@ -183,75 +250,61 @@ transition: transform 0.2s, color 0.2s;
 color: #4db6ac;
 transform: scale(1.1);
 }
-/* ************************************ */
 
 @media (max-width: 768px) {
-/* ************************************ */
-/* NEW: زيادة المسافة بين أيقونتي البحث والقائمة */
+/* 🚨 التعديل: إخفاء القوائم الأفقية فقط في شريط التنقل في وضع الموبايل */
+.nav-links {
+    /* في وضع الموبايل الافتراضي، يجب أن تكون الروابط الأفقية مخفية */
+    display: none;
+    position: fixed; 
+    top: 0;
+    right: -100%;
+    width: 250px;
+    height: 100vh;
+    background-color: #004d40;
+    flex-direction: column;
+    padding-top: 80px;
+    text-align: center;
+    transition: 0.3s ease-in-out;
+    z-index: 999;
+    order: 1;
+}
+
+.nav-links.active {
+    /* عند التفعيل في الموبايل، يتم إظهارها من اليمين */
+    right: 0;
+    display: flex;
+}
+/* 🚨 التعديل: في وضع الموبايل، يتم إخفاء الروابط الأفقية تماماً (حتى لا تظهر لحظياً) */
+.nav-dropdown-item {
+    display: none;
+}
+.horizontal-dropdown-content {
+    display: none !important;
+}
+
 .search-btn {
-margin-left: 1rem; /* تم زيادتها لعمل مسافة أكبر بين الأيقونتين */
+    margin-left: 0.5rem; 
+    order: 3; 
 }
 .menu-btn {
-display: block;
-margin-right: 1rem; /* NEW: إضافة هامش لدفعه بعيداً عن حافة الشاشة قليلاً */
+    display: block; 
+    margin-right: 1rem; 
+    order: 4; 
 }
-/* ************************************ */
-
-/* الإصلاح لعنوان التطبيق في الجوال */
-.logo {
-font-size: 2rem;
-/* تم زيادة العرض إلى 85% لضمان ظهور النص بالكامل */
-max-width: 85%;
-white-space: nowrap;
-overflow: hidden;
-text-overflow: ellipsis;
-/* تم تعديل قيمة الـ translateX لتقليل الإزاحة لليسار (وبالتالي تحريكه يميناً قليلاً) لمركزة العنوان */
-transform: translateX(-40%);
+/* 🆕 NEW: إظهار محتوى الهمبرغر في وضع الهاتف (عند التفعيل) */
+.mobile-menu-content-sidebar {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
 }
-
-.nav-links {
-/* إظهار الروابط في قائمة الهاتف */
-display: none;
-position: fixed;
-top: 0;
-right: -100%;
-width: 250px;
-height: 100vh;
-background-color: #004d40;
-flex-direction: column;
-padding-top: 80px;
-text-align: center;
-transition: 0.3s ease-in-out;
-z-index: 999;
-}
-.nav-links.active {
-display: flex;
-right: 0;
-}
-.nav-links a {
-padding: 0.8rem 0;
-text-align: center;
-}
-audio {
-position: relative;
-z-index: 1;
-}
-.hero-section {
-padding: 60px 20px 20px;
+/* تنسيق روابط محتوى الهمبرغر (لأنها الآن عناصر داخل الـ sidebar) */
+.mobile-menu-content-sidebar a {
+    padding: 0.8rem 0;
 }
 }
-.nav-links a {
-color: white;
-text-decoration: none;
-font-size: 1.1rem;
-font-weight: 500;
-transition: color 0.3s ease;
-}
-.nav-links a:hover {
-color: #4db6ac;
-}
+/* ... بقية الـ CSS ... */
 .radio-player {
-/* هذا كان مخصصًا للمشغل في قسم hero وتم حذفه */
 display: none;
 }
 /* Custom Audio Player Styles - يستخدم الآن لقائمة التلاوات فقط */
@@ -260,12 +313,9 @@ background: rgba(0, 77, 64, 0.1);
 border-radius: 12px;
 padding: 15px;
 display: flex;
-/* التعديل: توسيط العناصر بعد إزالة النص */
 justify-content: center;
 align-items: center;
-/* التعديل: زيادة المسافة بين الأزرار */
 gap: 20px;
-/* التعديل: تصغير العرض ليتناسب مع إزالة النص */
 max-width: 300px;
 width: 100%;
 border: 2px solid rgba(0, 77, 64, 0.2);
@@ -308,25 +358,18 @@ background: #d32f2f;
 .mute-btn.muted:hover {
 background: #f44336;
 }
-
-/* إخفاء مربع المعلومات (النصوص داخل المشغل) */
 .station-info,
 .station-name,
 .status {
 display: none;
 }
-
-/* Hide default audio element */
 #mainAudio {
 display: none;
 }
-
-/* Cairo Section Styling (Point 3) */
 .cairo-radio-section {
-/* تم تعديل الـ padding-top في JS ليتناسب مع إظهار شريط البحث */
 padding: 80px 20px 20px;
 background: linear-gradient(to bottom, #f5f5dc, #e0d8c7);
-transition: padding-top 0.3s ease; /* للتحريك السلس عند ظهور شريط البحث */
+transition: padding-top 0.3s ease;
 }
 .cairo-radio-section .stations-content {
 max-width: 600px;
@@ -362,17 +405,14 @@ color: #004d40;
 .cairo-card .mute-btn:hover {
 background: #e0e0e0;
 }
-
-/* Main Grid Section */
 .all-stations-section {
-padding-top: 20px; /* Less padding as Cairo section handles the space */
+padding-top: 20px;
 }
 .stations-content {
 max-width: 1200px;
 margin: 0 auto;
 }
 .stations-content h1 {
-/* تم حذف هذا العنوان بالطلب */
 display: none;
 }
 .stations-grid {
@@ -402,34 +442,27 @@ font-family: "Amiri", serif;
 .station-card .custom-audio-player {
 margin-top: 0.5rem;
 }
-
-/* ملاحظة: إعدادات الموبايل موجودة أعلى هذا الكود */
-
 /* NEW: Search Bar Container (Sliding Bar) */
 .search-bar-container {
-background-color: #00695c; /* Darker green background */
+background-color: #00695c;
 padding: 10px 20px;
 position: fixed;
-top: 60px; /* Below the nav bar (which is approx 60px tall) */
+top: 60px;
 width: 100%;
 z-index: 999;
-/* استخدام transform للتحريك وإخفاء السلس */
 transform: translateY(-100%);
 transition: transform 0.3s ease-in-out;
 box-shadow: 0 3px 5px rgba(0, 0, 0, 0.2);
 }
-
 .search-bar-container.active {
-transform: translateY(0); /* إظهار الشريط بالكامل */
+transform: translateY(0);
 }
-
 .search-bar-container .search-container {
 max-width: 900px;
 margin: 0 auto;
 padding: 0;
 position: relative;
 }
-
 .search-bar-container .search-container input {
 width: 100%;
 padding: 0.8rem 1rem 0.8rem 3.5rem;
@@ -446,8 +479,6 @@ color: #004d40;
 outline: none;
 box-shadow: 0 0 0 2px #4db6ac;
 }
-
-/* NEW: Search Icon inside the search bar for submitting external search */
 .search-bar-container .search-container .search-icon {
 position: absolute;
 left: 2rem;
@@ -455,7 +486,7 @@ top: 50%;
 transform: translateY(-50%);
 color: #004d40;
 font-size: 1.2rem;
-cursor: pointer; /* To indicate it's clickable */
+cursor: pointer;
 }
 </style>
 </head>
@@ -463,49 +494,75 @@ cursor: pointer; /* To indicate it's clickable */
 <nav>
 <div class="nav-container">
 <a href="#" class="logo">
-<span>فَاذْكُرُونِي أَذْكُرْكُمْ</span>
 </a>
+<div class="nav-links">
+    <div class="nav-dropdown-item" id="desktop-quran-dropdown">
+        <a href="#all-stations-section">
+            <i class="fas fa-quran"></i> القرآن الكريم <i class="fas fa-caret-down" style="margin-right: 5px;"></i>
+        </a>
+        <div class="horizontal-dropdown-content">
+            <a href="#">القرآن كاملاً قراءة</a>
+        </div>
+    </div>
+    
+    <div class="nav-dropdown-item" id="desktop-ebtihal-dropdown">
+        <a href="#">
+            <i class="fas fa-hands-praying"></i> ابتهالات <i class="fas fa-caret-down" style="margin-right: 5px;"></i>
+        </a>
+        <div class="horizontal-dropdown-content">
+            <a href="#">ابتهالات للشيخ النقشبندي</a>
+            <a href="#">ابتهالات للشيخ نصر الدين طوبار</a>
+            <a href="#">ابتهالات للشيخ محمد الطوخي</a>
+        </div>
+    </div>
+
+    <div class="mobile-menu-content-sidebar">
+        
+        <div class="menu-avatar-container">
+            <img src="أشرف.jpg" alt="صورة المطور" class="developer-avatar">
+        </div>
+        
+        <h4 style="color: #4db6ac; padding: 10px 0 5px; margin-top: 10px; border-top: 1px solid #00695c;">
+            للتواصل والمتابعة
+        </h4>
+        <div class="social-links-container">
+            <a href="https://www.facebook.com/ashrf.bshyr.433480" target="_blank" aria-label="Facebook">
+                <i class="fab fa-facebook"></i>
+            </a>
+            <a href="https://m.me/ashrf.bshyr.433480" target="_blank" aria-label="Messenger">
+                <i class="fab fa-facebook-messenger"></i>
+            </a>
+            <a href="https://www.instagram.com/ashraf_besher25" target="_blank" aria-label="Instagram">
+                <i class="fab fa-instagram"></i>
+            </a>
+            <a href="https://wa.me/201289440108" target="_blank" aria-label="WhatsApp">
+                <i class="fab fa-whatsapp"></i>
+            </a>
+        </div>
+        <a href="https://wa.me/201289440108" target="_blank">
+            <i class="fab fa-whatsapp"></i> تواصل معي واتس:<br>01289440108
+        </a>
+        <a href="https://wa.me/201117359911" target="_blank">
+            <i class="fab fa-whatsapp"></i> تواصل معي واتس:<br>01117359911
+        </a>
+        
+        <a href="mailto:aaeabs.1000000@gmail.com" onclick="closeMenu()">
+            <i class="fas fa-envelope"></i> راسلني بالبريد:<br>aaeabs.1000000@gmail.com
+        </a>
+        
+        <a href="#all-stations-section" onclick="closeMenu()" style="border-top: 1px solid #00695c; padding-top: 20px; margin-top: 10px;">
+            <i class="fas fa-list-ul"></i> العودة للقائمة الرئيسية
+        </a>
+        
+        <a href="#" onclick="exitApp()">
+            <i class="fas fa-power-off"></i> الخروج من التطبيق
+        </a>
+    </div>
+</div>
+
 <button class="search-btn" id="navSearchBtn" aria-label="بحث عن تلاوة">
 <i class="fas fa-search"></i>
 </button>
-<div class="nav-links">
-<div class="menu-avatar-container">
-<img src="أشرف.jpg" alt="صورة المطور" class="developer-avatar">
-</div>
-<a href="#all-stations-section" onclick="closeMenu()">
-<i class="fas fa-list-ul"></i> العودة إلى القائمة الرئيسية
-</a>
-<h4 style="color: #4db6ac; padding: 10px 0 5px; margin-top: 10px; border-top: 1px solid #00695c;">
-للتواصل والمتابعة
-</h4>
-<div class="social-links-container">
-<a href="https://www.facebook.com/ashrf.bshyr.433480" target="_blank" aria-label="Facebook">
-<i class="fab fa-facebook"></i>
-</a>
-<a href="https://m.me/ashrf.bshyr.433480" target="_blank" aria-label="Messenger">
-<i class="fab fa-facebook-messenger"></i>
-</a>
-<a href="https://www.instagram.com/ashraf_besher25" target="_blank" aria-label="Instagram">
-<i class="fab fa-instagram"></i>
-</a>
-<a href="https://wa.me/201289440108" target="_blank" aria-label="WhatsApp">
-<i class="fab fa-whatsapp"></i>
-</a>
-</div>
-
-<a href="https://wa.me/201289440108" target="_blank">
-<i class="fab fa-whatsapp"></i> تواصل معي واتس:<br>01289440108
-</a>
-<a href="https://wa.me/201117359911" target="_blank">
-<i class="fab fa-whatsapp"></i> تواصل معي واتس:<br>01117359911
-</a>
-<a href="mailto:aaeabs.1000000@gmail.com">
-<i class="fas fa-envelope"></i> راسلني بالبريد:<br>aaeabs.1000000@gmail.com
-</a>
-<a href="#" onclick="exitApp()">
-<i class="fas fa-power-off"></i> الخروج من التطبيق
-</a>
-</div>
 <div class="menu-btn">
 <i class="fas fa-bars"></i>
 </div>
@@ -561,92 +618,126 @@ const navLinks = document.querySelector('.nav-links');
 const navSearchBtn = document.getElementById('navSearchBtn');
 const searchInput = document.getElementById('searchInput');
 const searchBarContainer = document.getElementById('searchBarContainer');
-const externalSearchIcon = document.getElementById('externalSearchIcon'); // NEW
+const externalSearchIcon = document.getElementById('externalSearchIcon');
 const cairoSection = document.getElementById('cairo-radio-section');
+
+// 🆕 NEW: الحصول على عناصر القائمة الأفقية (الروابط المنسدلة)
+const desktopQuranDropdown = document.getElementById('desktop-quran-dropdown');
+const desktopEbtihalDropdown = document.getElementById('desktop-ebtihal-dropdown');
+
 
 // دالة جديدة لإغلاق القائمة بعد النقر على رابط (خاصة بروابط التمرير)
 function closeMenu() {
-navLinks.classList.remove('active');
+    navLinks.classList.remove('active');
+    // 🆕 NEW: إعادة إظهار الروابط الأفقية بعد إغلاق قائمة الهمبرغر في الكمبيوتر
+    // Note: CSS rules already handle this when .active is removed, but we ensure it works.
+    if (window.innerWidth > 768) {
+        if (desktopQuranDropdown) desktopQuranDropdown.style.display = 'inline-block';
+        if (desktopEbtihalDropdown) desktopEbtihalDropdown.style.display = 'inline-block';
+    }
 }
 // دالة جديدة لمحاولة إغلاق النافذة (الخروج من التطبيق)
 function exitApp() {
-// محاولة إغلاق النافذة، قد لا تعمل في جميع المتصفحات لأسباب أمنية
-window.close();
+    // محاولة إغلاق النافذة/التاب الحالي
+    window.close();
 }
+
 menuBtn.addEventListener('click', () => {
-navLinks.classList.toggle('active');
+    const isActive = navLinks.classList.toggle('active');
+    
+    // 🆕 NEW: منطق إخفاء/إظهار الروابط الأفقية عند فتح الهمبرغر في الكمبيوتر
+    if (window.innerWidth > 768) {
+        if (isActive) {
+            // إخفاء الروابط الأفقية عند فتح القائمة الجانبية (Sidebar)
+            if (desktopQuranDropdown) desktopQuranDropdown.style.display = 'none';
+            if (desktopEbtihalDropdown) desktopEbtihalDropdown.style.display = 'none';
+        } else {
+            // إظهار الروابط الأفقية عند إغلاق القائمة الجانبية
+            if (desktopQuranDropdown) desktopQuranDropdown.style.display = 'inline-block';
+            if (desktopEbtihalDropdown) desktopEbtihalDropdown.style.display = 'inline-block';
+        }
+    }
+    // التأكد من إغلاق شريط البحث عند فتح القائمة الجانبية
+    if (isActive && searchBarContainer.classList.contains('active')) {
+        searchBarContainer.classList.remove('active');
+        cairoSection.style.paddingTop = '80px';
+        searchInput.value = '';
+        applySearchFilter('');
+    }
 });
+
 
 // **********************************************
 // External Search Logic Function
 // **********************************************
 function performExternalSearch() {
-const query = searchInput.value.trim();
-if (query) {
-// فتح نافذة جديدة والبحث في Google
-const searchURL = `https://www.google.com/search?q=${encodeURIComponent(query)}`;
-window.open(searchURL, '_blank');
-// إغلاق شريط البحث بعد البحث الخارجي
-searchBarContainer.classList.remove('active');
-cairoSection.style.paddingTop = '80px';
-searchInput.value = '';
-applySearchFilter('');
-} else {
-// إذا كان البحث فارغاً، يكتفي بإغلاق الشريط وتصفية النتائج الداخلية (وهي إظهار الكل)
-searchBarContainer.classList.remove('active');
-cairoSection.style.paddingTop = '80px';
-}
+    const query = searchInput.value.trim();
+    if (query) {
+        const searchURL = `https://www.google.com/search?q=${encodeURIComponent(query)}`;
+        window.open(searchURL, '_blank');
+        searchBarContainer.classList.remove('active');
+        cairoSection.style.paddingTop = '80px';
+        searchInput.value = '';
+        applySearchFilter('');
+    } else {
+        searchBarContainer.classList.remove('active');
+        cairoSection.style.paddingTop = '80px';
+    }
 }
 
 // NEW: Toggle search bar visibility and manage padding/focus
 navSearchBtn.addEventListener('click', () => {
-const isActive = searchBarContainer.classList.toggle('active');
-// Adjust top padding of the main content sections to prevent overlap
-if (isActive) {
-// Search bar is approx 50-60px tall. Nav is 60px. Total offset ~110px.
-cairoSection.style.paddingTop = '115px'; // Adjust padding to clear fixed search bar
-searchInput.focus();
-} else {
-// Restore default padding (80px in CSS)
-cairoSection.style.paddingTop = '80px';
-// Clear search input and re-run filter to show all
-searchInput.value = '';
-applySearchFilter('');
-}
-// Also close the mobile menu if open
-closeMenu();
+    const isActive = searchBarContainer.classList.toggle('active');
+    if (isActive) {
+        cairoSection.style.paddingTop = '115px';
+        searchInput.focus();
+    } else {
+        cairoSection.style.paddingTop = '80px';
+        searchInput.value = '';
+        applySearchFilter('');
+    }
+    // التأكد من إغلاق قائمة الهمبرغر عند فتح شريط البحث
+    if (isActive && navLinks.classList.contains('active')) {
+        closeMenu(); 
+    }
 });
 
 // NEW: Event listener for internal search (on input)
 searchInput.addEventListener('input', (e) => {
-applySearchFilter(e.target.value.toLowerCase());
+    applySearchFilter(e.target.value.toLowerCase());
 });
 
 // NEW: Event listener for ENTER key press (to trigger external search)
 searchInput.addEventListener('keydown', (e) => {
-if (e.key === 'Enter') {
-e.preventDefault(); // منع الإجراء الافتراضي (مثل إرسال نموذج)
-performExternalSearch();
-}
+    if (e.key === 'Enter') {
+        e.preventDefault();
+        performExternalSearch();
+    }
 });
 
 // NEW: Event listener for clicking the icon inside the search bar
 externalSearchIcon.addEventListener('click', () => {
-performExternalSearch();
+    performExternalSearch();
 });
 
 // Allow closing with ESC key and clearing search
 document.addEventListener('keydown', (e) => {
-if (e.key === 'Escape' && searchBarContainer.classList.contains('active')) {
-// Toggle off the search bar, which triggers the close logic in the click event
-searchBarContainer.classList.remove('active');
-cairoSection.style.paddingTop = '80px';
-// Clear search input and re-run filter to show all
-searchInput.value = '';
-applySearchFilter('');
-}
+    if (e.key === 'Escape' && searchBarContainer.classList.contains('active')) {
+        searchBarContainer.classList.remove('active');
+        cairoSection.style.paddingTop = '80px';
+        searchInput.value = '';
+        applySearchFilter('');
+    }
+    // 🆕 NEW: السماح بإغلاق قائمة الهمبرغر بزر ESC
+    if (e.key === 'Escape' && navLinks.classList.contains('active')) {
+        closeMenu();
+    }
 });
 
+
+// Custom Audio Player Class and other functions (loadAllStations, applySearchFilter, etc.) remain the same.
+// ... (Your existing JavaScript code for audio player and station loading)
+// ***************************************************************************************************
 let currentlyPlaying = null;
 let customPlayers = [];
 // Custom Audio Player Class
@@ -983,6 +1074,8 @@ messageElement.remove();
 }
 }
 }
+// ***************************************************************************************************
+
 
 // Initialize custom players and load stations when page loads
 document.addEventListener('DOMContentLoaded', () => {
@@ -999,6 +1092,12 @@ const yearSpan = document.getElementById('year');
 if (yearSpan) {
 yearSpan.textContent = new Date().getFullYear();
 }
+// 🆕 NEW: عند تحميل الصفحة في وضع الكمبيوتر، تأكد من إظهار الروابط الأفقية
+if (window.innerWidth > 768) {
+    if (desktopQuranDropdown) desktopQuranDropdown.style.display = 'inline-block';
+    if (desktopEbtihalDropdown) desktopEbtihalDropdown.style.display = 'inline-block';
+}
+
 });
 // ... (بقية كود الـ JavaScript الموجود لديك)
 
@@ -1019,8 +1118,3 @@ console.log('ServiceWorker registration failed: ', registrationError);
 </script>
 </body>
 </html>
-
-
-
-
-
