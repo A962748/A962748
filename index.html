@@ -175,7 +175,7 @@ background-color: #00695c;
 color: #4db6ac !important;
 }
 
-/* **🚨 NEW: يتم إخفاء محتوى الهمبرغر في الوضع الافتراضي للكمبيوتر ويظهر فقط عند التفعيل** */
+/* **🚨 يتم إخفاء محتوى الهمبرغر في الوضع الافتراضي للكمبيوتر ويظهر فقط عند التفعيل** */
 .mobile-menu-content-sidebar {
 display: none; 
 width: 100%; /* تأكيد أن القائمة تملأ عرض الشريط الجانبي في حالة ظهورها */
@@ -186,12 +186,12 @@ display: flex;
 flex-direction: column;
 }
 
-/* **🚨 NEW: يتم إخفاء الروابط الأفقية (القوائم المنسدلة) عند تفعيل قائمة الهمبرغر** */
+/* 🚨 CRITICAL: عند تفعيل الهمبرغر في الكمبيوتر، يجب إخفاء الروابط الأفقية */
 .nav-links.active .nav-dropdown-item {
-display: none;
+    display: none;
 }
 .nav-links.active .horizontal-dropdown-content {
-display: none !important;
+    display: none !important;
 }
 
 
@@ -252,56 +252,68 @@ transform: scale(1.1);
 }
 
 @media (max-width: 768px) {
-/* 🚨 التعديل: إخفاء القوائم الأفقية فقط في شريط التنقل في وضع الموبايل */
-.nav-links {
-    /* في وضع الموبايل الافتراضي، يجب أن تكون الروابط الأفقية مخفية */
-    display: none;
-    position: fixed; 
-    top: 0;
-    right: -100%;
-    width: 250px;
-    height: 100vh;
-    background-color: #004d40;
-    flex-direction: column;
-    padding-top: 80px;
-    text-align: center;
-    transition: 0.3s ease-in-out;
-    z-index: 999;
-    order: 1;
-}
+    /* 🟢 التعديل الأهم: إظهار القائمة الأفقية على الموبايل */
+    .nav-links {
+        display: flex; /* إظهار الروابط في وضع الموبايل */
+        flex-direction: row; /* التأكيد على أنها أفقية */
+        gap: 0.5rem; /* تقليل المسافة بين الروابط */
+        position: static; /* جعلها جزءاً من شريط التنقل */
+        width: auto;
+        padding-top: 0;
+        /* ترتيب الروابط الأفقية لكي تكون بجوار اللوجو */
+        order: 1; 
+        margin-right: auto; /* دفعها لليسار */
+    }
+    
+    /* 🟢 NEW: تصغير حجم الخط والـ padding لجعلها تتسع */
+    .nav-links a {
+        font-size: 0.9rem; /* تصغير الخط */
+        padding: 5px 3px; /* تصغير الهوامش */
+    }
 
-.nav-links.active {
-    /* عند التفعيل في الموبايل، يتم إظهارها من اليمين */
-    right: 0;
-    display: flex;
-}
-/* 🚨 التعديل: في وضع الموبايل، يتم إخفاء الروابط الأفقية تماماً (حتى لا تظهر لحظياً) */
-.nav-dropdown-item {
-    display: none;
-}
-.horizontal-dropdown-content {
-    display: none !important;
-}
+    /* 🟢 إلغاء إخفاء القوائم المنسدلة: */
+    .nav-dropdown-item {
+        display: inline-block; /* إظهار القائمة المنسدلة */
+    }
+    .horizontal-dropdown-content {
+        /* ستبقى مخفية حتى النقر عليها */
+        right: 0 !important; /* التأكد من فتحها من اليمين */
+        min-width: 140px; /* تصغير عرض القائمة المنسدلة */
+    }
 
-.search-btn {
-    margin-left: 0.5rem; 
-    order: 3; 
-}
-.menu-btn {
-    display: block; 
-    margin-right: 1rem; 
-    order: 4; 
-}
-/* 🆕 NEW: إظهار محتوى الهمبرغر في وضع الهاتف (عند التفعيل) */
-.mobile-menu-content-sidebar {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-}
-/* تنسيق روابط محتوى الهمبرغر (لأنها الآن عناصر داخل الـ sidebar) */
-.mobile-menu-content-sidebar a {
-    padding: 0.8rem 0;
-}
+    /* 🟢 ترتيب الأزرار ليكون البحث بجوار الهمبرغر */
+    .search-btn {
+        margin-left: 0.5rem; 
+        order: 4; /* البحث */
+    }
+    .menu-btn {
+        display: block; 
+        margin-right: 1rem; 
+        order: 5; /* الهمبرغر */
+    }
+    
+    /* 🔴 CRITICAL: عند تفعيل قائمة الهمبرغر الجانبية، يجب إخفاء الروابط الأفقية */
+    .nav-links.active .nav-dropdown-item {
+        display: none;
+    }
+    /* 🆕 NEW: إظهار محتوى الهمبرغر في وضع الهاتف (عند التفعيل) */
+    .mobile-menu-content-sidebar {
+        display: none; /* إخفاء المحتوى افتراضياً */
+    }
+    .nav-links.active {
+        right: 0;
+        display: flex; /* إظهار القائمة الجانبية (Sidebar) */
+        flex-direction: column;
+    }
+    .nav-links.active .mobile-menu-content-sidebar {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+    }
+    /* تنسيق روابط محتوى الهمبرغر (لأنها الآن عناصر داخل الـ sidebar) */
+    .mobile-menu-content-sidebar a {
+        padding: 0.8rem 0;
+    }
 }
 /* ... بقية الـ CSS ... */
 .radio-player {
@@ -498,7 +510,7 @@ cursor: pointer;
 <div class="nav-links">
     <div class="nav-dropdown-item" id="desktop-quran-dropdown">
         <a href="#all-stations-section">
-            <i class="fas fa-quran"></i> القرآن الكريم <i class="fas fa-caret-down" style="margin-right: 5px;"></i>
+            <i class="fas fa-quran"></i> القرآن <i class="fas fa-caret-down" style="margin-right: 5px;"></i>
         </a>
         <div class="horizontal-dropdown-content">
             <a href="#">القرآن كاملاً قراءة</a>
@@ -621,20 +633,9 @@ const searchBarContainer = document.getElementById('searchBarContainer');
 const externalSearchIcon = document.getElementById('externalSearchIcon');
 const cairoSection = document.getElementById('cairo-radio-section');
 
-// 🆕 NEW: الحصول على عناصر القائمة الأفقية (الروابط المنسدلة)
-const desktopQuranDropdown = document.getElementById('desktop-quran-dropdown');
-const desktopEbtihalDropdown = document.getElementById('desktop-ebtihal-dropdown');
-
-
 // دالة جديدة لإغلاق القائمة بعد النقر على رابط (خاصة بروابط التمرير)
 function closeMenu() {
     navLinks.classList.remove('active');
-    // 🆕 NEW: إعادة إظهار الروابط الأفقية بعد إغلاق قائمة الهمبرغر في الكمبيوتر
-    // Note: CSS rules already handle this when .active is removed, but we ensure it works.
-    if (window.innerWidth > 768) {
-        if (desktopQuranDropdown) desktopQuranDropdown.style.display = 'inline-block';
-        if (desktopEbtihalDropdown) desktopEbtihalDropdown.style.display = 'inline-block';
-    }
 }
 // دالة جديدة لمحاولة إغلاق النافذة (الخروج من التطبيق)
 function exitApp() {
@@ -645,18 +646,6 @@ function exitApp() {
 menuBtn.addEventListener('click', () => {
     const isActive = navLinks.classList.toggle('active');
     
-    // 🆕 NEW: منطق إخفاء/إظهار الروابط الأفقية عند فتح الهمبرغر في الكمبيوتر
-    if (window.innerWidth > 768) {
-        if (isActive) {
-            // إخفاء الروابط الأفقية عند فتح القائمة الجانبية (Sidebar)
-            if (desktopQuranDropdown) desktopQuranDropdown.style.display = 'none';
-            if (desktopEbtihalDropdown) desktopEbtihalDropdown.style.display = 'none';
-        } else {
-            // إظهار الروابط الأفقية عند إغلاق القائمة الجانبية
-            if (desktopQuranDropdown) desktopQuranDropdown.style.display = 'inline-block';
-            if (desktopEbtihalDropdown) desktopEbtihalDropdown.style.display = 'inline-block';
-        }
-    }
     // التأكد من إغلاق شريط البحث عند فتح القائمة الجانبية
     if (isActive && searchBarContainer.classList.contains('active')) {
         searchBarContainer.classList.remove('active');
@@ -736,7 +725,6 @@ document.addEventListener('keydown', (e) => {
 
 
 // Custom Audio Player Class and other functions (loadAllStations, applySearchFilter, etc.) remain the same.
-// ... (Your existing JavaScript code for audio player and station loading)
 // ***************************************************************************************************
 let currentlyPlaying = null;
 let customPlayers = [];
@@ -819,7 +807,7 @@ this.updateStatus('جاهز للتشغيل');
 handlePlay() {
 this.isPlaying = true;
 this.playBtn.innerHTML = '<i class="fas fa-pause"></i>';
-this.updateStatus('اضغط للتوقف');
+this.updateStatus('استماع مباشر');
 currentlyPlaying = this.audio;
 }
 handlePause() {
@@ -1092,14 +1080,7 @@ const yearSpan = document.getElementById('year');
 if (yearSpan) {
 yearSpan.textContent = new Date().getFullYear();
 }
-// 🆕 NEW: عند تحميل الصفحة في وضع الكمبيوتر، تأكد من إظهار الروابط الأفقية
-if (window.innerWidth > 768) {
-    if (desktopQuranDropdown) desktopQuranDropdown.style.display = 'inline-block';
-    if (desktopEbtihalDropdown) desktopEbtihalDropdown.style.display = 'inline-block';
-}
-
 });
-// ... (بقية كود الـ JavaScript الموجود لديك)
 
 // *** NEW PWA REGISTRATION CODE ***
 // تسجيل ملف الـ Service Worker عند تحميل الصفحة
