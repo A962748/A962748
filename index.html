@@ -19,7 +19,8 @@ box-sizing: border-box;
 font-family: "Tajawal", sans-serif;
 scroll-behavior: smooth;
 }
-/* ... (بقية تنسيقات CSS كما هي) ... */
+
+/* ... (نفس تنسيقاتك الأساسية السابقة) ... */
 
 .copyright {
 text-align: center;
@@ -97,12 +98,10 @@ gap: 1.5rem;
 display: none;
 }
 
-/* 🚨 التعديل الرئيسي 🚨: السماح بتوسيع Nav Links في وضع الكمبيوتر ليعمل كـ Sidebar */
 .nav-links {
 display: flex;
 flex-direction: row; 
-/* 🔴 NEW: زيادة المسافة بين الروابط (والقوائم المنسدلة) */
-gap: 3rem; /* تم زيادتها إلى 3rem */
+gap: 3rem; 
 position: static;
 width: auto;
 height: auto;
@@ -111,12 +110,10 @@ text-align: right;
 order: 1;
 }
 
-/* 🆕 NEW: عند تفعيل قائمة الهمبرغر على الكمبيوتر، يتم تحويلها إلى قائمة عمودية (Sidebar) */
 .nav-links.active {
-/* overrides the default desktop display */
 position: fixed; 
 top: 0;
-right: 0; /* فتح القائمة من اليمين */
+right: 0; 
 width: 250px;
 height: 100vh;
 background-color: #004d40;
@@ -126,16 +123,13 @@ text-align: center;
 transition: 0.3s ease-in-out;
 z-index: 999;
 order: 1;
-/* تأكيد عرض الـ flex لكي تعمل القائمة العمودية */
 display: flex; 
 }
 
 .nav-links a {
 color: white;
 text-decoration: none;
-/* 🔴 NEW: تكبير حجم الخط */
 font-size: 1.25rem; 
-/* 🔴 NEW: جعل الخط عريضاً */
 font-weight: 700; 
 transition: color 0.3s ease;
 position: relative;
@@ -145,7 +139,6 @@ padding: 0;
 color: #4db6ac;
 }
 
-/* Horizontal Dropdown Styling (Desktop/Tablet) */
 .nav-dropdown-item {
 position: relative;
 display: inline-block;
@@ -167,6 +160,9 @@ right: 0;
 .nav-dropdown-item:hover .horizontal-dropdown-content {
 display: block;
 }
+
+/* تم حذف تنسيقات المشغل المصغر (Mini Player) */
+
 .horizontal-dropdown-content a {
 color: white !important;
 padding: 12px 16px;
@@ -175,7 +171,6 @@ display: block;
 text-align: right;
 font-size: 1rem;
 white-space: nowrap;
-/* 🔴 NEW: جعل خط القوائم المنسدلة الفرعية عادياً */
 font-weight: 500; 
 }
 .horizontal-dropdown-content a:hover {
@@ -183,18 +178,17 @@ background-color: #00695c;
 color: #4db6ac !important;
 }
 
-/* **🚨 يتم إخفاء محتوى الهمبرغر في الوضع الافتراضي للكمبيوتر ويظهر فقط عند التفعيل** */
+
+/* بقية التنسيقات كما هي */
 .mobile-menu-content-sidebar {
 display: none; 
-width: 100%; /* تأكيد أن القائمة تملأ عرض الشريط الجانبي في حالة ظهورها */
+width: 100%; 
 }
-/* 🆕 NEW: إظهار محتوى الهمبرغر عند تفعيل القائمة */
 .nav-links.active .mobile-menu-content-sidebar {
 display: flex;
 flex-direction: column;
 }
 
-/* 🚨 CRITICAL: عند تفعيل الهمبرغر في الكمبيوتر، يجب إخفاء الروابط الأفقية */
 .nav-links.active .nav-dropdown-item {
     display: none;
 }
@@ -202,8 +196,6 @@ flex-direction: column;
     display: none !important;
 }
 
-
-/* NEW: Search button style */
 .search-btn {
 background: none;
 border: none;
@@ -216,9 +208,8 @@ z-index: 1001;
 order: 2;
 }
 
-/* 🚨 التعديل الرئيسي 🚨: إظهار زر الهمبرغر دائماً */
 .menu-btn {
-display: block; /* جعله مرئياً دائماً */
+display: block; 
 color: white;
 font-size: 1.5rem;
 cursor: pointer;
@@ -260,14 +251,12 @@ transform: scale(1.1);
 }
 
 @media (max-width: 768px) {
-    /* 🟢 NEW: إضافة gap للفصل بين العناصر المرنة */
     .nav-container {
         gap: 10px; 
     }
-    /* 🟢 التعديل الأهم: إظهار القائمة الأفقية على الموبايل */
     .nav-links {
-        display: flex; /* إظهار الروابط في وضع الموبايل */
-        flex-direction: row; /* التأكيد على أنها أفقية */
+        display: flex; 
+        flex-direction: row; 
         gap: 0.5rem; 
         position: static; 
         width: auto;
@@ -276,16 +265,12 @@ transform: scale(1.1);
         margin-right: auto; 
     }
     
-    /* 🟢 NEW: تكبير حجم الخط والـ padding لروابط الـ nav-links */
     .nav-links a {
-        /* 🔴 NEW: حجم الخط في وضع الموبايل */
         font-size: 1.1rem; 
-        /* 🔴 NEW: الخط العريض أيضاً في وضع الموبايل */
         font-weight: 700;
         padding: 5px 6px; 
     }
 
-    /* 🟢 إلغاء إخفاء القوائم المنسدلة: */
     .nav-dropdown-item {
         display: inline-block; 
     }
@@ -294,28 +279,25 @@ transform: scale(1.1);
         min-width: 140px; 
     }
 
-    /* 🟢 ترتيب الأزرار ليكون البحث بجوار الهمبرغر */
     .search-btn {
         margin-left: 0.5rem; 
-        order: 4; /* البحث */
+        order: 4; 
     }
     .menu-btn {
         display: block; 
         margin-right: 0.5rem; 
-        order: 5; /* الهمبرغر */
+        order: 5; 
     }
     
-    /* 🔴 CRITICAL: عند تفعيل قائمة الهمبرغر الجانبية، يجب إخفاء الروابط الأفقية */
     .nav-links.active .nav-dropdown-item {
         display: none;
     }
-    /* 🆕 NEW: إظهار محتوى الهمبرغر في وضع الهاتف (عند التفعيل) */
     .mobile-menu-content-sidebar {
-        display: none; /* إخفاء المحتوى افتراضياً */
+        display: none; 
     }
     .nav-links.active {
         right: 0;
-        display: flex; /* إظهار القائمة الجانبية (Sidebar) */
+        display: flex; 
         flex-direction: column;
     }
     .nav-links.active .mobile-menu-content-sidebar {
@@ -323,7 +305,6 @@ transform: scale(1.1);
         flex-direction: column;
         width: 100%;
     }
-    /* تنسيق روابط محتوى الهمبرغر (لأنها الآن عناصر داخل الـ sidebar) */
     .mobile-menu-content-sidebar a {
         padding: 0.8rem 0;
     }
@@ -332,7 +313,6 @@ transform: scale(1.1);
 .radio-player {
 display: none;
 }
-/* Custom Audio Player Styles - يستخدم الآن لقائمة التلاوات فقط */
 .custom-audio-player {
 background: rgba(0, 77, 64, 0.1);
 border-radius: 12px;
@@ -467,7 +447,6 @@ font-family: "Amiri", serif;
 .station-card .custom-audio-player {
 margin-top: 0.5rem;
 }
-/* NEW: Search Bar Container (Sliding Bar) */
 .search-bar-container {
 background-color: #00695c;
 padding: 10px 20px;
@@ -513,6 +492,140 @@ color: #004d40;
 font-size: 1.2rem;
 cursor: pointer;
 }
+
+/* CSS تنسيقات المربع المنبثق (Modal) */
+.playlist-modal {
+    display: none; 
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.85); 
+    z-index: 2000; 
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.playlist-modal.active {
+    display: flex;
+}
+
+.playlist-content {
+    background: linear-gradient(145deg, #f5f5dc, #e0d8c7); 
+    padding: 30px;
+    border-radius: 20px;
+    width: 90%;
+    max-width: 450px;
+    text-align: center;
+    border: 2px solid #004d40;
+    box-shadow: 0 10px 30px rgba(0, 77, 64, 0.5);
+    position: relative;
+}
+
+.playlist-content h2 {
+    color: #004d40;
+    font-family: 'Amiri', serif;
+    margin-bottom: 20px;
+    font-size: 2rem;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+}
+
+.track-display {
+    background: #004d40;
+    color: #fff;
+    padding: 15px;
+    border-radius: 12px;
+    margin-bottom: 25px;
+    font-weight: bold;
+    font-size: 1.3rem;
+    box-shadow: inset 0 2px 5px rgba(0,0,0,0.3);
+}
+
+/* حاوية الأزرار لتظهر التسميات أسفل الأزرار */
+.playlist-controls {
+    display: flex;
+    justify-content: center;
+    gap: 25px;
+    margin-bottom: 25px;
+    align-items: flex-start; 
+}
+
+.control-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+}
+
+.control-item span {
+    font-size: 0.9rem;
+    color: #004d40;
+    font-weight: 700;
+}
+
+.ctrl-btn {
+    background: #004d40;
+    color: white;
+    border: none;
+    width: 55px;
+    height: 55px;
+    border-radius: 50%;
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+}
+
+.ctrl-btn:hover {
+    background: #4db6ac;
+    transform: translateY(-2px);
+}
+
+.ctrl-btn:active {
+    transform: translateY(1px);
+}
+
+.ctrl-btn.big {
+    width: 75px;
+    height: 75px;
+    font-size: 2rem;
+    background: #00695c; 
+}
+
+.extra-controls {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.action-btn {
+    background: transparent;
+    border: 2px solid #004d40;
+    color: #004d40;
+    padding: 10px 15px;
+    border-radius: 8px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+    font-size: 1.1rem;
+}
+
+.action-btn:hover {
+    background: #004d40;
+    color: white;
+}
+
+.action-btn.active {
+    background: #004d40;
+    color: white;
+    box-shadow: 0 0 10px rgba(0, 77, 64, 0.4);
+}
+
 </style>
 </head>
 <body>
@@ -535,7 +648,9 @@ cursor: pointer;
             <i class="fas fa-hands-praying"></i> ابتهالات <i class="fas fa-caret-down" style="margin-right: 5px;"></i>
         </a>
         <div class="horizontal-dropdown-content">
-            <a href="#">ابتهالات للشيخ النقشبندي</a>
+            
+            <a href="#" onclick="openNaqshbandiModal(event)">ابتهالات للشيخ النقشبندي</a>
+            
             <a href="#">ابتهالات للشيخ نصر الدين طوبار</a>
             <a href="#">ابتهالات للشيخ محمد الطوخي</a>
         </div>
@@ -601,6 +716,46 @@ cursor: pointer;
 </div>
 </div>
 
+<div id="naqshbandiModal" class="playlist-modal">
+    <div class="playlist-content">
+        <h2>ابتهالات النقشبندي</h2>
+        <div class="track-display" id="trackNameDisplay">المقطع 1</div>
+        
+        <div class="playlist-controls">
+            <div class="control-item">
+                <button class="ctrl-btn" onclick="playNext()" title="التالي">
+                    <i class="fas fa-step-backward"></i> 
+                </button>
+                <span>التالي</span>
+            </div>
+            
+            <div class="control-item">
+                <button class="ctrl-btn big" onclick="togglePlaylistPlay()" id="playlistPlayBtn" title="تشغيل/إيقاف">
+                    <i class="fas fa-play"></i>
+                </button>
+                <span>تشغيل</span>
+            </div>
+            
+            <div class="control-item">
+                <button class="ctrl-btn" onclick="playPrev()" title="السابق">
+                    <i class="fas fa-step-forward"></i> 
+                </button>
+                <span>السابق</span>
+            </div>
+        </div>
+
+        <div class="extra-controls">
+            <button class="action-btn" id="playAllBtn" onclick="togglePlayAll()">
+                <i class="fas fa-sync"></i> تشغيل الكل تلقائياً
+            </button>
+            <button class="action-btn" onclick="closeNaqshbandiModal()">
+                <i class="fas fa-times"></i> إغلاق النافذة
+            </button>
+        </div>
+    </div>
+</div>
+
+
 <main class="hero-section" id="hero-section"></main>
 
 <section class="cairo-radio-section" id="cairo-radio-section">
@@ -646,20 +801,17 @@ const searchBarContainer = document.getElementById('searchBarContainer');
 const externalSearchIcon = document.getElementById('externalSearchIcon');
 const cairoSection = document.getElementById('cairo-radio-section');
 
-// دالة جديدة لإغلاق القائمة بعد النقر على رابط (خاصة بروابط التمرير)
 function closeMenu() {
     navLinks.classList.remove('active');
 }
-// دالة جديدة لمحاولة إغلاق النافذة (الخروج من التطبيق)
+
 function exitApp() {
-    // محاولة إغلاق النافذة/التاب الحالي
     window.close();
 }
 
 menuBtn.addEventListener('click', () => {
     const isActive = navLinks.classList.toggle('active');
     
-    // التأكد من إغلاق شريط البحث عند فتح القائمة الجانبية
     if (isActive && searchBarContainer.classList.contains('active')) {
         searchBarContainer.classList.remove('active');
         cairoSection.style.paddingTop = '80px';
@@ -669,9 +821,6 @@ menuBtn.addEventListener('click', () => {
 });
 
 
-// **********************************************
-// External Search Logic Function
-// **********************************************
 function performExternalSearch() {
     const query = searchInput.value.trim();
     if (query) {
@@ -687,7 +836,6 @@ function performExternalSearch() {
     }
 }
 
-// NEW: Toggle search bar visibility and manage padding/focus
 navSearchBtn.addEventListener('click', () => {
     const isActive = searchBarContainer.classList.toggle('active');
     if (isActive) {
@@ -698,18 +846,15 @@ navSearchBtn.addEventListener('click', () => {
         searchInput.value = '';
         applySearchFilter('');
     }
-    // التأكد من إغلاق قائمة الهمبرغر عند فتح شريط البحث
     if (isActive && navLinks.classList.contains('active')) {
         closeMenu(); 
     }
 });
 
-// NEW: Event listener for internal search (on input)
 searchInput.addEventListener('input', (e) => {
     applySearchFilter(e.target.value.toLowerCase());
 });
 
-// NEW: Event listener for ENTER key press (to trigger external search)
 searchInput.addEventListener('keydown', (e) => {
     if (e.key === 'Enter') {
         e.preventDefault();
@@ -717,12 +862,10 @@ searchInput.addEventListener('keydown', (e) => {
     }
 });
 
-// NEW: Event listener for clicking the icon inside the search bar
 externalSearchIcon.addEventListener('click', () => {
     performExternalSearch();
 });
 
-// Allow closing with ESC key and clearing search
 document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape' && searchBarContainer.classList.contains('active')) {
         searchBarContainer.classList.remove('active');
@@ -730,16 +873,12 @@ document.addEventListener('keydown', (e) => {
         searchInput.value = '';
         applySearchFilter('');
     }
-    // 🆕 NEW: السماح بإغلاق قائمة الهمبرغر بزر ESC
     if (e.key === 'Escape' && navLinks.classList.contains('active')) {
         closeMenu();
     }
 });
 
 
-// ***************************************************************************************************
-// 🔴 CRITICAL CHANGE: Using Howler.js for reliable streaming
-// ***************************************************************************************************
 let currentlyPlaying = null;
 let customPlayers = [];
 
@@ -759,13 +898,11 @@ class CustomAudioPlayer {
     init() {
         const audioSrc = this.playerElement.dataset.src;
         
-        // 🔴 NEW: إنشاء كائن Howl
         this.howl = new Howl({
             src: [audioSrc],
-            html5: true, // ضروري للبث المباشر (Streaming)
+            html5: true, 
             volume: 0.8,
-            format: ['mp3', 'aac', 'ogg', 'wav'], // تحديد التنسيقات المتوقعة
-            // 🔴 NEW: إدارة حالات التحميل والتشغيل عبر الأحداث
+            format: ['mp3', 'aac', 'ogg', 'wav'], 
             onplay: () => this.handlePlay(),
             onpause: () => this.handlePause(),
             onloaderror: () => this.handleError('فشل التحميل'),
@@ -773,7 +910,6 @@ class CustomAudioPlayer {
             onstop: () => this.handlePause()
         });
         
-        // ربط أزرار التشغيل/الإيقاف
         this.playBtn.addEventListener('click', () => this.togglePlay());
         if (this.muteBtn) {
             this.muteBtn.addEventListener('click', () => this.toggleMute());
@@ -789,25 +925,28 @@ class CustomAudioPlayer {
     }
 
     play() {
+        // إيقاف أي مشغل آخر
+        if (playlistHowl && playlistHowl.playing()) {
+            playlistHowl.stop();
+            updatePlaylistUI(false);
+        }
+
         customPlayers.forEach(player => {
             if (player !== this && player.howl.playing()) {
                 player.pause();
             }
         });
 
-        // 🔴 CRITICAL FIX: إذا لم يكن الصوت جاهزاً، ابدأ التحميل
         if (this.howl.state() === 'unloaded') {
             this.howl.load();
         }
 
         this.updateStatus('جاري الاتصال...');
         
-        // 🔴 Howler.js Play
         const playPromise = this.howl.play();
 
         if (playPromise !== undefined && typeof playPromise.catch === 'function') {
             playPromise.catch(error => {
-                // فشل التشغيل (عادة بسبب متطلبات المتصفح للتشغيل التلقائي)
                 console.error('Playback failed:', error);
                 this.handleError('فشل التشغيل. حاول مجدداً.');
             });
@@ -847,7 +986,7 @@ class CustomAudioPlayer {
 
     handleError(message = 'خطأ في البث') {
         this.updateStatus(message);
-        this.playBtn.innerHTML = '<i class="fas fa-redo"></i>'; // Change icon to retry
+        this.playBtn.innerHTML = '<i class="fas fa-redo"></i>'; 
     }
 
     handleWaiting() {
@@ -860,11 +999,131 @@ class CustomAudioPlayer {
         }
     }
 }
-// ***************************************************************************************************
-// (بقية الكود الخاص بالتحميل والتصفية كما هو)
-// ***************************************************************************************************
 
-// الكلمات المفتاحية التي يجب أن تحتوي عليها التلاوة لتظهر
+// **********************************************************************
+// منطق مشغل النقشبندي (Playlist Logic)
+// **********************************************************************
+const naqshbandiFiles = ['1.mp3', '2.mp3', '3.mp3', '4.mp3', '5.mp3'];
+let currentTrackIndex = 0;
+let playlistHowl = null;
+let isPlayAllEnabled = false;
+
+function openNaqshbandiModal(e) {
+    if(e) e.preventDefault();
+    
+    // إيقاف أي راديو يعمل حالياً
+    customPlayers.forEach(player => {
+        if (player.howl.playing()) {
+            player.pause();
+        }
+    });
+
+    const modal = document.getElementById('naqshbandiModal');
+    modal.classList.add('active');
+    closeMenu(); // إغلاق القائمة الجانبية إذا كانت مفتوحة
+    
+    updateTrackDisplay();
+    updatePlaylistUI(playlistHowl && playlistHowl.playing());
+}
+
+function closeNaqshbandiModal() {
+    const modal = document.getElementById('naqshbandiModal');
+    modal.classList.remove('active');
+    // لا نوقف الصوت عند الإغلاق، سيبقى يعمل في الخلفية
+}
+
+function playTrack(index) {
+    if (playlistHowl) {
+        playlistHowl.stop();
+    }
+
+    if (index >= naqshbandiFiles.length) index = 0;
+    if (index < 0) index = naqshbandiFiles.length - 1;
+
+    currentTrackIndex = index;
+    updateTrackDisplay();
+
+    playlistHowl = new Howl({
+        src: [naqshbandiFiles[currentTrackIndex]],
+        html5: true,
+        onend: function() {
+            if (isPlayAllEnabled) {
+                playNext(); // تشغيل التالي تلقائياً
+            } else {
+                updatePlaylistUI(false);
+            }
+        },
+        onplay: function() {
+            updatePlaylistUI(true);
+        },
+        onpause: function() {
+            updatePlaylistUI(false);
+        },
+        onstop: function() {
+            updatePlaylistUI(false);
+        }
+    });
+
+    playlistHowl.play();
+}
+
+function togglePlaylistPlay() {
+    if (playlistHowl && playlistHowl.playing()) {
+        playlistHowl.pause();
+    } else if (playlistHowl) {
+        playlistHowl.play();
+    } else {
+        playTrack(currentTrackIndex);
+    }
+}
+
+function playNext() {
+    let nextIndex = currentTrackIndex + 1;
+    if (nextIndex >= naqshbandiFiles.length) nextIndex = 0; 
+    playTrack(nextIndex);
+}
+
+function playPrev() {
+    let prevIndex = currentTrackIndex - 1;
+    if (prevIndex < 0) prevIndex = naqshbandiFiles.length - 1; 
+    playTrack(prevIndex);
+}
+
+function togglePlayAll() {
+    isPlayAllEnabled = !isPlayAllEnabled;
+    const btn = document.getElementById('playAllBtn');
+    
+    if (isPlayAllEnabled) {
+        btn.classList.add('active');
+        btn.innerHTML = '<i class="fas fa-check"></i> تشغيل الكل (مفعل)';
+        // إذا تم التفعيل، شغل فوراً
+        if (!playlistHowl || !playlistHowl.playing()) {
+            playTrack(currentTrackIndex);
+        }
+    } else {
+        btn.classList.remove('active');
+        btn.innerHTML = '<i class="fas fa-sync"></i> تشغيل الكل تلقائياً';
+    }
+}
+
+function updateTrackDisplay() {
+    document.getElementById('trackNameDisplay').textContent = `المقطع ${currentTrackIndex + 1} من ${naqshbandiFiles.length}`;
+}
+
+// تحديث الأزرار في المودال فقط
+function updatePlaylistUI(isPlaying) {
+    const modalPlayBtn = document.getElementById('playlistPlayBtn');
+    
+    const iconHtml = isPlaying ? '<i class="fas fa-pause"></i>' : '<i class="fas fa-play"></i>';
+    const label = modalPlayBtn.nextElementSibling; // العنصر span الذي يحتوي على النص
+
+    if (modalPlayBtn) {
+        modalPlayBtn.innerHTML = iconHtml;
+        if(label) label.textContent = isPlaying ? 'إيقاف' : 'تشغيل';
+    }
+}
+
+
 const allowedKeywords = [
 "فتاوى", "رقية", "عبد الباسط", "عبد الباسط عبد الصمد", "عبدالباسط", "عبد الصمد",
 "المنشاوي", "الطبلاوي", "الحصري", "مصطفى اسماعيل", "آيات السكينة",
@@ -875,22 +1134,16 @@ const allowedKeywords = [
 "رياض الصالحين"
 ].map(k => k.toLowerCase().trim());
 
-// قائمة بأسماء إذاعات عبد الباسط لتطبيق فلتر الحذف الخاص (حذف الثانية)
 const abdulBasitIdentifiers = ["عبد الباسط", "عبد الباسط عبد الصمد", "عبدالباسط", "عبد الصمد"].map(k => k.toLowerCase().trim());
 
-// قائمة بأسماء إذاعات الحصري لتطبيق فلتر الحذف الخاص (حذف الثالثة)
 const husaryIdentifiers = ["الحصري"].map(k => k.toLowerCase().trim());
 
-// الكلمات المفتاحية التي يجب ألا تحتوي عليها التلاوة (للحذف)
 const forbiddenKeywords = [
-// لحذف اللغات الأجنبية والترجمات
 "الأوردية", "الأردو", "Urdu", "ترجمة",
 "English", "France", "French", "Türkçe", "Espanol", "German"
 ].map(k => k.toLowerCase().trim());
 
-// --- أدوات التعديل الخاصة بالأسماء المطلوبة ---
 
-// 1. الصحابة
 const sahabaIdentifiers = [
 'صور من حياة الصحابة',
 'صور الصحابة',
@@ -899,50 +1152,36 @@ const sahabaIdentifiers = [
 ].map(k => k.toLowerCase().trim());
 const targetSahabaPhrase = 'نبذة عن حياة الصحابة';
 
-// 2. باقي التعديلات المخصصة
 const specificReplacements = [
-// Must be sorted from most specific/required to least specific (Tabari before general tafsir)
 { identifiers: ['الطبري', 'الخلاصة من تفسير الطبري'], target: 'تفسير القران الكريم للطبري' },
-// UPDATE: السيره النبويه الشريفه
 { identifiers: ['السيرة النبوية', 'السيره النبويه'], target: 'السيره النبويه الشريفه' },
 { identifiers: ['رقية', 'الرقية الشرعية'], target: 'الرقية الشرعية' },
 { identifiers: ['فتاوى', 'الفتاوى العامة'], target: 'الفتاوى العامة' },
-// General tafsir, placed last to avoid overriding Tabari
 { identifiers: ['تفسير القران الكريم'], target: 'تفسير القرأن الكريم' },
-// CLEANUP: Ensure قصص الأنبياء is always clean and consistent
 { identifiers: [' قصص الانبياء', ' قصص الأنبياء والرسل', 'قصة الأنبياء', 'الأنبياء والرسل'], target: 'قصص الأنبياء' }
-
 ];
 
-// دالة فحص ما إذا كانت التلاوة مسموح بها
 function isAllowed(stationName) {
 const name = stationName.toLowerCase();
-// 1. يجب أن تحتوي التلاوة على إحدى الكلمات المسموح بها
 const containsAllowed = allowedKeywords.some(keyword => name.includes(keyword));
-// 2. يجب ألا تحتوي التلاوة على أي من الكلمات المحظورة
 const containsForbidden = forbiddenKeywords.some(keyword => name.includes(keyword));
-// تظهر التلاوة إذا كانت تحتوي على كلمة مسموح بها AND لا تحتوي على كلمة محظورة
 return containsAllowed && !containsForbidden;
 }
 
-// دالة تحميل التلاوات وتطبيق التصفية والتعديل
 async function loadAllStations() {
     const stationsGrid = document.getElementById('allStationsGrid');
     if (!stationsGrid) return;
     
-    // وضع رسالة التحميل
     stationsGrid.innerHTML = '<p style="color: #004d40; text-align: center;">جاري تحميل التلاوات...</p>';
     
     const cairoStationUrl = "https://stream.radiojar.com/8s5u5tpdtwzuv";
 
-    // 🔴 NEW: استخدام AbortController لتعيين زمن الانتظار (Timeout)
     const controller = new AbortController();
-    const timeoutId = setTimeout(() => controller.abort(), 10000); // 10 ثواني كحد أقصى
+    const timeoutId = setTimeout(() => controller.abort(), 10000); 
 
     try {
         const response = await fetch('https://mp3quran.net/api/v3/radios', { signal: controller.signal });
         
-        // مسح الـ timeout لأنه تم بنجاح
         clearTimeout(timeoutId); 
 
         if (!response.ok) {
@@ -950,79 +1189,63 @@ async function loadAllStations() {
         }
         
         const data = await response.json();
-        stationsGrid.innerHTML = ''; // مسح رسالة التحميل عند النجاح
+        stationsGrid.innerHTML = ''; 
         
         let count = 0;
         let abdulBasitCount = 0;
         let husaryCount = 0;
 
-        // تحميل وتصفية المحطات من الـ API
         data.radios.forEach(station => {
-        // التأكد من عدم تكرار محطة القاهرة
         if (station.url === cairoStationUrl) return;
         const stationNameLower = station.name.toLowerCase();
-        // تحقق من الفلاتر المطلوبة
         if (isAllowed(station.name)) {
-        // فلتر حذف الثانية لعبد الباسط
         const isAbdulBasit = abdulBasitIdentifiers.some(keyword => stationNameLower.includes(keyword));
         if (isAbdulBasit) {
         abdulBasitCount++;
         if (abdulBasitCount === 2) {
-        return; // تجاوز هذه المحطة (حذفها)
+        return; 
         }
         }
-        // فلتر حذف الثالثة للحصري
         const isHusary = husaryIdentifiers.some(keyword => stationNameLower.includes(keyword));
         if (isHusary) {
         husaryCount++;
         if (husaryCount === 3) {
-        return; // تجاوز هذه المحطة (حذفها)
+        return; 
         }
         }
-        // -------------------------------------------------------------
-        // *** NEW MODIFICATION: تطبيق التعديلات المخصصة للمحطات المطلوب تغيير اسمها ***
-        // -------------------------------------------------------------
+        
         let finalDisplayName = station.name;
         let isSpecificReplacement = false;
-        // 1. Sahaba (Highest Priority from previous turns)
+        
         if (sahabaIdentifiers.some(keyword => stationNameLower.includes(keyword))) {
-        finalDisplayName = targetSahabaPhrase; // 'نبذة عن حياة الصحابة'
+        finalDisplayName = targetSahabaPhrase; 
         isSpecificReplacement = true;
         } else {
-        // 2. Apply all other specific replacements in order
         for (const rule of specificReplacements) {
-        // يجب تحويل كل معرف إلى حالة الأحرف الصغيرة للمقارنة
         if (rule.identifiers.some(id => stationNameLower.includes(id.toLowerCase()))) {
         finalDisplayName = rule.target;
         isSpecificReplacement = true;
-        break; // Stop after the first specific match
+        break; 
         }
         }
         }
-        // 3. Fallback: Apply general 'إذاعة' -> 'تلاوات' replacement if no specific replacement was made
+        
         if (!isSpecificReplacement) {
-        // يغير "إذاعة" إلى "تلاوات" في اسم المحطة بشكل عام
         finalDisplayName = finalDisplayName.replace(/إذاعة/g, 'تلاوات').replace(/إذاعات/g, 'تلاوات');
         }
-        // **4. CRITICAL FIX: Normalize spacing for reliable matching/replacement.**
-        // إزالة المسافات المتعددة والمسافات البادئة/الزائدة
+        
         finalDisplayName = finalDisplayName.trim().replace(/\s+/g, ' ');
 
-        // **5. NEW: Insert "الشيخ" after "تلاوات" for reciter names (if not already there).**
         const reciterPrefix = 'تلاوات';
         const sheikhWord = 'الشيخ';
         const sheikhInsertion = `${reciterPrefix} ${sheikhWord} `;
 
-        // التحقق من أنها تبدأ بـ 'تلاوات ' وأنها لا تحتوي على كلمة 'الشيخ' لتجنب التكرار
         if (finalDisplayName.startsWith(`${reciterPrefix} `) && !finalDisplayName.includes(sheikhWord)) {
-        // استبدال 'تلاوات ' بـ 'تلاوات الشيخ '
         finalDisplayName = finalDisplayName.replace(`${reciterPrefix} `, sheikhInsertion);
         }
 
-        // **6. CLEANUP: Remove any asterisks and extra whitespace from the final display name.**
         finalDisplayName = finalDisplayName.replace(/\*/g, '').trim();
-        // -------------------------------------------------------------
-
+        
         const stationCard = document.createElement('div');
         stationCard.className = 'station-card';
         stationCard.innerHTML = `
@@ -1044,14 +1267,12 @@ async function loadAllStations() {
         `;
         stationsGrid.appendChild(stationCard);
         count++;
-        // Initialize custom player for this station
         const playerElement = stationCard.querySelector('.custom-audio-player');
         const player = new CustomAudioPlayer(playerElement);
         customPlayers.push(player);
         }
         });
         if (count === 0) {
-            // إذا لم يتم تحميل أي شيء بعد الفلترة
             stationsGrid.innerHTML = '<p style="color: #004d40; text-align: center;">لا توجد تلاوات مطابقة للفلاتر المحددة حاليًا.</p>';
         }
 
@@ -1059,96 +1280,62 @@ async function loadAllStations() {
         console.error('Error loading stations:', error);
         let errorMessage = 'عذراً، حدث خطأ في تحميل التلاوات.';
         
-        // 🟢 NEW: تحديد نوع الخطأ إذا كان بسبب زمن الانتظار
         if (error.name === 'AbortError') {
-            errorMessage = 'فشل الاتصال: استغرق التحميل وقتاً طويلاً. يرجى التأكد من اتصال الإنترنت والمحاولة مجدداً.';
+            errorMessage = 'استغرق التحميل وقتاً طويلاً، يرجى التحقق من الإنترنت.';
         }
-        
-        // مسح الـ timeout في حالة حدوث خطأ غير الإلغاء
-        clearTimeout(timeoutId); 
-
-        stationsGrid.innerHTML = `<p class="error-message" style="color: #d32f2f; text-align: center;">${errorMessage}</p>`;
+        stationsGrid.innerHTML = `<p style="color: #d32f2f; text-align: center;">${errorMessage}</p>`;
     }
 }
 
-// Search functionality filter (Internal filter on input, External on Enter/Icon click)
-function applySearchFilter(searchTerm) {
-const stationsGrid = document.getElementById('allStationsGrid');
-const cairoCard = document.querySelector('.cairo-card');
-const cairoName = cairoCard.querySelector('h3').textContent.toLowerCase();
-const hr = document.querySelector('.cairo-radio-section hr');
-const allStations = document.querySelectorAll('#allStationsGrid .station-card');
-if (!stationsGrid || !cairoCard) {
-return;
+function applySearchFilter(query) {
+    const stationCards = document.querySelectorAll('.station-card');
+    let visibleCount = 0;
+    
+    stationCards.forEach(card => {
+        const stationName = card.querySelector('h3').textContent.toLowerCase();
+        if (stationName.includes(query)) {
+            card.style.display = 'block';
+            visibleCount++;
+        } else {
+            card.style.display = 'none';
+        }
+    });
+
+    const stationsGrid = document.getElementById('allStationsGrid');
+    const noResultMsg = document.getElementById('no-search-results');
+    
+    if (visibleCount === 0 && query !== '') {
+        if (!noResultMsg) {
+             const msg = document.createElement('p');
+             msg.id = 'no-search-results';
+             msg.style.textAlign = 'center';
+             msg.style.color = '#004d40';
+             msg.style.width = '100%';
+             msg.style.gridColumn = '1 / -1';
+             msg.textContent = 'لا توجد نتائج مطابقة للبحث.';
+             stationsGrid.appendChild(msg);
+        }
+    } else {
+        if (noResultMsg) {
+            noResultMsg.remove();
+        }
+    }
 }
 
-let foundTotal = 0;
-
-// 1. Handle Cairo Station visibility
-const cairoMatch = cairoName.includes(searchTerm);
-cairoCard.style.display = cairoMatch ? 'block' : 'none';
-hr.style.display = cairoMatch ? 'block' : 'none';
-if (cairoMatch) foundTotal++;
-
-// 2. Handle the main stations grid visibility
-allStations.forEach(station => {
-const stationName = station.querySelector('h3').textContent.toLowerCase();
-const match = stationName.includes(searchTerm);
-station.style.display = match ? 'block' : 'none';
-if (match) foundTotal++;
-});
-// 3. Add/Remove "No results" message
-const noResultsMessageId = 'no-results-message';
-let messageElement = document.getElementById(noResultsMessageId);
-
-if (foundTotal === 0) {
-if (!messageElement) {
-messageElement = document.createElement('p');
-messageElement.id = noResultsMessageId;
-messageElement.style.cssText = "color: #004d40; text-align: center;";
-messageElement.textContent = 'لا توجد نتائج مطابقة لبحثك.';
-stationsGrid.appendChild(messageElement);
-}
-} else {
-if (messageElement) {
-messageElement.remove();
-}
-}
-}
-// ***************************************************************************************************
-
-
-// Initialize custom players and load stations when page loads
 document.addEventListener('DOMContentLoaded', () => {
-// Initialize Cairo player (Point 3)
-const cairoPlayerElement = document.getElementById('cairoPlayer');
-if (cairoPlayerElement) {
-const cairoPlayer = new CustomAudioPlayer(cairoPlayerElement);
-customPlayers.push(cairoPlayer);
-}
-// تحميل التلاوات المفلترة
-loadAllStations();
-// تحديث السنة في حقوق النشر
-const yearSpan = document.getElementById('year');
-if (yearSpan) {
-yearSpan.textContent = new Date().getFullYear();
-}
+    const yearSpan = document.getElementById('year');
+    if (yearSpan) {
+        yearSpan.textContent = new Date().getFullYear();
+    }
+    
+    const cairoPlayerElement = document.getElementById('cairoPlayer');
+    if (cairoPlayerElement) {
+        const cairoPlayer = new CustomAudioPlayer(cairoPlayerElement);
+        customPlayers.push(cairoPlayer);
+    }
+    
+    loadAllStations();
 });
-
-// *** NEW PWA REGISTRATION CODE ***
-// تسجيل ملف الـ Service Worker عند تحميل الصفحة
-if ('serviceWorker' in navigator) {
-window.addEventListener('load', () => {
-navigator.serviceWorker.register('/service-worker.js')
-.then(registration => {
-console.log('ServiceWorker registered: ', registration);
-})
-.catch(registrationError => {
-console.log('ServiceWorker registration failed: ', registrationError);
-});
-});
-}
-// *** END PWA REGISTRATION CODE ***
 </script>
 </body>
 </html>
