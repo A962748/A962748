@@ -8,9 +8,9 @@
 <link rel="icon" type="image/x-icon" href="kaaba.png">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/howler/2.2.4/howler.min.js"></script>
-<link href="https://fonts.googleapis.com/css2?family=Amiri:wght=700&family=Reem+Kufi:wght=600&display=swap"
+<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@700&family=Reem+Kufi:wght=600&display=swap"
 rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght=400;500;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700&display=swap" rel="stylesheet">
 <style>
 * {
 margin: 0;
@@ -20,7 +20,7 @@ font-family: "Tajawal", sans-serif;
 scroll-behavior: smooth;
 }
 
-/* ... (نفس تنسيقاتك الأساسية السابقة) ... */
+/* ... (نفس تنسيقاتك الأساسية) ... */
 
 .copyright {
 text-align: center;
@@ -160,8 +160,6 @@ right: 0;
 .nav-dropdown-item:hover .horizontal-dropdown-content {
 display: block;
 }
-
-/* تم حذف تنسيقات المشغل المصغر (Mini Player) */
 
 .horizontal-dropdown-content a {
 color: white !important;
@@ -527,20 +525,9 @@ cursor: pointer;
 .playlist-content h2 {
     color: #004d40;
     font-family: 'Amiri', serif;
-    margin-bottom: 20px;
+    margin-bottom: 30px; 
     font-size: 2rem;
     text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
-}
-
-.track-display {
-    background: #004d40;
-    color: #fff;
-    padding: 15px;
-    border-radius: 12px;
-    margin-bottom: 25px;
-    font-weight: bold;
-    font-size: 1.3rem;
-    box-shadow: inset 0 2px 5px rgba(0,0,0,0.3);
 }
 
 /* حاوية الأزرار لتظهر التسميات أسفل الأزرار */
@@ -584,6 +571,14 @@ cursor: pointer;
 .ctrl-btn:hover {
     background: #4db6ac;
     transform: translateY(-2px);
+}
+
+/* تنسيق الزر عند عدم التفعيل (الوصول للنهاية أو البداية) */
+.ctrl-btn:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+    background: #555;
+    transform: none !important;
 }
 
 .ctrl-btn:active {
@@ -636,10 +631,10 @@ cursor: pointer;
 <div class="nav-links">
     <div class="nav-dropdown-item" id="desktop-quran-dropdown">
         <a href="#all-stations-section">
-            <i class="fas fa-quran"></i> القرآن الكريم <i class="fas fa-caret-down" style="margin-right: 5px;"></i>
+            <i class="fas fa-book-open"></i> القرآن الكريم <i class="fas fa-caret-down" style="margin-right: 5px;"></i>
         </a>
         <div class="horizontal-dropdown-content">
-            <a href="#">القرآن كاملاً قراءة</a>
+            <a href="quran.pdf" target="_blank">القرآن كاملاً قراءة</a>
         </div>
     </div>
     
@@ -650,9 +645,9 @@ cursor: pointer;
         <div class="horizontal-dropdown-content">
             
             <a href="#" onclick="openNaqshbandiModal(event)">ابتهالات للشيخ النقشبندي</a>
+            <a href="#" onclick="openTobarModal(event)">ابتهالات للشيخ نصر الدين طوبار</a>
             
-            <a href="#">ابتهالات للشيخ نصر الدين طوبار</a>
-            <a href="#">ابتهالات للشيخ محمد الطوخي</a>
+            <a href="#" onclick="openTokhiModal(event)">ابتهالات للشيخ محمد الطوخي</a>
         </div>
     </div>
 
@@ -719,28 +714,25 @@ cursor: pointer;
 <div id="naqshbandiModal" class="playlist-modal">
     <div class="playlist-content">
         <h2>ابتهالات النقشبندي</h2>
-        <div class="track-display" id="trackNameDisplay">المقطع 1</div>
         
         <div class="playlist-controls">
             <div class="control-item">
-                <button class="ctrl-btn" onclick="playNext()" title="التالي">
-                    <i class="fas fa-step-backward"></i> 
+                <button class="ctrl-btn" onclick="playPrev()" title="السابق" id="prevBtn">
+                    <i class="fas fa-step-forward"></i> 
                 </button>
-                <span>التالي</span>
+                <span>السابق</span>
             </div>
-            
             <div class="control-item">
                 <button class="ctrl-btn big" onclick="togglePlaylistPlay()" id="playlistPlayBtn" title="تشغيل/إيقاف">
                     <i class="fas fa-play"></i>
                 </button>
                 <span>تشغيل</span>
             </div>
-            
             <div class="control-item">
-                <button class="ctrl-btn" onclick="playPrev()" title="السابق">
-                    <i class="fas fa-step-forward"></i> 
+                <button class="ctrl-btn" onclick="playNext()" title="التالي" id="nextBtn">
+                    <i class="fas fa-step-backward"></i> 
                 </button>
-                <span>السابق</span>
+                <span>التالي</span>
             </div>
         </div>
 
@@ -749,6 +741,78 @@ cursor: pointer;
                 <i class="fas fa-sync"></i> تشغيل الكل تلقائياً
             </button>
             <button class="action-btn" onclick="closeNaqshbandiModal()">
+                <i class="fas fa-times"></i> إغلاق النافذة
+            </button>
+        </div>
+    </div>
+</div>
+
+<div id="tobarModal" class="playlist-modal">
+    <div class="playlist-content">
+        <h2>ابتهالات نصر الدين طوبار</h2>
+        
+        <div class="playlist-controls">
+            <div class="control-item">
+                <button class="ctrl-btn" onclick="playPrevTobar()" title="السابق" id="tobarPrevBtn">
+                    <i class="fas fa-step-forward"></i> 
+                </button>
+                <span>السابق</span>
+            </div>
+            <div class="control-item">
+                <button class="ctrl-btn big" onclick="toggleTobarPlay()" id="tobarPlayBtn" title="تشغيل/إيقاف">
+                    <i class="fas fa-play"></i>
+                </button>
+                <span>تشغيل</span>
+            </div>
+            <div class="control-item">
+                <button class="ctrl-btn" onclick="playNextTobar()" title="التالي" id="tobarNextBtn">
+                    <i class="fas fa-step-backward"></i> 
+                </button>
+                <span>التالي</span>
+            </div>
+        </div>
+
+        <div class="extra-controls">
+            <button class="action-btn" id="tobarPlayAllBtn" onclick="toggleTobarPlayAll()">
+                <i class="fas fa-sync"></i> تشغيل الكل تلقائياً
+            </button>
+            <button class="action-btn" onclick="closeTobarModal()">
+                <i class="fas fa-times"></i> إغلاق النافذة
+            </button>
+        </div>
+    </div>
+</div>
+
+<div id="tokhiModal" class="playlist-modal">
+    <div class="playlist-content">
+        <h2>ابتهالات محمد الطوخي</h2>
+        
+        <div class="playlist-controls">
+            <div class="control-item">
+                <button class="ctrl-btn" onclick="playPrevTokhi()" title="السابق" id="tokhiPrevBtn">
+                    <i class="fas fa-step-forward"></i> 
+                </button>
+                <span>السابق</span>
+            </div>
+            <div class="control-item">
+                <button class="ctrl-btn big" onclick="toggleTokhiPlay()" id="tokhiPlayBtn" title="تشغيل/إيقاف">
+                    <i class="fas fa-play"></i>
+                </button>
+                <span>تشغيل</span>
+            </div>
+            <div class="control-item">
+                <button class="ctrl-btn" onclick="playNextTokhi()" title="التالي" id="tokhiNextBtn">
+                    <i class="fas fa-step-backward"></i> 
+                </button>
+                <span>التالي</span>
+            </div>
+        </div>
+
+        <div class="extra-controls">
+            <button class="action-btn" id="tokhiPlayAllBtn" onclick="toggleTokhiPlayAll()">
+                <i class="fas fa-sync"></i> تشغيل الكل تلقائياً
+            </button>
+            <button class="action-btn" onclick="closeTokhiModal()">
                 <i class="fas fa-times"></i> إغلاق النافذة
             </button>
         </div>
@@ -925,11 +989,20 @@ class CustomAudioPlayer {
     }
 
     play() {
-        // إيقاف أي مشغل آخر
+        // إيقاف جميع مشغلات الابتهالات الأخرى
         if (playlistHowl && playlistHowl.playing()) {
             playlistHowl.stop();
             updatePlaylistUI(false);
         }
+        if (tobarHowl && tobarHowl.playing()) {
+            tobarHowl.stop();
+            updateTobarUI(false);
+        }
+        if (tokhiHowl && tokhiHowl.playing()) {
+            tokhiHowl.stop();
+            updateTokhiUI(false);
+        }
+
 
         customPlayers.forEach(player => {
             if (player !== this && player.howl.playing()) {
@@ -1001,9 +1074,12 @@ class CustomAudioPlayer {
 }
 
 // **********************************************************************
-// منطق مشغل النقشبندي (Playlist Logic)
+// منطق مشغل النقشبندي (Playlist Logic - Naqshbandi)
 // **********************************************************************
-const naqshbandiFiles = ['1.mp3', '2.mp3', '3.mp3', '4.mp3', '5.mp3'];
+const naqshbandiFiles = [
+    '1.mp3', '2.mp3', '3.mp3', '4.mp3', '5.mp3', 
+    '6.mp3', '7.mp3', '8.mp3', '9.mp3', '10.mp3'
+];
 let currentTrackIndex = 0;
 let playlistHowl = null;
 let isPlayAllEnabled = false;
@@ -1011,44 +1087,51 @@ let isPlayAllEnabled = false;
 function openNaqshbandiModal(e) {
     if(e) e.preventDefault();
     
-    // إيقاف أي راديو يعمل حالياً
+    // إيقاف الراديو
     customPlayers.forEach(player => {
-        if (player.howl.playing()) {
-            player.pause();
-        }
+        if (player.howl.playing()) player.pause();
     });
+
+    // إيقاف طوبار والطوخي إذا كانا يعملان
+    if (tobarHowl && tobarHowl.playing()) {
+        tobarHowl.stop();
+        updateTobarUI(false);
+    }
+    if (tokhiHowl && tokhiHowl.playing()) {
+        tokhiHowl.stop();
+        updateTokhiUI(false);
+    }
+
 
     const modal = document.getElementById('naqshbandiModal');
     modal.classList.add('active');
-    closeMenu(); // إغلاق القائمة الجانبية إذا كانت مفتوحة
+    closeMenu(); 
     
-    updateTrackDisplay();
+    updateButtonStates();
     updatePlaylistUI(playlistHowl && playlistHowl.playing());
 }
 
 function closeNaqshbandiModal() {
     const modal = document.getElementById('naqshbandiModal');
     modal.classList.remove('active');
-    // لا نوقف الصوت عند الإغلاق، سيبقى يعمل في الخلفية
 }
 
 function playTrack(index) {
     if (playlistHowl) {
         playlistHowl.stop();
     }
-
-    if (index >= naqshbandiFiles.length) index = 0;
-    if (index < 0) index = naqshbandiFiles.length - 1;
+    if (index >= naqshbandiFiles.length) index = naqshbandiFiles.length - 1;
+    if (index < 0) index = 0;
 
     currentTrackIndex = index;
-    updateTrackDisplay();
+    updateButtonStates(); 
 
     playlistHowl = new Howl({
         src: [naqshbandiFiles[currentTrackIndex]],
         html5: true,
         onend: function() {
-            if (isPlayAllEnabled) {
-                playNext(); // تشغيل التالي تلقائياً
+            if (isPlayAllEnabled && currentTrackIndex < naqshbandiFiles.length - 1) {
+                playNext(); 
             } else {
                 updatePlaylistUI(false);
             }
@@ -1078,25 +1161,32 @@ function togglePlaylistPlay() {
 }
 
 function playNext() {
-    let nextIndex = currentTrackIndex + 1;
-    if (nextIndex >= naqshbandiFiles.length) nextIndex = 0; 
-    playTrack(nextIndex);
+    if (currentTrackIndex < naqshbandiFiles.length - 1) {
+        playTrack(currentTrackIndex + 1);
+    }
 }
 
 function playPrev() {
-    let prevIndex = currentTrackIndex - 1;
-    if (prevIndex < 0) prevIndex = naqshbandiFiles.length - 1; 
-    playTrack(prevIndex);
+    if (currentTrackIndex > 0) {
+        playTrack(currentTrackIndex - 1);
+    }
+}
+
+function updateButtonStates() {
+    const nextBtn = document.getElementById('nextBtn');
+    const prevBtn = document.getElementById('prevBtn');
+    if (currentTrackIndex === 0) prevBtn.disabled = true;
+    else prevBtn.disabled = false;
+    if (currentTrackIndex === naqshbandiFiles.length - 1) nextBtn.disabled = true;
+    else nextBtn.disabled = false;
 }
 
 function togglePlayAll() {
     isPlayAllEnabled = !isPlayAllEnabled;
     const btn = document.getElementById('playAllBtn');
-    
     if (isPlayAllEnabled) {
         btn.classList.add('active');
         btn.innerHTML = '<i class="fas fa-check"></i> تشغيل الكل (مفعل)';
-        // إذا تم التفعيل، شغل فوراً
         if (!playlistHowl || !playlistHowl.playing()) {
             playTrack(currentTrackIndex);
         }
@@ -1106,24 +1196,283 @@ function togglePlayAll() {
     }
 }
 
-function updateTrackDisplay() {
-    document.getElementById('trackNameDisplay').textContent = `المقطع ${currentTrackIndex + 1} من ${naqshbandiFiles.length}`;
-}
-
-// تحديث الأزرار في المودال فقط
 function updatePlaylistUI(isPlaying) {
     const modalPlayBtn = document.getElementById('playlistPlayBtn');
-    
     const iconHtml = isPlaying ? '<i class="fas fa-pause"></i>' : '<i class="fas fa-play"></i>';
-    const label = modalPlayBtn.nextElementSibling; // العنصر span الذي يحتوي على النص
-
+    const label = modalPlayBtn.nextElementSibling; 
     if (modalPlayBtn) {
         modalPlayBtn.innerHTML = iconHtml;
         if(label) label.textContent = isPlaying ? 'إيقاف' : 'تشغيل';
     }
 }
 
+// **********************************************************************
+// منطق مشغل نصر الدين طوبار (Playlist Logic - Tobar)
+// **********************************************************************
+const tobarFiles = [
+    '11.mp3', '12.mp3', '13.mp3', '14.mp3', '15.mp3', '16.mp3'
+];
+let currentTobarIndex = 0;
+let tobarHowl = null;
+let isTobarPlayAllEnabled = false;
 
+function openTobarModal(e) {
+    if(e) e.preventDefault();
+
+    // إيقاف الراديو
+    customPlayers.forEach(player => {
+        if (player.howl.playing()) player.pause();
+    });
+
+    // إيقاف النقشبندي والطوخي إذا كانا يعملان
+    if (playlistHowl && playlistHowl.playing()) {
+        playlistHowl.stop();
+        updatePlaylistUI(false);
+    }
+    if (tokhiHowl && tokhiHowl.playing()) {
+        tokhiHowl.stop();
+        updateTokhiUI(false);
+    }
+
+
+    const modal = document.getElementById('tobarModal');
+    modal.classList.add('active');
+    closeMenu();
+    
+    updateTobarButtonStates();
+    updateTobarUI(tobarHowl && tobarHowl.playing());
+}
+
+function closeTobarModal() {
+    const modal = document.getElementById('tobarModal');
+    modal.classList.remove('active');
+}
+
+function playTobarTrack(index) {
+    if (tobarHowl) {
+        tobarHowl.stop();
+    }
+    if (index >= tobarFiles.length) index = tobarFiles.length - 1;
+    if (index < 0) index = 0;
+
+    currentTobarIndex = index;
+    updateTobarButtonStates();
+
+    tobarHowl = new Howl({
+        src: [tobarFiles[currentTobarIndex]],
+        html5: true,
+        onend: function() {
+            if (isTobarPlayAllEnabled && currentTobarIndex < tobarFiles.length - 1) {
+                playNextTobar();
+            } else {
+                updateTobarUI(false);
+            }
+        },
+        onplay: function() {
+            updateTobarUI(true);
+        },
+        onpause: function() {
+            updateTobarUI(false);
+        },
+        onstop: function() {
+            updateTobarUI(false);
+        }
+    });
+
+    tobarHowl.play();
+}
+
+function toggleTobarPlay() {
+    if (tobarHowl && tobarHowl.playing()) {
+        tobarHowl.pause();
+    } else if (tobarHowl) {
+        tobarHowl.play();
+    } else {
+        playTobarTrack(currentTobarIndex);
+    }
+}
+
+function playNextTobar() {
+    if (currentTobarIndex < tobarFiles.length - 1) {
+        playTobarTrack(currentTobarIndex + 1);
+    }
+}
+
+function playPrevTobar() {
+    if (currentTobarIndex > 0) {
+        playTobarTrack(currentTobarIndex - 1);
+    }
+}
+
+function updateTobarButtonStates() {
+    const nextBtn = document.getElementById('tobarNextBtn');
+    const prevBtn = document.getElementById('tobarPrevBtn');
+    if (currentTobarIndex === 0) prevBtn.disabled = true;
+    else prevBtn.disabled = false;
+    if (currentTobarIndex === tobarFiles.length - 1) nextBtn.disabled = true;
+    else nextBtn.disabled = false;
+}
+
+function toggleTobarPlayAll() {
+    isTobarPlayAllEnabled = !isTobarPlayAllEnabled;
+    const btn = document.getElementById('tobarPlayAllBtn');
+    if (isTobarPlayAllEnabled) {
+        btn.classList.add('active');
+        btn.innerHTML = '<i class="fas fa-check"></i> تشغيل الكل (مفعل)';
+        if (!tobarHowl || !tobarHowl.playing()) {
+            playTobarTrack(currentTobarIndex);
+        }
+    } else {
+        btn.classList.remove('active');
+        btn.innerHTML = '<i class="fas fa-sync"></i> تشغيل الكل تلقائياً';
+    }
+}
+
+function updateTobarUI(isPlaying) {
+    const playBtn = document.getElementById('tobarPlayBtn');
+    const iconHtml = isPlaying ? '<i class="fas fa-pause"></i>' : '<i class="fas fa-play"></i>';
+    const label = playBtn.nextElementSibling; 
+    if (playBtn) {
+        playBtn.innerHTML = iconHtml;
+        if(label) label.textContent = isPlaying ? 'إيقاف' : 'تشغيل';
+    }
+}
+
+// **********************************************************************
+// منطق مشغل محمد الطوخي (Playlist Logic - Tokhi)
+// **********************************************************************
+const tokhiFiles = [
+    '17.mp3', '18.mp3', '19.mp3', '20.mp3'
+];
+let currentTokhiIndex = 0;
+let tokhiHowl = null;
+let isTokhiPlayAllEnabled = false;
+
+function openTokhiModal(e) {
+    if(e) e.preventDefault();
+
+    // إيقاف الراديو
+    customPlayers.forEach(player => {
+        if (player.howl.playing()) player.pause();
+    });
+
+    // إيقاف النقشبندي وطوبار إذا كانا يعملان
+    if (playlistHowl && playlistHowl.playing()) {
+        playlistHowl.stop();
+        updatePlaylistUI(false);
+    }
+    if (tobarHowl && tobarHowl.playing()) {
+        tobarHowl.stop();
+        updateTobarUI(false);
+    }
+
+    const modal = document.getElementById('tokhiModal');
+    modal.classList.add('active');
+    closeMenu();
+    
+    updateTokhiButtonStates();
+    updateTokhiUI(tokhiHowl && tokhiHowl.playing());
+}
+
+function closeTokhiModal() {
+    const modal = document.getElementById('tokhiModal');
+    modal.classList.remove('active');
+}
+
+function playTokhiTrack(index) {
+    if (tokhiHowl) {
+        tokhiHowl.stop();
+    }
+    if (index >= tokhiFiles.length) index = tokhiFiles.length - 1;
+    if (index < 0) index = 0;
+
+    currentTokhiIndex = index;
+    updateTokhiButtonStates();
+
+    tokhiHowl = new Howl({
+        src: [tokhiFiles[currentTokhiIndex]],
+        html5: true,
+        onend: function() {
+            if (isTokhiPlayAllEnabled && currentTokhiIndex < tokhiFiles.length - 1) {
+                playNextTokhi();
+            } else {
+                updateTokhiUI(false);
+            }
+        },
+        onplay: function() {
+            updateTokhiUI(true);
+        },
+        onpause: function() {
+            updateTokhiUI(false);
+        },
+        onstop: function() {
+            updateTokhiUI(false);
+        }
+    });
+
+    tokhiHowl.play();
+}
+
+function toggleTokhiPlay() {
+    if (tokhiHowl && tokhiHowl.playing()) {
+        tokhiHowl.pause();
+    } else if (tokhiHowl) {
+        tokhiHowl.play();
+    } else {
+        playTokhiTrack(currentTokhiIndex);
+    }
+}
+
+function playNextTokhi() {
+    if (currentTokhiIndex < tokhiFiles.length - 1) {
+        playTokhiTrack(currentTokhiIndex + 1);
+    }
+}
+
+function playPrevTokhi() {
+    if (currentTokhiIndex > 0) {
+        playTokhiTrack(currentTokhiIndex - 1);
+    }
+}
+
+function updateTokhiButtonStates() {
+    const nextBtn = document.getElementById('tokhiNextBtn');
+    const prevBtn = document.getElementById('tokhiPrevBtn');
+    if (currentTokhiIndex === 0) prevBtn.disabled = true;
+    else prevBtn.disabled = false;
+    if (currentTokhiIndex === tokhiFiles.length - 1) nextBtn.disabled = true;
+    else nextBtn.disabled = false;
+}
+
+function toggleTokhiPlayAll() {
+    isTokhiPlayAllEnabled = !isTokhiPlayAllEnabled;
+    const btn = document.getElementById('tokhiPlayAllBtn');
+    if (isTokhiPlayAllEnabled) {
+        btn.classList.add('active');
+        btn.innerHTML = '<i class="fas fa-check"></i> تشغيل الكل (مفعل)';
+        if (!tokhiHowl || !tokhiHowl.playing()) {
+            playTokhiTrack(currentTokhiIndex);
+        }
+    } else {
+        btn.classList.remove('active');
+        btn.innerHTML = '<i class="fas fa-sync"></i> تشغيل الكل تلقائياً';
+    }
+}
+
+function updateTokhiUI(isPlaying) {
+    const playBtn = document.getElementById('tokhiPlayBtn');
+    const iconHtml = isPlaying ? '<i class="fas fa-pause"></i>' : '<i class="fas fa-play"></i>';
+    const label = playBtn.nextElementSibling; 
+    if (playBtn) {
+        playBtn.innerHTML = iconHtml;
+        if(label) label.textContent = isPlaying ? 'إيقاف' : 'تشغيل';
+    }
+}
+
+
+// **********************************************************************
+// (بقية الكود الأصلي للفلاتر والتحميل)
+// **********************************************************************
 const allowedKeywords = [
 "فتاوى", "رقية", "عبد الباسط", "عبد الباسط عبد الصمد", "عبدالباسط", "عبد الصمد",
 "المنشاوي", "الطبلاوي", "الحصري", "مصطفى اسماعيل", "آيات السكينة",
