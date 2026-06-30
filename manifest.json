@@ -1,0 +1,22 @@
+﻿{
+  "name": "فَاذْكُرُونِي أَذْكُرْكُمْ",
+  "short_name": "تسابيح",
+  "description": "إذاعات وتلاوات القرآن الكريم والبث المباشر",
+  "start_url": "/index.html",
+  "display": "standalone",
+  "background_color": "#004d40",
+  "theme_color": "#004d40",
+  "icons": [
+    {
+      "src": "/kaaba.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/kaaba.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
+
